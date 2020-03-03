@@ -1,8 +1,8 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import logo from './qualifica.png';
+import { Button } from '@material-ui/core';
 
-function App() {
+function App(props) {
   return (
     <div className="App">
       <header className="App-header">
@@ -16,9 +16,13 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
+          <Button onClick={props.logout}>Hello</Button>
+
           Learn React
         </a>
       </header>
+      
+
     </div>
   );
 }
