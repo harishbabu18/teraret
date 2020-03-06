@@ -101,7 +101,7 @@ class ShowCompanyPage extends React.Component {
     fetch(SERVER_URL+'/officeType')
     .then(r => r.json())
     .then(json => this.setState({officeType: json}))
-    .catch(error => console.error('Error retrieving Tickrts: ' + error));
+    .catch(error => console.error('Error retrieving Tickets: ' + error));
     // console.log("Logged In User is "+JSON.parse(localStorage.auth).data.username);
     // console.log(this.state);
     // console.log('HIIII',JSON.parse(localStorage.auth).data.username)

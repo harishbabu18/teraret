@@ -17,6 +17,10 @@ import OfferList from './page/commercial/offer/OfferList';
 import CompanyList from './page/addressbook/company/CompanyList';
 import CompanyCreate from './page/addressbook/company/CompanyCreate';
 import ShowCompanyPage from './page/addressbook/company/ShowCompanyPage';
+import ShowEmployeePage from './page/addressbook/employee/ShowEmployeePage';
+import ShowOfferPage from './page/commercial/offer/ShowOfferPage';
+
+
 
 
 const theme = createMuiTheme({
@@ -122,7 +126,14 @@ function Index(props) {
              <PrivateRoute  exact path="/addressbook/company/show">
                <ShowCompanyPage/>
              </PrivateRoute>
-             
+
+             <PrivateRoute  exact path="/addressbook/employee/show">
+               <ShowEmployeePage/>
+             </PrivateRoute>
+
+             <PrivateRoute  exact path="/commercial/offer/show">
+               <ShowOfferPage/>
+             </PrivateRoute>
 
              <PrivateRoute  exact path="/offer">
              <OfferList />
