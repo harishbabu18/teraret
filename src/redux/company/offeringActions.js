@@ -33,6 +33,7 @@ export const fetchOfferings = () => {
             dispatch(fetchOfferingsFailure(errorMsg))
         }
         )
+
     }
 
 }
