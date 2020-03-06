@@ -15,6 +15,7 @@ import LanguageIcon from '@material-ui/icons/Language';
 import MenuItem from '@material-ui/core/MenuItem';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import FormLabel from '@material-ui/core/FormLabel';
+import { red } from '@material-ui/core/colors';
 
 
 
@@ -22,7 +23,7 @@ const useStyles = theme => ({
   root: {
    
     
-    '& .MuiTextField-root ': {
+    '& .MuiTextField-root	': {
       margin: theme.spacing(1),
       marginBottom: 12,
 
@@ -36,7 +37,9 @@ const useStyles = theme => ({
         width: 295,
 
     },
-
+    },
+    '& .Mui-disabled' :{
+      color :"#464141",
     }
   },
 
@@ -99,14 +102,14 @@ class ShowCompanyPage extends React.Component {
     .then(r => r.json())
     .then(json => this.setState({officeType: json}))
     .catch(error => console.error('Error retrieving Tickrts: ' + error));
-    console.log("Logged In User is "+JSON.parse(localStorage.auth).data.username);
-    console.log(this.state);
-    console.log('HIIII',JSON.parse(localStorage.auth).data.username)
-    const url = SERVER_URL+"/userByUsername?username="+JSON.parse(localStorage.auth).data.username;
-    fetch(url)
-    .then(r => r.json())
-    .then(json => this.setState({userValue: json.id}))
-    .catch(error => console.error('Error retrieving Companies: ' + error));
+    // console.log("Logged In User is "+JSON.parse(localStorage.auth).data.username);
+    // console.log(this.state);
+    // console.log('HIIII',JSON.parse(localStorage.auth).data.username)
+    // const url = SERVER_URL+"/userByUsername?username="+JSON.parse(localStorage.auth).data.username;
+    // fetch(url)
+    // .then(r => r.json())
+    // .then(json => this.setState({userValue: json.id}))
+    // .catch(error => console.error('Error retrieving Companies: ' + error));
 
     }
 
@@ -365,7 +368,7 @@ class ShowCompanyPage extends React.Component {
    </Button>
    <TextField
           id="outlined-full-width"
-          className={classes.textField}
+          className={classes.root}
           label="Company Name"
           style={{ margin: 8 }}
           placeholder="Company Name "
@@ -521,8 +524,8 @@ class ShowCompanyPage extends React.Component {
                           select 
                           label="Office Type"
                         //   value={this.state.officeTypeValue}
-                        defaultValue="hvjhhjfkuf"
-                          onChange={this.handleOfficeTypeValue.bind(this)}
+                          defaultValue="hvjhhjfkuf"
+                          // onChange={this.handleOfficeTypeValue.bind(this)}
                           disabled
                           variant="outlined"
                           >
@@ -540,7 +543,7 @@ class ShowCompanyPage extends React.Component {
      fullWidth
      defaultValue="hvjhhjfkuf"
      margin="normal"
-     onChange={this.handleChangeAddressValue}
+    //  onChange={this.handleChangeAddressValue}
      disabled
      InputLabelProps={{
        shrink: true,
@@ -559,7 +562,7 @@ class ShowCompanyPage extends React.Component {
      fullWidth
      defaultValue="hvjhhjfkuf"
      margin="normal"
-     onChange={this.handleChangeAddressTwoValue}
+    //  onChange={this.handleChangeAddressTwoValue}
      disabled
      InputLabelProps={{
        shrink: true,
@@ -570,32 +573,33 @@ class ShowCompanyPage extends React.Component {
     }}
      variant="outlined"
    />
-    <FormLabel component="legend">Country</FormLabel>
+    <FormLabel component="legend" >Country</FormLabel>
     <CountryDropdown
         //   value={this.state.countryValue}
         //   onChange={(val) => this.selectCountry(val)} 
-        defaultValue="India"
+        
           style={{
             background:'white',
             fontSize: 18,
-            disabled,
             width:300,
             height:50
           }}
+          disabled
+          value="India"
           />
-   <FormLabel component="legend">State/Region</FormLabel>      
+   <FormLabel component="legend" >State/Region</FormLabel>      
    <RegionDropdown
-          country={this.state.countryValue}
+          country="India"
         //   value={this.state.stateValue}
-        //   onChange={(val) => this.selectRegion(val)}
-        defaultValue="Karnataka"
+          onChange={(val) => this.selectRegion(val)}
+          value="Karnataka"
           style={{
             background:'white',
             fontSize: 18,
-            disabled,
             width:300,
             height:50
-          }}          
+          }}  
+          disabled
           />
 
 <TextField
@@ -604,7 +608,7 @@ class ShowCompanyPage extends React.Component {
      style={{ margin: 8 }}
      fullWidth
      margin="normal"
-     defaultValue="bangaluru"
+     defaultValue="bengaluru"
      disabled
     //  onChange={this.handleChangeCityValue}
      InputLabelProps={{
@@ -623,7 +627,7 @@ class ShowCompanyPage extends React.Component {
      style={{ margin: 8 }}
      fullWidth
      margin="normal"
-     defaultValue="file.zip"
+     defaultValue="560021"
      disabled
     //  onChange={this.handleChangeZipValue}
      InputLabelProps={{
