@@ -1,6 +1,7 @@
 import React, {useState,useEffect} from 'react'
 import ReactDOM from 'react-dom'
 import Auth from './security/auth';
+import { MuiThemeProvider,createMuiTheme } from '@material-ui/core/styles';
 
 import App from './App'
 import {SERVER_URL} from './config'
@@ -11,6 +12,25 @@ import {checkResponseStatus, loginResponseHandler} from './handlers/responseHand
 import Login from './page/Login'
 import axios from 'axios'
 import history from './history'
+import Admin from './layout/Admin'
+import OfferList from './page/commercial/offer/OfferList';
+import CompanyList from './page/addressbook/company/CompanyList';
+import CompanyCreate from './page/addressbook/company/CompanyCreate';
+
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main:'#f7ad00',
+    },
+    secondary: {
+      light: '#0066ff',
+      main: '#0044ff',
+      // dark: will be calculated from palette.secondary.main,
+      contrastText: '#ffcc00',
+    },
+  },
+});
 
 function Index(props) {
 
@@ -83,9 +103,27 @@ function Index(props) {
              <LoggedInRedirect  exact path="/login" >
                <Login LoginSubmit={LoginSubmit} _usernameValue={_usernameValue} _passwordValue={_passwordValue} />
              </LoggedInRedirect>
+
+             <Admin logoutHandler={logoutHandler}>
+
              <PrivateRoute  exact path="/">
-               <App logout={logoutHandler}/>  
+               <App logout={logoutHandler}/>                
              </PrivateRoute>
+
+             <PrivateRoute  exact path="/addressbook/company/list">
+               <CompanyList/>
+             </PrivateRoute>
+             <PrivateRoute  exact path="/addressbook/company/create">
+               <CompanyCreate/>
+             </PrivateRoute>
+
+             
+
+             <PrivateRoute  exact path="/offer">
+             <OfferList />
+             </PrivateRoute>
+
+             </Admin>
            
          </Switch>
      </BrowserRouter>
@@ -137,7 +175,7 @@ function LoggedInRedirect({ children, ...rest }){
 
 }
 
-ReactDOM.render(<Index />, document.getElementById('root'));
+ReactDOM.render(<MuiThemeProvider theme={theme}><Index /></MuiThemeProvider>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
