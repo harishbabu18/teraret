@@ -120,20 +120,17 @@ class CompanyList extends React.Component {
 
         return(
           <div> 
-          <Grid item  sm={6} md={12} className={classes.root} >
+          <Grid item  sm={12} md={12} className={classes.root} >
           <ButtonGroup fullWidth aria-label="full width outlined button group">
           <Button className={classes.content} href="/addressbook/company/list">List Company</Button>
-         <Button className={classes.content} href="/addressbook/company/create">Create Company</Button>
-        </ButtonGroup>
-        </Grid>
+          <Button className={classes.content} href="/addressbook/company/create">Create Company</Button>
+          </ButtonGroup>
+           </Grid>
 <Grid item  sm={12} md={12} className={classes.content} >
   <Table className={classes.table} aria-label="customized table">
         <TableHead>
           <TableRow>
           <StyledTableCell > name </StyledTableCell>
-         
-          
-
           </TableRow>
         </TableHead>
         <TableBody>
