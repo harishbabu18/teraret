@@ -2,9 +2,8 @@ import React, {useState,useEffect} from 'react'
 import ReactDOM from 'react-dom'
 import Auth from './security/auth';
 import { MuiThemeProvider,createMuiTheme } from '@material-ui/core/styles';
-
 import App from './App'
-import {SERVER_URL} from './config'
+import SERVER_URL from './config'
 import * as serviceWorker from './serviceWorker'
 import { Route,Redirect,BrowserRouter,Switch} from 'react-router-dom'
 import {defaultErrorHandler} from './handlers/errorHandlers';
@@ -19,6 +18,12 @@ import CompanyCreate from './page/addressbook/company/CompanyCreate';
 import ShowCompanyPage from './page/addressbook/company/ShowCompanyPage';
 import ShowContactPage from './page/addressbook/contact/ShowContactPage';
 
+import ShowEmployeePage from './page/addressbook/employee/ShowEmployeePage';
+import ShowOfferPage from './page/commercial/offer/ShowOfferPage';
+import ContactList from './page/addressbook/contact/ContactList';
+import EmployeeList from './page/addressbook/employee/EmployeeList';
+import store from './redux/store';
+import {Provider} from 'react-redux'
 
 const theme = createMuiTheme({
   palette: {
@@ -112,9 +117,20 @@ function Index(props) {
                <App logout={logoutHandler}/>                
              </PrivateRoute>
 
-             <PrivateRoute  exact path="/addressbook/company/list">
-               <CompanyList/>
-             </PrivateRoute>
+             <Provider store={store}>
+              <PrivateRoute  exact path="/addressbook/company/list">
+                <CompanyList/>
+              </PrivateRoute>
+
+              <PrivateRoute  exact path="/addressbook/contact/list">
+                <ContactList/>
+              </PrivateRoute>
+
+              <PrivateRoute  exact path="/addressbook/employee/list">
+                <EmployeeList/>
+              </PrivateRoute>
+
+             </Provider>
             
              <PrivateRoute  exact path="/addressbook/company/create">
                <CompanyCreate/>
@@ -129,6 +145,14 @@ function Index(props) {
                <ShowContactPage/>
              </PrivateRoute>
              
+
+             <PrivateRoute  exact path="/addressbook/employee/show">
+               <ShowEmployeePage/>
+             </PrivateRoute>
+
+             <PrivateRoute  exact path="/commercial/offer/show">
+               <ShowOfferPage/>
+             </PrivateRoute>
 
              <PrivateRoute  exact path="/offer">
              <OfferList />

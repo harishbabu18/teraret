@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import { Button, makeStyles,withStyles } from '@material-ui/core';
 import { ButtonGroup} from '@material-ui/core';
-import {fetchCompanys} from '../../../redux/index';
+import {fetchContacts} from '../../../redux/index';
 import { useSelector,useDispatch } from 'react-redux';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Table from '@material-ui/core/Table';
@@ -19,11 +19,9 @@ import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles( theme => ({
   root: {
-    '& > * .MuiTextField-root ': {
+    '& .MuiTextField-root ': {
       margin: theme.spacing(1),
       marginBottom: 12,
-      margin: theme.spacing(1),
-
 
     [theme.breakpoints.down('sm')]: {
         width: '100%',
@@ -41,7 +39,6 @@ const useStyles = makeStyles( theme => ({
     },
 
     },
-    display: 'flex',
   },
   title: {
     fontSize: 18,
@@ -79,29 +76,29 @@ const StyledTableRow = withStyles(theme => ({
 
 
 
-function CompanyList(){
+function ContactList(){
   const classes = useStyles();
-  const companydata = useSelector(state => state.company )
+  const contactdata = useSelector(state => state.contact )
 
   const dispatch = useDispatch()
 
    useEffect(() => {
-       dispatch(fetchCompanys(companydata.sort,companydata.order,10,0))
+       dispatch(fetchContacts(contactdata.sort,contactdata.order,10,0))
    },[])
 
-  return companydata.loading ?(
+  return contactdata.loading ?(
             <div className={classes.root}>
             <LinearProgress />
           </div>
-          ): companydata.error ? (
-          <h1>{companydata.error}</h1>
+          ): contactdata.error ? (
+          <h1>{contactdata.error}</h1>
             ) : (
           
               <div> 
               <Grid item  sm={6} md={12} className={classes.root} >
                 <ButtonGroup fullWidth aria-label="full width outlined button group">
-                  <Button className={classes.content} href="/addressbook/company/list">List Company</Button>
-                  <Button className={classes.content} href="/addressbook/company/create">Create Company</Button>
+                  <Button className={classes.content} href="/addressbook/contact/list">List Contact</Button>
+                  <Button className={classes.content} href="/addressbook/contact/create">Create Contact</Button>
                 </ButtonGroup>
               </Grid>
               
@@ -114,47 +111,44 @@ function CompanyList(){
                   <TableRow>
                     <StyledTableCell >
                     <TableSortLabel>
-                       Company ID
+                       Contact ID
                     </TableSortLabel>
                     </StyledTableCell>
-                    <StyledTableCell > Logo </StyledTableCell>
+                    <StyledTableCell > Profile Pic </StyledTableCell>
                     <StyledTableCell > Name </StyledTableCell>
-                    <StyledTableCell > Description </StyledTableCell>
-                    <StyledTableCell > E-mail </StyledTableCell>
+                    <StyledTableCell > Position </StyledTableCell>
+                    <StyledTableCell > Date Of Birth </StyledTableCell>
                     <StyledTableCell > Mobile </StyledTableCell>
-                    <StyledTableCell > Website </StyledTableCell>
-                    <StyledTableCell > Fax </StyledTableCell>
+                    <StyledTableCell > E-mail </StyledTableCell>
                     <StyledTableCell > Address </StyledTableCell>
                     <StyledTableCell > Created By </StyledTableCell>
-                    <StyledTableCell > Established Date </StyledTableCell>
+                    <StyledTableCell > Date Created </StyledTableCell>
                     <StyledTableCell > Last Updated </StyledTableCell>
                     <StyledTableCell > Edit </StyledTableCell>
 
-                    
-
                   </TableRow>
                 </TableHead>
-                <TableBody>
-           {companydata && companydata.companys && companydata.companys.map(company =>  <StyledTableRow key={company.id}>
-            <StyledTableCell component="th" scope="row">{company.id}</StyledTableCell>
 
-           <StyledTableCell component="th" scope="row">
+                <TableBody>
+           {contactdata && contactdata.contacts && contactdata.contacts.map(contact =>  <StyledTableRow key={contact.id}>
+            <StyledTableCell component="th" scope="row">{contact.id}</StyledTableCell>
+            <StyledTableCell component="th" scope="row">
+
             <IconButton color="secondary" aria-label="Edit Contact">
-              <Avatar alt={company.name} src={(company.avatar)?company.avatar:company.name} />
+              <Avatar alt={contact.firstName} src={(contact.avatar)?contact.avatar:contact.firstName} />
             </IconButton>
            </StyledTableCell>
-           <StyledTableCell component="th" scope="row">{company.name}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{company.description}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{company.email}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{company.mobile}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{company.website}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{company.fax }</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{company.addresslineone} {company.addresslinetwo}, {company.state}-{company.zip}, {company.country} </StyledTableCell>
-           <StyledTableCell component="th" scope="row">{company.establishedDate}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{company.user}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{company.lastUpdated}</StyledTableCell>
+           <StyledTableCell component="th" scope="row">{contact.firstName} {contact.lastName}</StyledTableCell>
+           <StyledTableCell component="th" scope="row">{contact.position.name}</StyledTableCell>
+           <StyledTableCell component="th" scope="row">{contact.dob}</StyledTableCell>
+           <StyledTableCell component="th" scope="row">{contact.mobile}</StyledTableCell>
+           <StyledTableCell component="th" scope="row">{contact.email}</StyledTableCell>
+           <StyledTableCell component="th" scope="row">{contact.addresslineone} {contact.addresslinetwo}, {contact.state}-{contact.zip}, {contact.country} </StyledTableCell>
+           <StyledTableCell component="th" scope="row">{contact.user}</StyledTableCell>
+           <StyledTableCell component="th" scope="row">{contact.dateCreated}</StyledTableCell>
+           <StyledTableCell component="th" scope="row">{contact.lastUpdated}</StyledTableCell>
            <StyledTableCell component="th" scope="row">
-            <IconButton color="secondary" aria-label="Edit Company">
+            <IconButton color="secondary" aria-label="Edit Contact">
               <EditIcon/>          
             </IconButton>
            </StyledTableCell>
@@ -162,11 +156,10 @@ function CompanyList(){
 
 
 
-
                 </StyledTableRow>)}
                 </TableBody>
           </Table>
-          <Button onClick={() => dispatch(fetchCompanys(companydata.sort,companydata.order,companydata.max,companydata.offset))}>Load More</Button>
+          <Button onClick={() => dispatch(fetchContacts(contactdata.sort,contactdata.order,contactdata.max,contactdata.offset))}>Load More</Button>
           </TableContainer>
           </Grid>
           </div>
@@ -176,6 +169,6 @@ function CompanyList(){
     
 }
 
-export default CompanyList;
+export default ContactList;
 
 
