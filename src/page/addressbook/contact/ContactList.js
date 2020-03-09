@@ -130,7 +130,7 @@ function ContactList(){
                 </TableHead>
 
                 <TableBody>
-           {contactdata && contactdata.contacts && contactdata.contacts.map(contact =>  <StyledTableRow key={contact.id}>
+           {contactdata.contacts.map(contact =>  <StyledTableRow key={contact.id}>
             <StyledTableCell component="th" scope="row">{contact.id}</StyledTableCell>
             <StyledTableCell component="th" scope="row">
 
