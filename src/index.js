@@ -2,7 +2,6 @@ import React, {useState,useEffect} from 'react'
 import ReactDOM from 'react-dom'
 import Auth from './security/auth';
 import { MuiThemeProvider,createMuiTheme } from '@material-ui/core/styles';
-
 import App from './App'
 import SERVER_URL from './config'
 import * as serviceWorker from './serviceWorker'
@@ -20,12 +19,9 @@ import ShowCompanyPage from './page/addressbook/company/ShowCompanyPage';
 import ShowEmployeePage from './page/addressbook/employee/ShowEmployeePage';
 import ShowOfferPage from './page/commercial/offer/ShowOfferPage';
 import ContactList from './page/addressbook/contact/ContactList';
-
+import EmployeeList from './page/addressbook/employee/EmployeeList';
 import store from './redux/store';
 import {Provider} from 'react-redux'
-
-
-
 
 const theme = createMuiTheme({
   palette: {
@@ -128,6 +124,9 @@ function Index(props) {
                 <ContactList/>
               </PrivateRoute>
 
+              <PrivateRoute  exact path="/addressbook/employee/list">
+                <EmployeeList/>
+              </PrivateRoute>
 
              </Provider>
             

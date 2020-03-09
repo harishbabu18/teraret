@@ -14,9 +14,8 @@ import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Avatar from '@material-ui/core/Avatar';
 import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
-
-
-
+import TableContainer from '@material-ui/core/TableContainer';
+import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles( theme => ({
   root: {
@@ -104,6 +103,8 @@ function ContactList(){
               </Grid>
               
               <Grid item  sm={12} md={12} className={classes.content} >
+              <TableContainer component={Paper}>
+
                 <Table className={classes.table} aria-label="customized table">
           
                 <TableHead>
@@ -120,6 +121,7 @@ function ContactList(){
                     <StyledTableCell > Mobile </StyledTableCell>
                     <StyledTableCell > E-mail </StyledTableCell>
                     <StyledTableCell > Address </StyledTableCell>
+                    <StyledTableCell > Created By </StyledTableCell>
                     <StyledTableCell > Date Created </StyledTableCell>
                     <StyledTableCell > Last Updated </StyledTableCell>
                     <StyledTableCell > Edit </StyledTableCell>
@@ -142,6 +144,7 @@ function ContactList(){
            <StyledTableCell component="th" scope="row">{contact.mobile}</StyledTableCell>
            <StyledTableCell component="th" scope="row">{contact.email}</StyledTableCell>
            <StyledTableCell component="th" scope="row">{contact.addresslineone} {contact.addresslinetwo}, {contact.state}-{contact.zip}, {contact.country} </StyledTableCell>
+           <StyledTableCell component="th" scope="row">{contact.user}</StyledTableCell>
            <StyledTableCell component="th" scope="row">{contact.dateCreated}</StyledTableCell>
            <StyledTableCell component="th" scope="row">{contact.lastUpdated}</StyledTableCell>
            <StyledTableCell component="th" scope="row">
@@ -157,7 +160,7 @@ function ContactList(){
                 </TableBody>
           </Table>
           <Button onClick={() => dispatch(fetchContacts(contactdata.sort,contactdata.order,contactdata.max,contactdata.offset))}>Load More</Button>
-          
+          </TableContainer>
           </Grid>
           </div>
           

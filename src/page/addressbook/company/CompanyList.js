@@ -14,10 +14,8 @@ import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Avatar from '@material-ui/core/Avatar';
 import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
-
-
-
-
+import TableContainer from '@material-ui/core/TableContainer';
+import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles( theme => ({
   root: {
@@ -108,6 +106,8 @@ function CompanyList(){
               </Grid>
               
               <Grid item  sm={12} md={12} className={classes.content} >
+              <TableContainer component={Paper}>
+
                 <Table className={classes.table} aria-label="customized table">
           
                 <TableHead>
@@ -117,7 +117,7 @@ function CompanyList(){
                        Company ID
                     </TableSortLabel>
                     </StyledTableCell>
-                    <StyledTableCell > Avatar </StyledTableCell>
+                    <StyledTableCell > Logo </StyledTableCell>
                     <StyledTableCell > Name </StyledTableCell>
                     <StyledTableCell > Description </StyledTableCell>
                     <StyledTableCell > E-mail </StyledTableCell>
@@ -125,9 +125,10 @@ function CompanyList(){
                     <StyledTableCell > Website </StyledTableCell>
                     <StyledTableCell > Fax </StyledTableCell>
                     <StyledTableCell > Address </StyledTableCell>
+                    <StyledTableCell > Created By </StyledTableCell>
                     <StyledTableCell > Established Date </StyledTableCell>
                     <StyledTableCell > Last Updated </StyledTableCell>
-                    <StyledTableCell > Action </StyledTableCell>
+                    <StyledTableCell > Edit </StyledTableCell>
 
                     
 
@@ -150,6 +151,7 @@ function CompanyList(){
            <StyledTableCell component="th" scope="row">{company.fax }</StyledTableCell>
            <StyledTableCell component="th" scope="row">{company.addresslineone} {company.addresslinetwo}, {company.state}-{company.zip}, {company.country} </StyledTableCell>
            <StyledTableCell component="th" scope="row">{company.establishedDate}</StyledTableCell>
+           <StyledTableCell component="th" scope="row">{company.user}</StyledTableCell>
            <StyledTableCell component="th" scope="row">{company.lastUpdated}</StyledTableCell>
            <StyledTableCell component="th" scope="row">
             <IconButton color="secondary" aria-label="Edit Company">
@@ -165,7 +167,7 @@ function CompanyList(){
                 </TableBody>
           </Table>
           <Button onClick={() => dispatch(fetchCompanys(companydata.sort,companydata.order,companydata.max,companydata.offset))}>Load More</Button>
-          
+          </TableContainer>
           </Grid>
           </div>
           
