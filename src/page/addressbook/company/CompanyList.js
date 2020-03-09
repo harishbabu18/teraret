@@ -19,7 +19,7 @@ import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles( theme => ({
   root: {
-    '& > * .MuiTextField-root ': {
+    '& > * + * .MuiTextField-root ': {
       margin: theme.spacing(1),
       marginBottom: 12,
       margin: theme.spacing(1),
@@ -97,7 +97,7 @@ function CompanyList(){
           <h1>{companydata.error}</h1>
             ) : (
           
-              <div> 
+            <div> 
               <Grid item  sm={6} md={12} className={classes.root} >
                 <ButtonGroup fullWidth aria-label="full width outlined button group">
                   <Button className={classes.content} href="/addressbook/company/list">List Company</Button>
@@ -112,7 +112,7 @@ function CompanyList(){
           
                 <TableHead>
                   <TableRow>
-                    <StyledTableCell >
+                    <StyledTableCell>
                     <TableSortLabel>
                        Company ID
                     </TableSortLabel>
@@ -159,17 +159,15 @@ function CompanyList(){
             </IconButton>
            </StyledTableCell>
 
-
-
-
-
-                </StyledTableRow>)}
-                </TableBody>
+                </StyledTableRow>
+              )}
+            </TableBody>
           </Table>
           <Button onClick={() => dispatch(loadCompanys(companydata.sort,companydata.order,companydata.max,companydata.offset))}>Load More</Button>
-          </TableContainer>
-          </Grid>
-          </div>
+        </TableContainer>
+
+    </Grid>
+  </div>
           
           
       )
