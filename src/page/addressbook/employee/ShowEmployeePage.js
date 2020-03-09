@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import { Button ,ButtonGroup} from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 
-import {SERVER_URL} from '../../../config';
+import SERVER_URL from '../../../config';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
 import Email from '@material-ui/icons/Email';
