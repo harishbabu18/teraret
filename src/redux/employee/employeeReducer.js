@@ -1,4 +1,4 @@
-import {FETCH_EMPLOYEES_REQUEST,FETCH_EMPLOYEES_SUCCESS,FETCH_EMPLOYEES_FAILURE} from './employeeType'; 
+import {FETCH_EMPLOYEES_REQUEST,FETCH_EMPLOYEES_SUCCESS,FETCH_EMPLOYEES_FAILURE, LOADMORE_EMPLOYEES_SUCCESS } from './employeeType'; 
 
 const initialState = {
     loading:false,
@@ -23,8 +23,10 @@ const employeeReducer = (state = initialState,action) => {
                 ...state,
                 loading: false,
                 offset: state.offset+10,
-                employees:[...state.employees,...action.payload],
-                error:''
+                employees:action.payload,
+                error:'',
+                sort:state.sort,
+                max:state.max,
             } 
         case FETCH_EMPLOYEES_FAILURE:
             return{
@@ -32,6 +34,18 @@ const employeeReducer = (state = initialState,action) => {
                 employees:[],
                 error: action.payload
             }
+            
+        case LOADMORE_EMPLOYEES_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                sort:state.sort,
+                max:state.max,
+                offset:state.offset+10,
+                employees:[...state.employees,...action.payload],
+                error:''
+                }
+
        default: return state          
 
     }

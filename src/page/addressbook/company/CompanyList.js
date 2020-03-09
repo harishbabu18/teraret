@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import { Button, makeStyles,withStyles } from '@material-ui/core';
 import { ButtonGroup} from '@material-ui/core';
-import {fetchCompanys} from '../../../redux/index';
+import {loadCompanys, fetchCompanys} from '../../../redux/index';
 import { useSelector,useDispatch } from 'react-redux';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Table from '@material-ui/core/Table';
@@ -135,7 +135,7 @@ function CompanyList(){
                   </TableRow>
                 </TableHead>
                 <TableBody>
-           {companydata && companydata.companys && companydata.companys.map(company =>  <StyledTableRow key={company.id}>
+           {companydata.companys.map(company =>  <StyledTableRow key={company.id}>
             <StyledTableCell component="th" scope="row">{company.id}</StyledTableCell>
 
            <StyledTableCell component="th" scope="row">
@@ -150,8 +150,8 @@ function CompanyList(){
            <StyledTableCell component="th" scope="row">{company.website}</StyledTableCell>
            <StyledTableCell component="th" scope="row">{company.fax }</StyledTableCell>
            <StyledTableCell component="th" scope="row">{company.addresslineone} {company.addresslinetwo}, {company.state}-{company.zip}, {company.country} </StyledTableCell>
-           <StyledTableCell component="th" scope="row">{company.establishedDate}</StyledTableCell>
            <StyledTableCell component="th" scope="row">{company.user}</StyledTableCell>
+           <StyledTableCell component="th" scope="row">{company.establishedDate}</StyledTableCell>
            <StyledTableCell component="th" scope="row">{company.lastUpdated}</StyledTableCell>
            <StyledTableCell component="th" scope="row">
             <IconButton color="secondary" aria-label="Edit Company">
@@ -166,7 +166,7 @@ function CompanyList(){
                 </StyledTableRow>)}
                 </TableBody>
           </Table>
-          <Button onClick={() => dispatch(fetchCompanys(companydata.sort,companydata.order,companydata.max,companydata.offset))}>Load More</Button>
+          <Button onClick={() => dispatch(loadCompanys(companydata.sort,companydata.order,companydata.max,companydata.offset))}>Load More</Button>
           </TableContainer>
           </Grid>
           </div>

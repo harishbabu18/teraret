@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import { Button, makeStyles,withStyles } from '@material-ui/core';
 import { ButtonGroup} from '@material-ui/core';
-import {fetchContacts} from '../../../redux/index';
+import {fetchContacts, loadContacts} from '../../../redux/index';
 import { useSelector,useDispatch } from 'react-redux';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Table from '@material-ui/core/Table';
@@ -130,7 +130,7 @@ function ContactList(){
                 </TableHead>
 
                 <TableBody>
-           {contactdata && contactdata.contacts && contactdata.contacts.map(contact =>  <StyledTableRow key={contact.id}>
+           {contactdata.contacts.map(contact =>  <StyledTableRow key={contact.id}>
             <StyledTableCell component="th" scope="row">{contact.id}</StyledTableCell>
             <StyledTableCell component="th" scope="row">
 
@@ -159,7 +159,7 @@ function ContactList(){
                 </StyledTableRow>)}
                 </TableBody>
           </Table>
-          <Button onClick={() => dispatch(fetchContacts(contactdata.sort,contactdata.order,contactdata.max,contactdata.offset))}>Load More</Button>
+          <Button onClick={() => dispatch(loadContacts(contactdata.sort,contactdata.order,contactdata.max,contactdata.offset))}>Load More</Button>
           </TableContainer>
           </Grid>
           </div>

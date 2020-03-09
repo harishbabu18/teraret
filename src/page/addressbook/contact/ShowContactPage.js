@@ -8,7 +8,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import Typography from '@material-ui/core/Typography';
 import Email from '@material-ui/icons/Email';
 import PhoneAndroid from '@material-ui/icons/PhoneAndroid';
-import {SERVER_URL} from '../config';
+import SERVER_URL from '../../../config';
 import MenuItem from '@material-ui/core/MenuItem';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';

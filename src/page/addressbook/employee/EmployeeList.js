@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import { Button, makeStyles,withStyles } from '@material-ui/core';
 import { ButtonGroup} from '@material-ui/core';
-import {fetchEmployees} from '../../../redux/index';
+import {fetchEmployees, loadEmployees} from '../../../redux/index';
 import { useSelector,useDispatch } from 'react-redux';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Table from '@material-ui/core/Table';
@@ -113,7 +113,7 @@ function EmployeeList(){
                     <StyledTableCell > Name </StyledTableCell>
                     <StyledTableCell > E-mail </StyledTableCell>
                     <StyledTableCell > Date Of Birth </StyledTableCell>
-                    <StyledTableCell > Creaed By </StyledTableCell>
+                    <StyledTableCell > Created By </StyledTableCell>
                     <StyledTableCell > Joining Date </StyledTableCell>
                     <StyledTableCell > Relieving Date </StyledTableCell>
                     <StyledTableCell > Date Created </StyledTableCell>
@@ -123,7 +123,7 @@ function EmployeeList(){
                   </TableRow>
                 </TableHead>
                 <TableBody>
-           {employeedata && employeedata.employees && employeedata.employees.map(employee =>  
+           {employeedata.employees.map(employee =>  
            <StyledTableRow key={employee.id}>
             <StyledTableCell component="th" scope="row">{employee.id}</StyledTableCell>
             <StyledTableCell component="th" scope="row">
@@ -148,7 +148,7 @@ function EmployeeList(){
            </StyledTableRow>)}
           </TableBody>
         </Table>
-          <Button onClick={() => dispatch(fetchEmployees(employeedata.sort,employeedata.order,employeedata.max,employeedata.offset))}>Load More</Button>
+          <Button onClick={() => dispatch(loadEmployees(employeedata.sort,employeedata.order,employeedata.max,employeedata.offset))}>Load More</Button>
         </TableContainer>
       </Grid>
     </div>
