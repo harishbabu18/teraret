@@ -16,6 +16,8 @@ import OfferList from './page/commercial/offer/OfferList';
 import CompanyList from './page/addressbook/company/CompanyList';
 import CompanyCreate from './page/addressbook/company/CompanyCreate';
 import ShowCompanyPage from './page/addressbook/company/ShowCompanyPage';
+import ShowContactPage from './page/addressbook/contact/ShowContactPage';
+
 import ShowEmployeePage from './page/addressbook/employee/ShowEmployeePage';
 import ShowOfferPage from './page/commercial/offer/ShowOfferPage';
 import ContactList from './page/addressbook/contact/ContactList';
@@ -137,6 +139,12 @@ function Index(props) {
              <PrivateRoute  exact path="/addressbook/company/show">
                <ShowCompanyPage/>
              </PrivateRoute>
+
+
+             <PrivateRoute  exact path="/addressbook/contact/show">
+               <ShowContactPage/>
+             </PrivateRoute>
+             
 
              <PrivateRoute  exact path="/addressbook/employee/show">
                <ShowEmployeePage/>
