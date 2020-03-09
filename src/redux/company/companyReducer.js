@@ -22,7 +22,6 @@ const companyReducer = (state = initialState,action) => {
             return {
                 loading: false,
                 offset: state.offset+10,
-                companys:[...state.companys,...action.payload],
                 sort:state.sort,
                 max:state.max,
                 offset:state.offset+10,

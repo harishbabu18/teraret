@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import { Button, makeStyles,withStyles } from '@material-ui/core';
 import { ButtonGroup} from '@material-ui/core';
-import {fetchEmployees} from '../../../redux/index';
+import {fetchEmployees, loadEmployees} from '../../../redux/index';
 import { useSelector,useDispatch } from 'react-redux';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Table from '@material-ui/core/Table';
@@ -148,7 +148,7 @@ function EmployeeList(){
            </StyledTableRow>)}
           </TableBody>
         </Table>
-          <Button onClick={() => dispatch(fetchEmployees(employeedata.sort,employeedata.order,employeedata.max,employeedata.offset))}>Load More</Button>
+          <Button onClick={() => dispatch(loadEmployees(employeedata.sort,employeedata.order,employeedata.max,employeedata.offset))}>Load More</Button>
         </TableContainer>
       </Grid>
     </div>
