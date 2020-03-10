@@ -7,6 +7,8 @@ import productReducer from './product/productReducer';
 import meanReducer from './means/meanReducer';
 import equipmentReducer from './equipment/equipmentReducer';
 import ticketReducer from './ticket/ticketReducer';
+import offeringReducer from './offering/offeringReducer';
+import supplierReducer from './supplier/supplierReducer';
 
 const rootReducer = combineReducers({
    
@@ -17,6 +19,9 @@ const rootReducer = combineReducers({
     mean: meanReducer,
     equipment: equipmentReducer,
     ticket: ticketReducer,
+    offering:offeringReducer,
+    supplier:supplierReducer
+
 })
 
 export default rootReducer

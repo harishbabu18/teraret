@@ -1,18 +1,21 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import { Button ,ButtonGroup} from '@material-ui/core';
-import Grid from '@material-ui/core/Grid';
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import Typography from '@material-ui/core/Typography';
-import Email from '@material-ui/icons/Email';
-import PhoneAndroid from '@material-ui/icons/PhoneAndroid';
-import {SERVER_URL} from '../config';
-import MenuItem from '@material-ui/core/MenuItem';
+import SERVER_URL from '../../../config';
+import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
+import Email from '@material-ui/icons/Email';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import PhoneAndroid from '@material-ui/icons/PhoneAndroid';
+import LanguageIcon from '@material-ui/icons/Language';
+import MenuItem from '@material-ui/core/MenuItem';
+import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
+import FormLabel from '@material-ui/core/FormLabel';
+
 
 
 const useStyles = theme => ({
@@ -52,102 +55,102 @@ const useStyles = theme => ({
 
 });
  
-class CreateContact extends React.Component {
-  constructor(props) {
-    super(props);
+class SupplierCreate extends React.Component {
 
-    this.state = {
-      company:[],
-      position:[],
 
-      firstname:'',
-      lastname:'',
-      note:'',
-      dob:'',
-      companyValue: '',
-      positionValue: '',
-
-      addressValue:'',
-      addressTwoValue:'',
-      countryValue:'',
-      stateValue:'',
-      zipValue:'',
-      mobileValue:'',
-      websiteValue:'',
-      emailValue:'',
-      faxValue:'',
-      updatedValue:'',
-      userValue:'',
+    constructor(props) {
+      super(props);
+  
+      this.state = {
+          supplierName: '',
+          vat:'',
+          pec:'',
+          email:'',
+          fields: {},
+          errors: {},
+          mobile: '', 
+          fax: '',
+          services:'',
+          addresslineone:'',
+          addresslinetwo:'',
+          country:'',
+          state:'',
+          zip:'',
+          user: '',
+          supplierstatus:'',
+          
+      }
     }
-  }
 
-  componentDidMount(){
 
-    fetch(SERVER_URL+'/company')
+
+
+
+    componentDidMount(){
+        
+    fetch(SERVER_URL+'/officeType')
     .then(r => r.json())
-    .then(json => this.setState({company: json}))
+    .then(json => this.setState({officeType: json}))
     .catch(error => console.error('Error retrieving Tickrts: ' + error));
-
-
-
-    fetch(SERVER_URL+'/position')
-    .then(r => r.json())
-    .then(json => this.setState({position: json}))
-    .catch(error => console.error('Error retrieving Tickrts: ' + error));
-
-    console.log("Logged In User is "+JSON.parse(localStorage.auth).username);
+    console.log("Logged In User is "+JSON.parse(localStorage.auth).data.username);
     console.log(this.state);
-    const url = SERVER_URL+"/userByUsername?username="+JSON.parse(localStorage.auth).username;
+    console.log('HIIII',JSON.parse(localStorage.auth).data.username)
+    const url = SERVER_URL+"/userByUsername?username="+JSON.parse(localStorage.auth).data.username;
     fetch(url)
     .then(r => r.json())
     .then(json => this.setState({userValue: json.id}))
     .catch(error => console.error('Error retrieving Companies: ' + error));
-  }
+
+    }
+
+    onFileLoad = (e, file) => console.log(e.target.result, file.name);
+
   
+
+  handleCompanyNameValue=(event)=>{
+
+    this.setState({companyName:event.target.value});
+  // if(!event.target.value) {
+  //     this.setState({ helperTextComapanyName: 'field should not be empty' })
+  //   }
+  //  else if (event.target.value.match(/^[^A-Za-z0-9]+$/)) {
+  //     this.setState({ helperTextComapanyName: '' })
+  //     this.setState({companyName:event.target.value});
+  //   } 
   
-  handleChangefirstname=(event)=>{
-    this.setState({firstname:event.target.value});
+
+  
     
   }
 
-  handleChangedob=(event)=>{
-    this.setState({dob:event.target.value});
-    console.log(this.state.dob)
+  handleCompanyDateValue=(event)=>{
+    this.setState({companyDateCreated:event.target.value});
+    
   }
 
-  handleChangelastname=(event)=>{
-    this.setState({lastname:event.target.value});
-
+  handleCompanyDescription=(event)=>{
+    this.setState({companyDescription:event.target.value});
+    
   }
-
-  handleChangecompany=(event)=>{
-    this.setState({companyValue:event.target.value});
-    console.log(this.state.companyValue)
-    // console.log(event.target.value)
-
-  }
-
-  handleChangeposition=(event)=>{
-    this.setState({positionValue:event.target.value});
-    console.log(this.state.positionValue)
-
-  }
-
-  handleChangenote=(event)=>{
-    this.setState({note:event.target.value});
-
-  }
-
 
   handleChangeMobileValue=(event)=>{
     this.setState({mobileValue:event.target.value})
   }
 
   handleChangeWebsiteValue=(event)=>{
+    if(event.target.value.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g))
+    {
     this.setState({websiteValue:event.target.value})
+    this.setState({ helperTextWebsite: '' })
+    }
+    else
+    {
+      this.setState({ helperTextWebsite: 'Bad website format' })
+    }
   }
 
   handleChangeEmailValue=(event)=>{
+
     if(event.target.value.match(/^[a-zA-Z0-9]+@+[a-zA-Z0-9]+.+[A-z]/))
     {
     this.setState({emailValue:event.target.value})
@@ -155,7 +158,6 @@ class CreateContact extends React.Component {
     }
     else{
       this.setState({ helperTextEmail: 'Bad email format' })
-
     }
   }
 
@@ -184,50 +186,73 @@ class CreateContact extends React.Component {
     this.setState({stateValue:event.target.value})
   }
 
+  handleChangeCityValue=(event)=>{
+    this.setState({cityValue:event.target.value})
+  }
+
   handleChangeZipValue=(event)=>{
     this.setState({zipValue:event.target.value})
   }
-  
+
+  selectCountry (val) {
+    this.setState({ countryValue: val });
+  }
+ 
+  selectRegion (val) {
+    this.setState({ stateValue: val });
+  }
+
   handleSubmit=(event)=>{
     event.preventDefault()
-    let ContactDetail={
-      firstName:this.state.firstname,
-      lastName:this.state.lastname,
-      //
 
-      note:this.state.note,
-
-      //
-      dob:this.state.dob,
-      company:this.state.companyValue,
-      position:this.state.positionValue,
-
+    
+   
+     let CompanyDetail={
+      establishedDate:this.state.companyDateCreated,
+      description:this.state.companyDescription,
+      name:this.state.companyName,
       mobile:this.state.mobileValue,
+      website:this.state.websiteValue,
       email:this.state.emailValue,
+      fax: this.state.faxValue,
+      officeType:this.state.officeTypeValue,
       addresslineone: this.state.addressValue,
       addresslinetwo:this.state.addressTwoValue,
       country: this.state.countryValue,
       state:this.state.stateValue,
+      city:this.state.cityValue,
       zip: this.state.zipValue,
-      user:this.state.userValue
-
+      user:this.state.userValue,
     }
-    console.log(ContactDetail)
+    console.log("Company Details establishedDate"+CompanyDetail.establishedDate)
+    console.log("Company Details description"+CompanyDetail.description)
+    console.log("Company Details name"+CompanyDetail.name)
+    console.log("Company Details mobile"+CompanyDetail.mobile)
+    console.log("Company Details website"+CompanyDetail.website)
+    console.log("Company Details email"+CompanyDetail.email)
+    console.log("Company Details fax"+CompanyDetail.fax)
+    console.log("Company Details officeType"+CompanyDetail.officeType)
+    console.log("Company Details addresslineone"+CompanyDetail.addresslineone)
+    console.log("Company Details addresslinetwo"+CompanyDetail.addresslinetwo)
+    console.log("Company Details country"+CompanyDetail.country)
+    console.log("Company Details state"+CompanyDetail.state)
+    console.log("Company Details City"+CompanyDetail.city)
+    console.log("Company Details zip"+CompanyDetail.zip)
+    console.log("Company Details user"+CompanyDetail.user)
 
-
-    fetch(SERVER_URL+'/contact', { 
+    fetch(SERVER_URL+'/company', { 
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(ContactDetail)
+      body: JSON.stringify(CompanyDetail)
     }).then(r=> r.json()).then(json =>{
       let updatedValue = this.state.updatedValue;
       if(typeof json.total==='undefined'){
         updatedValue="";
         if(typeof json.message==='undefined'){
-          updatedValue += "Contact is Added Successfully"
+          updatedValue += "Company is Added Successfully"
         } 
         else
         {
@@ -251,49 +276,55 @@ class CreateContact extends React.Component {
 
    
     } )
-    };
+    
+
+    
+   
+  };
+
 
     handleclear=(event)=>{
       event.preventDefault()
       document.getElementById("create-course-form").reset()
 
       this.setState( {
-        firstname:'',
-        lastname:'',
-        note:'',
-        dob:'',
-        companyValue: '',
-        positionValue: '',
+        companyDateCreated:'',
+        companyDescription:'',
+        companyName:'',
         mobileValue:'',
         websiteValue:'',
         emailValue:'',
         faxValue:'',
+        officeTypeValue:'',
         addressValue:'',
         addressTwoValue:'',
         countryValue:"",
         stateValue:'',
+        cityValue:'',
         zipValue:'',
-
-        helperTextEmail: '',
       })
 
     }
 
 
-  render(){
-  const {classes} = this .props;
 
-  return (
-<div>
-  <div  component="main" className={classes.root}  >
+  render() {
+    const { classes } = this.props;
+
+    const { country, region } = this.state;
+
+   
+      return(
+
+        <div  component="main" className={classes.root}  >
         <div  className={classes.root}  >
           <Grid sm={6} md={12}>
           <ButtonGroup fullWidth aria-label="full width button group">
 
-          <Button className={classes.content} href="/addressbook/contact/list">List Contact</Button>
-        
+          <Button className={classes.content} href="/addressbook/company/list">List Company</Button>
 
-          <Button className={classes.content} href="/addressbook/contact/create">Create Contact</Button>
+
+          <Button className={classes.content} href="/addressbook/company/create">Create Company</Button>
           </ButtonGroup>
 
           </Grid>
@@ -313,101 +344,40 @@ class CreateContact extends React.Component {
 
 
    <Typography className={classes.title} color="primary" variant="h2" component="h1" gutterBottom>
-    Create Contact Profile
+    Create Supplier Profile
    </Typography>
-
-
-      
+ 
    <TextField
-     id="outlined-full-width"
-     label="First Name"
-     style={{ margin: 8 }}
-     placeholder="First Name"
-     fullWidth
-     margin="normal"
-     onChange={this.handleChangefirstname}
-     InputLabelProps={{
-       shrink: true,
-     }}
-     InputProps={{
-      startAdornment: <InputAdornment position="start">
-        <AccountCircle />
-        </InputAdornment>,
-    }}
-     variant="outlined"
-   />
-   <TextField
-     id="outlined-full-width"
-     label="Last Name"
-     style={{ margin: 8 }}
-     placeholder="Last Name"
-     fullWidth
-     margin="normal"
-     onChange={this.handleChangelastname}
-     InputLabelProps={{
-       shrink: true,
-     }}
-     InputProps={{
-      startAdornment: <InputAdornment position="start">
-        <AccountCircle />
-        </InputAdornment>,
-    }}
-     variant="outlined"
-   />
-   <TextField
-     id="outlined-full-width"
-     label="Note"
-     style={{ margin: 8 }}
-     placeholder="Note"
-     fullWidth
-     margin="normal"
-     onChange={this.handleChangenote}
-     InputLabelProps={{
-       shrink: true,
-     }}
-     variant="outlined"
-   />
-                      <TextField
-                        id="company"
-                        select 
-                        label="Company"
-                        value={this.state.companyValue}
-                        onChange={this.handleChangecompany.bind(this)}
-                        variant="outlined"
-                        >
-                            {this.state.company.map(option =>(
-                                <MenuItem key={option.id} value={option.id}>
-                                    {option.name}
-                                </MenuItem>
-                            ))}
-                        </TextField>
+          id="outlined-full-width"
+          className={classes.textField}
+          label="Supplier Name"
+          style={{ margin: 8 }}
+          placeholder="Supplier Name "
+          fullWidth
+          margin="normal"
+        //   onChange={this.handleCompanyNameValue}
+          helperText= {this.state.helperTextComapanyName}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          variant="outlined"
+        />
 
-                        <TextField
-                        id="position"
-                        select 
-                        label="Position"
-                        value={this.state.positionValue}
-                        onChange={this.handleChangeposition.bind(this)}
-                        variant="outlined"
-                        >
-                            {this.state.position.map(option =>(
-                                <MenuItem key={option.id} value={option.id}>
-                                    {option.name}
-                                </MenuItem>
-                            ))}
-                        </TextField>
-
-      <TextField
-    id="date"
-    label="Date Of Birth"
-    type="date"
-    onChange={this.handleChangedob}
-    className={classes.textField}
-    InputLabelProps={{
-      shrink: true,
-    }}
-  />
-  
+<TextField
+          id="outlined-full-width"
+          className={classes.textField}
+          label="VAT"
+          style={{ margin: 8 }}
+          placeholder="VAT "
+          type='number'
+          fullWidth
+          margin="normal"
+        //   onChange={this.handleCompanyDescription}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          variant="outlined"
+        /> 
 
   </div>
 </Grid>
@@ -436,6 +406,24 @@ class CreateContact extends React.Component {
     }}
      variant="outlined"
    />
+   <TextField
+     id="outlined-full-width"
+     label="Website"
+     style={{ margin: 8 }}
+     fullWidth
+     margin="normal"
+     onChange={this.handleChangeWebsiteValue}
+     helperText= {this.state.helperTextWebsite}
+     InputLabelProps={{
+       shrink: true,
+     }}
+     InputProps={{
+      startAdornment: <InputAdornment position="start">
+        <LanguageIcon />
+        </InputAdornment>,
+    }}
+     variant="outlined"
+   />
 
    <TextField
      id="outlined-full-width"
@@ -445,7 +433,6 @@ class CreateContact extends React.Component {
      fullWidth
      margin="normal"
      onChange={this.handleChangeEmailValue}
-
      helperText= {this.state.helperTextEmail}
      InputLabelProps={{
        shrink: true,
@@ -457,7 +444,24 @@ class CreateContact extends React.Component {
     }}
      variant="outlined"
    />
-  
+   <TextField
+     id="outlined-full-width"
+     label="Fax"
+     style={{ margin: 8 }}
+     placeholder="Fax"
+     fullWidth
+     margin="normal"
+     onChange={this.handleChangeFaxValue}
+     InputLabelProps={{
+       shrink: true,
+     }}
+     InputProps={{
+      startAdornment: <InputAdornment position="start">
+        <Email />
+        </InputAdornment>,
+    }}
+     variant="outlined"
+   />
    </div>
 </Grid>
 
@@ -469,7 +473,21 @@ class CreateContact extends React.Component {
 </Typography>
 
 
-                   
+                      <TextField
+                          id="demo-simple-select-outlined-label"
+                          select 
+                          label="Office Type"
+                          value={this.state.officeTypeValue}
+                          onChange={this.handleOfficeTypeValue.bind(this)}
+                          variant="outlined"
+                          >
+                              {this.state.officeType.map(option =>(
+                                  <MenuItem key={option.id} value={option.id}>
+                                      {option.name}
+                                  </MenuItem>
+                              ))}
+                          </TextField>
+
 <TextField
      id="outlined-full-width"
      label="Address"
@@ -503,30 +521,37 @@ class CreateContact extends React.Component {
     }}
      variant="outlined"
    />
-<TextField
-     id="outlined-full-width"
-     label="Country"
-     style={{ margin: 8 }}
-     fullWidth
-     margin="normal"
-     onChange={this.handleChangeCountryValue}
-     InputLabelProps={{
-       shrink: true,
-     }}
-     InputProps={{
-      startAdornment: <InputAdornment position="start">
-        </InputAdornment>,
-    }}
-     variant="outlined"
-   />
+    <FormLabel component="legend">Country</FormLabel>
+    <CountryDropdown
+          value={this.state.countryValue}
+          onChange={(val) => this.selectCountry(val)} 
+          style={{
+            background:'white',
+            fontSize: 18,
+            width:300,
+            height:50
+          }}
+          />
+   <FormLabel component="legend">State/Region</FormLabel>      
+   <RegionDropdown
+          country={this.state.countryValue}
+          value={this.state.stateValue}
+          onChange={(val) => this.selectRegion(val)}
+          style={{
+            background:'white',
+            fontSize: 18,
+            width:300,
+            height:50
+          }}          
+          />
 
 <TextField
      id="outlined-full-width"
-     label="State"
+     label="City"
      style={{ margin: 8 }}
      fullWidth
      margin="normal"
-     onChange={this.handleChangeStateValue}
+     onChange={this.handleChangeCityValue}
      InputLabelProps={{
        shrink: true,
      }}
@@ -553,6 +578,7 @@ class CreateContact extends React.Component {
     }}
      variant="outlined"
    />
+
 
 </div>
 </Grid>
@@ -588,8 +614,7 @@ class CreateContact extends React.Component {
 
 
 </div>
-</div>
 );
 }}
 
-export default  withStyles(useStyles)(CreateContact);
+export default  withStyles(useStyles)(CompanyCreate);
