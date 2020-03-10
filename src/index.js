@@ -143,6 +143,9 @@ function Index(props) {
                <CompanyCreate/>
              </PrivateRoute>
 
+
+             
+
              <PrivateRoute  exact path="/addressbook/company/show">
                <ShowCompanyPage/>
              </PrivateRoute>
