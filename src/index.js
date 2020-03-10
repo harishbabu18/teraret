@@ -27,6 +27,8 @@ import EmployeeList from './page/addressbook/employee/EmployeeList';
 import ProductList from './page/warehouse/product/ProductList';
 import MeanList from './page/warehouse/means/MeansList';
 import EquipmentList from './page/warehouse/equipment/EquipmentList';
+import TicketList from './page/sales/ticket/TicketList';
+
 
 
 import store from './redux/store';
@@ -147,6 +149,10 @@ function Index(props) {
 
               <PrivateRoute  exact path="/warehouse/equipment/list">
                 <EquipmentList/>
+              </PrivateRoute>
+
+              <PrivateRoute  exact path="/sales/ticket/list">
+                <TicketList/>
               </PrivateRoute>
 
              </Provider>

@@ -6,6 +6,7 @@ import employeeReducer from './employee/employeeReducer';
 import productReducer from './product/productReducer';
 import meanReducer from './means/meanReducer';
 import equipmentReducer from './equipment/equipmentReducer';
+import ticketReducer from './ticket/ticketReducer';
 
 const rootReducer = combineReducers({
    
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
     product: productReducer,
     mean: meanReducer,
     equipment: equipmentReducer,
+    ticket: ticketReducer,
 })
 
 export default rootReducer
