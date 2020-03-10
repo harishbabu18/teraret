@@ -12,14 +12,14 @@ import Login from './page/Login'
 import axios from 'axios'
 import history from './history'
 import Admin from './layout/Admin'
-import OfferList from './page/commercial/offer/OfferList';
+import OfferList from './page/sales/offer/OfferList';
 import CompanyList from './page/addressbook/company/CompanyList';
 import CompanyCreate from './page/addressbook/company/CompanyCreate';
 import ShowCompanyPage from './page/addressbook/company/ShowCompanyPage';
 import ShowContactPage from './page/addressbook/contact/ShowContactPage';
 
 import ShowEmployeePage from './page/addressbook/employee/ShowEmployeePage';
-import ShowOfferPage from './page/commercial/offer/ShowOfferPage';
+import ShowOfferPage from './page/sales/offer/ShowOfferPage';
 import ContactList from './page/addressbook/contact/ContactList';
 
 import ContactCreate from './page/addressbook/contact/ContactCreate';
