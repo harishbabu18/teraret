@@ -21,10 +21,10 @@ const contactReducer = (state = initialState,action) => {
         case FETCH_CONTACTS_SUCCESS:
             return {
                 loading: false,
-                offset: state.offset+10,
-                sort:state.sort,
-                max:state.max,
-                offset:state.offset+10,
+                sort:action.payloadsort,
+                order:action.payloadorder,
+                max:action.payloadmax,
+                offset:action.payloadoffset+10,
                 contacts:action.payload,
                 error:''
             } 
@@ -40,6 +40,7 @@ const contactReducer = (state = initialState,action) => {
                     ...state,
                     loading: false,
                     sort:state.sort,
+                    order:action.payloadorder,
                     max:state.max,
                     offset:state.offset+10,
                     contacts:[...state.contacts,...action.payload],

@@ -19,7 +19,7 @@ import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles( theme => ({
   root: {
-    '& > * .MuiTextField-root ': {
+    '& > * + * .MuiTextField-root ': {
       margin: theme.spacing(1),
       marginBottom: 12,
       margin: theme.spacing(1),
@@ -60,8 +60,8 @@ const useStyles = makeStyles( theme => ({
 
 const StyledTableCell = withStyles(theme => ({
   head: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
+    backgroundColor: theme.palette.common.default,
+    color: theme.palette.common.black,
   },
   body: {
     fontSize: 14,
@@ -74,10 +74,8 @@ const StyledTableRow = withStyles(theme => ({
       backgroundColor: theme.palette.background.default,
     },
   },
+  
 }))(TableRow);
-
-
-
 
 function CompanyList(){
   const classes = useStyles();
@@ -97,7 +95,7 @@ function CompanyList(){
           <h1>{companydata.error}</h1>
             ) : (
           
-              <div> 
+            <div> 
               <Grid item  sm={6} md={12} className={classes.root} >
                 <ButtonGroup fullWidth aria-label="full width outlined button group">
                   <Button className={classes.content} href="/addressbook/company/list">List Company</Button>
@@ -112,25 +110,103 @@ function CompanyList(){
           
                 <TableHead>
                   <TableRow>
-                    <StyledTableCell >
-                    <TableSortLabel>
+                    <StyledTableCell key = 'id' >
+                    <TableSortLabel
+                      direction={companydata.order==="desc"?"asc":"desc"}
+                      onClick={() => dispatch(fetchCompanys("id",companydata.order==="desc"?"asc":"desc",10,0))}
+                    >
                        Company ID
                     </TableSortLabel>
                     </StyledTableCell>
-                    <StyledTableCell > Logo </StyledTableCell>
-                    <StyledTableCell > Name </StyledTableCell>
-                    <StyledTableCell > Description </StyledTableCell>
-                    <StyledTableCell > E-mail </StyledTableCell>
-                    <StyledTableCell > Mobile </StyledTableCell>
-                    <StyledTableCell > Website </StyledTableCell>
-                    <StyledTableCell > Fax </StyledTableCell>
-                    <StyledTableCell > Address </StyledTableCell>
-                    <StyledTableCell > Created By </StyledTableCell>
-                    <StyledTableCell > Established Date </StyledTableCell>
-                    <StyledTableCell > Last Updated </StyledTableCell>
-                    <StyledTableCell > Edit </StyledTableCell>
 
-                    
+                    <StyledTableCell key="logo">
+                      <TableSortLabel
+                      direction={companydata.order==="desc"?"asc":"desc"}
+                      onClick={() => dispatch(fetchCompanys("avatar",companydata.order==="desc"?"asc":"desc",10,0))}>
+                       Logo 
+                       </TableSortLabel>
+                    </StyledTableCell>
+
+                    <StyledTableCell key="name">
+                    <TableSortLabel
+                      direction={companydata.order==="desc"?"asc":"desc"}
+                      onClick={() => dispatch(fetchCompanys("name",companydata.order==="desc"?"asc":"desc",10,0))}>
+                        Name 
+                      </TableSortLabel>
+                    </StyledTableCell>
+
+                    <StyledTableCell key="description">
+                      <TableSortLabel
+                      direction={companydata.order==="desc"?"asc":"desc"}
+                      onClick={() => dispatch(fetchCompanys("description",companydata.order==="desc"?"asc":"desc",10,0))}>
+                        Description 
+                      </TableSortLabel>
+                    </StyledTableCell>
+
+                    <StyledTableCell key="email" >
+                      <TableSortLabel
+                      direction={companydata.order==="desc"?"asc":"desc"}
+                      onClick={() => dispatch(fetchCompanys("email",companydata.order==="desc"?"asc":"desc",10,0))}>
+                       E-mail 
+                      </TableSortLabel>   
+                    </StyledTableCell>
+                    <StyledTableCell key="mobile" > 
+                      <TableSortLabel
+                      direction={companydata.order==="desc"?"asc":"desc"}
+                      onClick={() => dispatch(fetchCompanys("mobile",companydata.order==="desc"?"asc":"desc",10,0))}>
+
+                        Mobile 
+                      </TableSortLabel>    
+                    </StyledTableCell>
+                    <StyledTableCell key="website" >
+                      <TableSortLabel
+                        direction={companydata.order==="desc"?"asc":"desc"}
+                        onClick={() => dispatch(fetchCompanys("website",companydata.order==="desc"?"asc":"desc",10,0))}>
+                        Website
+                        </TableSortLabel>
+                    </StyledTableCell>
+
+                    <StyledTableCell key="fax" >
+                      <TableSortLabel
+                        direction={companydata.order==="desc"?"asc":"desc"}
+                        onClick={() => dispatch(fetchCompanys("fax",companydata.order==="desc"?"asc":"desc",10,0))}>
+                        Fax 
+                      </TableSortLabel>
+                    </StyledTableCell>
+
+                    <StyledTableCell key="address" > 
+                      <TableSortLabel
+                        direction={companydata.order==="desc"?"asc":"desc"}
+                        onClick={() => dispatch(fetchCompanys("addresslineone",companydata.order==="desc"?"asc":"desc",10,0))}>
+                        Address
+                      </TableSortLabel>
+                     </StyledTableCell>
+
+                    <StyledTableCell key="createdBy" >
+                      <TableSortLabel
+                        direction={companydata.order==="desc"?"asc":"desc"}
+                        onClick={() => dispatch(fetchCompanys("user",companydata.order==="desc"?"asc":"desc",10,0))}>
+                       Created By 
+                      </TableSortLabel>
+                    </StyledTableCell>
+
+                    <StyledTableCell key="establishedDate" >
+                      <TableSortLabel
+                        direction={companydata.order==="desc"?"asc":"desc"}
+                        onClick={() => dispatch(fetchCompanys("establishedDate",companydata.order==="desc"?"asc":"desc",10,0))}>
+                       Established Date 
+                      </TableSortLabel>
+                    </StyledTableCell>
+
+                    <StyledTableCell key="lastUpdated" > 
+                      <TableSortLabel
+                        direction={companydata.order==="desc"?"asc":"desc"}
+                        onClick={() => dispatch(fetchCompanys("lastUpdated",companydata.order==="desc"?"asc":"desc",10,0))}>
+                        Last Updated
+                      </TableSortLabel>
+                    </StyledTableCell>
+
+                    <StyledTableCell > Edit </StyledTableCell>
 
                   </TableRow>
                 </TableHead>
@@ -159,17 +235,15 @@ function CompanyList(){
             </IconButton>
            </StyledTableCell>
 
-
-
-
-
-                </StyledTableRow>)}
-                </TableBody>
+                </StyledTableRow>
+              )}
+            </TableBody>
           </Table>
           <Button onClick={() => dispatch(loadCompanys(companydata.sort,companydata.order,companydata.max,companydata.offset))}>Load More</Button>
-          </TableContainer>
-          </Grid>
-          </div>
+        </TableContainer>
+
+    </Grid>
+  </div>
           
           
       )

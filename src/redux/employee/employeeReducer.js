@@ -13,21 +13,25 @@ const initialState = {
 
 const employeeReducer = (state = initialState,action) => {
     switch(action.type){
+
         case FETCH_EMPLOYEES_REQUEST:
             return {
                 ...state,
                 loading:true
             }
+
         case FETCH_EMPLOYEES_SUCCESS:
             return {
                 ...state,
-                loading: false,
-                offset: state.offset+10,
+                sort:action.payloadsort,
+                order:action.payloadorder,
+                max:action.payloadmax,
+                offset:action.payloadoffset+10,
                 employees:action.payload,
                 error:'',
-                sort:state.sort,
                 max:state.max,
             } 
+
         case FETCH_EMPLOYEES_FAILURE:
             return{
                 loading: false,
@@ -40,6 +44,7 @@ const employeeReducer = (state = initialState,action) => {
                 ...state,
                 loading: false,
                 sort:state.sort,
+                order:action.payloadorder,
                 max:state.max,
                 offset:state.offset+10,
                 employees:[...state.employees,...action.payload],
