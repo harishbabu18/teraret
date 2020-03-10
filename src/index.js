@@ -29,6 +29,7 @@ import MeanList from './page/warehouse/means/MeansList';
 import EquipmentList from './page/warehouse/equipment/EquipmentList';
 
 
+import SupplierList from './page/addressbook/supplier/SupplierList';
 import store from './redux/store';
 import {Provider} from 'react-redux'
 
@@ -136,7 +137,7 @@ function Index(props) {
               <PrivateRoute  exact path="/addressbook/employee/list">
                 <EmployeeList/>
               </PrivateRoute>
-
+      
               <PrivateRoute  exact path="/warehouse/product/list">
                 <ProductList/>
               </PrivateRoute>
@@ -147,6 +148,9 @@ function Index(props) {
 
               <PrivateRoute  exact path="/warehouse/equipment/list">
                 <EquipmentList/>
+
+              <PrivateRoute  exact path="/addressbook/supplier/list">
+                <SupplierList/>
               </PrivateRoute>
 
              </Provider>
@@ -154,6 +158,9 @@ function Index(props) {
              <PrivateRoute  exact path="/addressbook/company/create">
                <CompanyCreate/>
              </PrivateRoute>
+
+
+             
 
              <PrivateRoute  exact path="/addressbook/company/show">
                <ShowCompanyPage/>

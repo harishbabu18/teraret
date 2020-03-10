@@ -1,78 +1,179 @@
-import React from 'react';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+// import React, { useEffect } from 'react';
+// import Grid from '@material-ui/core/Grid';
+// import { Button, makeStyles,withStyles } from '@material-ui/core';
+// import { ButtonGroup} from '@material-ui/core';
+// import {loadOfferings,fetchOfferings} from '../../../redux/index';
+// import { useSelector,useDispatch } from 'react-redux';
+// import LinearProgress from '@material-ui/core/LinearProgress';
+// import Table from '@material-ui/core/Table';
+// import TableBody from '@material-ui/core/TableBody';
+// import TableCell from '@material-ui/core/TableCell';
+// import TableHead from '@material-ui/core/TableHead';
+// import TableRow from '@material-ui/core/TableRow';
+// import TableSortLabel from '@material-ui/core/TableSortLabel';
+// import Avatar from '@material-ui/core/Avatar';
+// import EditIcon from '@material-ui/icons/Edit';
+// import IconButton from '@material-ui/core/IconButton';
+// import TableContainer from '@material-ui/core/TableContainer';
+// import Paper from '@material-ui/core/Paper';
 
-const StyledTableCell = withStyles(theme => ({
-  head: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  body: {
-    fontSize: 14,
-  },
-}))(TableCell);
+// const useStyles = makeStyles( theme => ({
+//   root: {
+//     '& > * .MuiTextField-root ': {
+//       margin: theme.spacing(1),
+//       marginBottom: 12,
+//       margin: theme.spacing(1),
 
-const StyledTableRow = withStyles(theme => ({
-  root: {
-    '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.background.default,
-    },
-  },
-}))(TableRow);
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
+//     [theme.breakpoints.down('sm')]: {
+//         width: '100%',
+//         display:'Center',
 
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
+//     },
+//     [theme.breakpoints.up('md')]: {
+//         width:'100%',
+//         justify:"center",
+//       },
+//       [theme.breakpoints.up('lg')]: {
+//         width: 305,
+//         display:'Center',
 
-const useStyles = makeStyles({
-  table: {
-    minWidth: 700,
-  },
-});
+//     },
 
-export default function OfferList() {
-  const classes = useStyles();
+//     },
+//     display: 'flex',
+//   },
+//   title: {
+//     fontSize: 18,
+//   },
+//   table: {
+//     minWidth: 700,
+//   },
+//   content: {
+//     flexGrow: 1,
+//     padding: theme.spacing(1,0),
+//   },
 
-  return (
-    <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="customized table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell>Dessert (100g serving)</StyledTableCell>
-            <StyledTableCell align="right">Calories</StyledTableCell>
-            <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map(row => (
-            <StyledTableRow key={row.name}>
-              <StyledTableCell component="th" scope="row">
-                {row.name}
-              </StyledTableCell>
-              <StyledTableCell align="right">{row.calories}</StyledTableCell>
-              <StyledTableCell align="right">{row.fat}</StyledTableCell>
-              <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-              <StyledTableCell align="right">{row.protein}</StyledTableCell>
-            </StyledTableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-  );
-}
+
+
+// }));
+
+// const StyledTableCell = withStyles(theme => ({
+//   head: {
+//     backgroundColor: theme.palette.common.black,
+//     color: theme.palette.common.white,
+//   },
+//   body: {
+//     fontSize: 14,
+//   },
+// }))(TableCell);
+
+// const StyledTableRow = withStyles(theme => ({
+//   root: {
+//     '&:nth-of-type(odd)': {
+//       backgroundColor: theme.palette.background.default,
+//     },
+//   },
+// }))(TableRow);
+
+
+
+
+// function OfferingList(){
+//   const classes = useStyles();
+//   const offeringdata = useSelector(state => state.offering )
+
+//   const dispatch = useDispatch()
+
+//    useEffect(() => {
+//        dispatch(fetchOfferings(offeringdata.sort,offeringdata.order,10,0))
+//    },[])
+
+//   return offeringdata.loading ?(
+//             <div className={classes.root}>
+//             <LinearProgress />
+//           </div>
+//           ): offeringdata.error ? (
+//           <h1>{offeringdata.error}</h1>
+//             ) : (
+          
+//               <div> 
+//               <Grid item  sm={6} md={12} className={classes.root} >
+//                 <ButtonGroup fullWidth aria-label="full width outlined button group">
+//                   <Button className={classes.content} href="/addressbook/company/list">List Company</Button>
+//                   <Button className={classes.content} href="/addressbook/company/create">Create Company</Button>
+//                 </ButtonGroup>
+//               </Grid>
+              
+//               <Grid item  sm={12} md={12} className={classes.content} >
+//               <TableContainer component={Paper}>
+
+//                 <Table className={classes.table} aria-label="customized table">
+          
+//                 <TableHead>
+//                   <TableRow>
+//                     <StyledTableCell >
+//                     <TableSortLabel>
+//                        Company ID
+//                     </TableSortLabel>
+//                     </StyledTableCell>
+//                     <StyledTableCell > Logo </StyledTableCell>
+//                     <StyledTableCell > Name </StyledTableCell>
+//                     <StyledTableCell > Description </StyledTableCell>
+//                     <StyledTableCell > E-mail </StyledTableCell>
+//                     <StyledTableCell > Mobile </StyledTableCell>
+//                     <StyledTableCell > Website </StyledTableCell>
+//                     <StyledTableCell > Fax </StyledTableCell>
+//                     <StyledTableCell > Address </StyledTableCell>
+//                     <StyledTableCell > Created By </StyledTableCell>
+//                     <StyledTableCell > Established Date </StyledTableCell>
+//                     <StyledTableCell > Last Updated </StyledTableCell>
+//                     <StyledTableCell > Edit </StyledTableCell>
+
+                    
+
+//                   </TableRow>
+//                 </TableHead>
+//                 <TableBody>
+//            {companydata.companys.map(company =>  <StyledTableRow key={company.id}>
+//             <StyledTableCell component="th" scope="row">{company.id}</StyledTableCell>
+
+//            <StyledTableCell component="th" scope="row">
+//             <IconButton color="secondary" aria-label="Edit Contact">
+//               <Avatar alt={company.name} src={(company.avatar)?company.avatar:company.name} />
+//             </IconButton>
+//            </StyledTableCell>
+//            <StyledTableCell component="th" scope="row">{company.name}</StyledTableCell>
+//            <StyledTableCell component="th" scope="row">{company.description}</StyledTableCell>
+//            <StyledTableCell component="th" scope="row">{company.email}</StyledTableCell>
+//            <StyledTableCell component="th" scope="row">{company.mobile}</StyledTableCell>
+//            <StyledTableCell component="th" scope="row">{company.website}</StyledTableCell>
+//            <StyledTableCell component="th" scope="row">{company.fax }</StyledTableCell>
+//            <StyledTableCell component="th" scope="row">{company.addresslineone} {company.addresslinetwo}, {company.state}-{company.zip}, {company.country} </StyledTableCell>
+//            <StyledTableCell component="th" scope="row">{company.user}</StyledTableCell>
+//            <StyledTableCell component="th" scope="row">{company.establishedDate}</StyledTableCell>
+//            <StyledTableCell component="th" scope="row">{company.lastUpdated}</StyledTableCell>
+//            <StyledTableCell component="th" scope="row">
+//             <IconButton color="secondary" aria-label="Edit Company">
+//               <EditIcon/>          
+//             </IconButton>
+//            </StyledTableCell>
+
+
+
+
+
+//                 </StyledTableRow>)}
+//                 </TableBody>
+//           </Table>
+//           <Button onClick={() => dispatch(loadCompanys(companydata.sort,companydata.order,companydata.max,companydata.offset))}>Load More</Button>
+//           </TableContainer>
+//           </Grid>
+//           </div>
+          
+          
+//       )
+    
+// }
+
+// export default CompanyList;
