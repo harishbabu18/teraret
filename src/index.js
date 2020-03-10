@@ -21,7 +21,14 @@ import ShowContactPage from './page/addressbook/contact/ShowContactPage';
 import ShowEmployeePage from './page/addressbook/employee/ShowEmployeePage';
 import ShowOfferPage from './page/commercial/offer/ShowOfferPage';
 import ContactList from './page/addressbook/contact/ContactList';
+
+import ContactCreate from './page/addressbook/contact/ContactCreate';
 import EmployeeList from './page/addressbook/employee/EmployeeList';
+import ProductList from './page/warehouse/product/ProductList';
+import MeanList from './page/warehouse/means/MeansList';
+import EquipmentList from './page/warehouse/equipment/EquipmentList';
+
+
 import store from './redux/store';
 import {Provider} from 'react-redux'
 
@@ -130,6 +137,18 @@ function Index(props) {
                 <EmployeeList/>
               </PrivateRoute>
 
+              <PrivateRoute  exact path="/warehouse/product/list">
+                <ProductList/>
+              </PrivateRoute>
+
+              <PrivateRoute  exact path="/warehouse/means/list">
+                <MeanList/>
+              </PrivateRoute>
+
+              <PrivateRoute  exact path="/warehouse/equipment/list">
+                <EquipmentList/>
+              </PrivateRoute>
+
              </Provider>
             
              <PrivateRoute  exact path="/addressbook/company/create">
@@ -144,7 +163,10 @@ function Index(props) {
              <PrivateRoute  exact path="/addressbook/contact/show">
                <ShowContactPage/>
              </PrivateRoute>
-             
+
+             <PrivateRoute  exact path="/addressbook/contact/create">
+               <ContactCreate/>
+             </PrivateRoute>
 
              <PrivateRoute  exact path="/addressbook/employee/show">
                <ShowEmployeePage/>
