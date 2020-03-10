@@ -22,6 +22,7 @@ import ShowEmployeePage from './page/addressbook/employee/ShowEmployeePage';
 import ShowOfferPage from './page/commercial/offer/ShowOfferPage';
 import ContactList from './page/addressbook/contact/ContactList';
 import EmployeeList from './page/addressbook/employee/EmployeeList';
+import SupplierList from './page/addressbook/supplier/SupplierList';
 import store from './redux/store';
 import {Provider} from 'react-redux'
 
@@ -128,6 +129,12 @@ function Index(props) {
 
               <PrivateRoute  exact path="/addressbook/employee/list">
                 <EmployeeList/>
+              </PrivateRoute>
+
+
+
+              <PrivateRoute  exact path="/addressbook/supplier/list">
+                <SupplierList/>
               </PrivateRoute>
 
              </Provider>

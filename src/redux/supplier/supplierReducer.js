@@ -1,9 +1,9 @@
-import {FETCH_OFFERINGS_REQUEST,FETCH_OFFERINGS_SUCCESS,FETCH_OFFERINGS_FAILURE, LOADMORE_OFFERINGS_SUCCESS} from './offeringType'; 
+import {FETCH_SUPPLIERS_REQUEST,FETCH_SUPPLIERS_SUCCESS,FETCH_SUPPLIERS_FAILURE, LOADMORE_SUPPLIERS_SUCCESS} from './supplierType'; 
 
 const initialState = {
     loading:false,
     loadingmore:false,
-    offerings:[],
+    suppliers:[],
     offset:0,
     sort:'id',
     order:'asc',
@@ -11,38 +11,38 @@ const initialState = {
     error:'',
 }
 
-const offeringReducer = (state = initialState,action) => {
+const supplierReducer = (state = initialState,action) => {
     switch(action.type){
-        case FETCH_OFFERINGS_REQUEST:
+        case FETCH_SUPPLIERS_REQUEST:
             return {
                 ...state,
                 loading:true
             }
-        case FETCH_OFFERINGS_SUCCESS:
+        case FETCH_SUPPLIERS_SUCCESS:
             return {
                 loading: false,
                 offset: state.offset+10,
                 sort:state.sort,
                 max:state.max,
                 offset:state.offset+10,
-                offerings:action.payload,
+                suppliers:action.payload,
                 error:''
             } 
-        case FETCH_OFFERINGS_FAILURE:
+        case FETCH_SUPPLIERS_FAILURE:
             return{
                 loading: false,
-                offerings:[],
+                suppliers:[],
                 error: action.payload
             }
 
-        case LOADMORE_OFFERINGS_SUCCESS:
+        case LOADMORE_SUPPLIERS_SUCCESS:
             return {
                     ...state,
                     loading: false,
                     sort:state.sort,
                     max:state.max,
                     offset:state.offset+10,
-                    offerings:[...state.offerings,...action.payload],
+                    suppliers:[...state.suppliers,...action.payload],
                     error:''
                 }
 
@@ -51,4 +51,4 @@ const offeringReducer = (state = initialState,action) => {
     }
 }
 
-export default offeringReducer
+export default supplierReducer
