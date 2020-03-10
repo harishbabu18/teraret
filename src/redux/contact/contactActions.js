@@ -9,10 +9,14 @@ import SERVER_URL from '../../config';
     }
 }
 
-const fetchContactsSuccess = contacts => {
+const fetchContactsSuccess = (contacts, max, order, sort, offset) => {
     return{
         type:FETCH_CONTACTS_SUCCESS,
-        payload:contacts
+        payload:contacts,
+        payloadmax:max,
+        payloadorder:order,
+        payloadsort:sort,
+        payloadoffset:offset
     }
 }
 
@@ -24,10 +28,14 @@ const fetchContactsFailure = error => {
     }
 }
 
-const loadContactsSuccess = (contacts) => {
+const loadContactsSuccess = (contacts, max, order, sort, offset) => {
     return{
         type:LOADMORE_CONTACTS_SUCCESS,
-        payload:contacts
+        payload:contacts,
+        payloadmax:max,
+        payloadorder:order,
+        payloadsort:sort,
+        payloadoffset:offset
     }
 }
 
@@ -35,13 +43,13 @@ const loadContactsSuccess = (contacts) => {
 
 
 
-export const fetchContacts = (sort,order,max,offset) => {
+export const fetchContacts = (sort, order, max, offset) => {
     return (dispatch) => {
         dispatch(fetchContactsRequest)
         axios.get(SERVER_URL+'/contact?max='+max+'&offset='+offset+'&order='+order+'&sort='+sort)
         .then(response => {
             const contacts =response.data.contact
-            dispatch(fetchContactsSuccess(contacts))
+            dispatch(fetchContactsSuccess(contacts, max, order, sort, offset))
         }).catch(error => {
             const errorMsg = error.message
             dispatch(fetchContactsFailure(errorMsg))
@@ -50,13 +58,13 @@ export const fetchContacts = (sort,order,max,offset) => {
     }
 }
 
-export const loadContacts = (sort,order,max,offset) => {
+export const loadContacts = (sort, order, max, offset) => {
     return (dispatch) => {
         dispatch(fetchContactsRequest)
         axios.get(SERVER_URL+'/contact?max='+max+'&offset='+offset+'&order='+order+'&sort='+sort)
         .then(response => {
             var contacts = response.data.contact
-            dispatch(loadContactsSuccess(contacts))
+            dispatch(loadContactsSuccess(contacts, max, order, sort, offset))
         }).catch(error => {
             const errorMsg = error.message
             dispatch(fetchContactsFailure(errorMsg))
