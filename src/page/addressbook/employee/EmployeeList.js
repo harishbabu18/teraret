@@ -56,8 +56,8 @@ const useStyles = makeStyles( theme => ({
 
 const StyledTableCell = withStyles(theme => ({
   head: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
+    backgroundColor: theme.palette.common.default,
+    color: theme.palette.common.black,
   },
   body: {
     fontSize: 14,
@@ -104,20 +104,96 @@ function EmployeeList(){
           
                 <TableHead>
                   <TableRow>
-                    <StyledTableCell >
-                    <TableSortLabel>
-                       Employee ID
-                    </TableSortLabel>
+                    <StyledTableCell key="id" >
+                      <TableSortLabel
+                        direction={employeedata.order==="desc"?"asc":"desc"}
+                        onClick={() => dispatch(fetchEmployees("id",employeedata.order==="desc"?"asc":"desc",10,0))}
+                      >
+                        Employee ID
+                      </TableSortLabel>
                     </StyledTableCell>
-                    <StyledTableCell > Avatar </StyledTableCell>
-                    <StyledTableCell > Name </StyledTableCell>
-                    <StyledTableCell > E-mail </StyledTableCell>
-                    <StyledTableCell > Date Of Birth </StyledTableCell>
-                    <StyledTableCell > Created By </StyledTableCell>
-                    <StyledTableCell > Joining Date </StyledTableCell>
-                    <StyledTableCell > Relieving Date </StyledTableCell>
-                    <StyledTableCell > Date Created </StyledTableCell>
-                    <StyledTableCell > Last Updated </StyledTableCell>
+
+                    <StyledTableCell key="avatar" > 
+                      <TableSortLabel
+                          direction={employeedata.order==="desc"?"asc":"desc"}
+                          onClick={() => dispatch(fetchEmployees("avatar",employeedata.order==="desc"?"asc":"desc",10,0))}
+                      >
+                        Avatar 
+                      </TableSortLabel>
+                    </StyledTableCell>
+
+                    <StyledTableCell key="name" >
+                      <TableSortLabel
+                            direction={employeedata.order==="desc"?"asc":"desc"}
+                            onClick={() => dispatch(fetchEmployees("firstName",employeedata.order==="desc"?"asc":"desc",10,0))}
+                        >
+                        Name 
+                      </TableSortLabel>
+                    </StyledTableCell>
+
+                    <StyledTableCell key="email" > 
+                      <TableSortLabel
+                            direction={employeedata.order==="desc"?"asc":"desc"}
+                            onClick={() => dispatch(fetchEmployees("email",employeedata.order==="desc"?"asc":"desc",10,0))}
+                        >
+                        E-mail 
+                      </TableSortLabel>
+                    </StyledTableCell>
+
+                    <StyledTableCell key="dob" >
+                      <TableSortLabel
+                        direction={employeedata.order==="desc"?"asc":"desc"}
+                        onClick={() => dispatch(fetchEmployees("dob",employeedata.order==="desc"?"asc":"desc",10,0))}
+                      >
+                        Date of Birth 
+                      </TableSortLabel>
+                    </StyledTableCell>
+
+                    <StyledTableCell key="createdBy" >
+                      <TableSortLabel
+                        direction={employeedata.order==="desc"?"asc":"desc"}
+                        onClick={() => dispatch(fetchEmployees("user",employeedata.order==="desc"?"asc":"desc",10,0))}
+                      >
+                        Created By 
+                      </TableSortLabel>
+                    </StyledTableCell>
+
+                    <StyledTableCell key="joiningDate" > 
+                      <TableSortLabel
+                        direction={employeedata.order==="desc"?"asc":"desc"}
+                        onClick={() => dispatch(fetchEmployees("joiningdate",employeedata.order==="desc"?"asc":"desc",10,0))}
+                      >
+                        Joining Date 
+                      </TableSortLabel>
+                    </StyledTableCell>
+
+                    <StyledTableCell key="relievingDate" > 
+                      <TableSortLabel
+                        direction={employeedata.order==="desc"?"asc":"desc"}
+                        onClick={() => dispatch(fetchEmployees("relievingdate",employeedata.order==="desc"?"asc":"desc",10,0))}
+                        >
+                        Relieving Date 
+                      </TableSortLabel>
+                    </StyledTableCell>
+
+                    <StyledTableCell key="dateCreated" > 
+                      <TableSortLabel
+                        direction={employeedata.order==="desc"?"asc":"desc"}
+                        onClick={() => dispatch(fetchEmployees("dateCreated",employeedata.order==="desc"?"asc":"desc",10,0))}
+                      >
+                        Date Created 
+                      </TableSortLabel>
+                    </StyledTableCell>
+
+                    <StyledTableCell key="lastUpdated" > 
+                      <TableSortLabel
+                        direction={employeedata.order==="desc"?"asc":"desc"}
+                        onClick={() => dispatch(fetchEmployees("lastUpdated",employeedata.order==="desc"?"asc":"desc",10,0))}
+                        >
+                        Last Updated 
+                      </TableSortLabel> 
+                    </StyledTableCell>
+
                     <StyledTableCell > Edit </StyledTableCell>
 
                   </TableRow>

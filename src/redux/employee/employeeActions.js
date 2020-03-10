@@ -9,10 +9,14 @@ import SERVER_URL from '../../config';
     }
 }
 
-const fetchEmployeesSuccess = employees => {
+const fetchEmployeesSuccess = (employees, max, order, sort, offset) => {
     return{
         type:FETCH_EMPLOYEES_SUCCESS,
-        payload:employees
+        payload:employees,
+        payloadmax:max,
+        payloadorder:order,
+        payloadsort:sort,
+        payloadoffset:offset
     }
 }
 
@@ -24,21 +28,25 @@ const fetchEmployeesFailure = error => {
     }
 }
 
-const loadEmployeesSuccess = employees => {
+const loadEmployeesSuccess = (employees, max, order, sort, offset) => {
     return{
         type: LOADMORE_EMPLOYEES_SUCCESS,
-        payload:employees
+        payload:employees,
+        payloadmax:max,
+        payloadorder:order,
+        payloadsort:sort,
+        payloadoffset:offset
     }
 }
 
 
-export const fetchEmployees = (sort,order,max,offset) => {
+export const fetchEmployees = (sort, order, max, offset) => {
     return (dispatch) => {
         dispatch(fetchEmployeesRequest)
         axios.get(SERVER_URL+'/employee?max='+max+'&offset='+offset+'&order='+order+'&sort='+sort)
         .then(response => {
             const employees =response.data.employee
-            dispatch(fetchEmployeesSuccess(employees))
+            dispatch(fetchEmployeesSuccess(employees, max, order, sort, offset))
         }).catch(error => {
             const errorMsg = error.message
             dispatch(fetchEmployeesFailure(errorMsg))
@@ -47,13 +55,13 @@ export const fetchEmployees = (sort,order,max,offset) => {
     }
 }
 
-export const loadEmployees = (sort,order,max,offset) => {
+export const loadEmployees = (sort, order, max, offset) => {
     return (dispatch) => {
         dispatch(fetchEmployeesRequest)
         axios.get(SERVER_URL+'/employee?max='+max+'&offset='+offset+'&order='+order+'&sort='+sort)
         .then(response => {
             const employees =response.data.employee
-            dispatch(loadEmployeesSuccess(employees))
+            dispatch(loadEmployeesSuccess(employees, max, order, sort, offset))
         }).catch(error => {
             const errorMsg = error.message
             dispatch(fetchEmployeesFailure(errorMsg))

@@ -21,21 +21,22 @@ const companyReducer = (state = initialState,action) => {
         case FETCH_COMPANYS_SUCCESS:
             return {
                 loading: false,
-                offset: state.offset+10,
-                sort:state.sort,
-                max:state.max,
-                offset:state.offset+10,
+                sort:action.payloadsort,
+                order:action.payloadorder,
+                max:action.payloadmax,
+                offset:action.payloadoffset+10,
                 companys:action.payload,
                 error:''
             }
 
         case LOADMORE_COMPANYS_SUCCESS:
             return {
-                    ...state,
-                    loading: false,
-                    sort:state.sort,
-                    max:state.max,
-                    offset:state.offset+10,
+                ...state,
+                loading: false,
+                sort:state.sort,
+                order:action.payloadorder,
+                max:state.max,
+                offset:state.offset+10,
                 companys:[...state.companys,...action.payload],
                 error:''
                 }

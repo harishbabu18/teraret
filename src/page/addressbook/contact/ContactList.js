@@ -57,8 +57,8 @@ const useStyles = makeStyles( theme => ({
 
 const StyledTableCell = withStyles(theme => ({
   head: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
+    backgroundColor: theme.palette.secondary,
+    color: theme.palette.common.black,
   },
   body: {
     fontSize: 14,
@@ -73,15 +73,10 @@ const StyledTableRow = withStyles(theme => ({
   },
 }))(TableRow);
 
-
-
-
 function ContactList(){
   const classes = useStyles();
   const contactdata = useSelector(state => state.contact )
-
   const dispatch = useDispatch()
-
    useEffect(() => {
        dispatch(fetchContacts(contactdata.sort,contactdata.order,10,0))
    },[])
@@ -109,21 +104,105 @@ function ContactList(){
           
                 <TableHead>
                   <TableRow>
-                    <StyledTableCell >
-                    <TableSortLabel>
-                       Contact ID
-                    </TableSortLabel>
+                    <StyledTableCell key="id" >
+                      <TableSortLabel
+                        onClick={() => dispatch(fetchContacts("id",contactdata.order==="desc"?"asc":"desc",10,0))}
+                        direction={contactdata.order==="desc"?"asc":"desc"}
+                      >
+                        Contact ID
+                      </TableSortLabel>
                     </StyledTableCell>
-                    <StyledTableCell > Profile Pic </StyledTableCell>
-                    <StyledTableCell > Name </StyledTableCell>
-                    <StyledTableCell > Position </StyledTableCell>
-                    <StyledTableCell > Date Of Birth </StyledTableCell>
-                    <StyledTableCell > Mobile </StyledTableCell>
-                    <StyledTableCell > E-mail </StyledTableCell>
-                    <StyledTableCell > Address </StyledTableCell>
-                    <StyledTableCell > Created By </StyledTableCell>
-                    <StyledTableCell > Date Created </StyledTableCell>
-                    <StyledTableCell > Last Updated </StyledTableCell>
+
+                    <StyledTableCell key="avatar" >
+                      <TableSortLabel
+                        onClick={() => dispatch(fetchContacts("avatar",contactdata.order==="desc"?"asc":"desc",10,0))}
+                        direction={contactdata.order==="desc"?"asc":"desc"}
+                      >
+                       Profile Pic
+                      </TableSortLabel>
+                    </StyledTableCell>
+
+                    <StyledTableCell key="firstName" >
+                      <TableSortLabel
+                        direction={contactdata.order==="desc"?"asc":"desc"}
+                        onClick={() => dispatch(fetchContacts("firstName",contactdata.order==="desc"?"asc":"desc",10,0))}
+                      >
+                       Name 
+                      </TableSortLabel> 
+                    </StyledTableCell>
+
+                    <StyledTableCell key="position" >
+                      <TableSortLabel
+                        direction={contactdata.order==="desc"?"asc":"desc"}
+                        onClick={() => dispatch(fetchContacts("position",contactdata.order==="desc"?"asc":"desc",10,0))}
+                      >
+                       Position 
+                      </TableSortLabel>
+                    </StyledTableCell>
+
+                    <StyledTableCell key="dob" >
+                      <TableSortLabel
+                        direction={contactdata.order==="desc"?"asc":"desc"}
+                        onClick={() => dispatch(fetchContacts("dob",contactdata.order==="desc"?"asc":"desc",10,0))}
+                      >
+                       Date Of Birth 
+                      </TableSortLabel> 
+                    </StyledTableCell>
+
+                    <StyledTableCell key="mobile" >
+                      <TableSortLabel
+                        direction={contactdata.order==="desc"?"asc":"desc"}
+                        onClick={() => dispatch(fetchContacts("mobile",contactdata.order==="desc"?"asc":"desc",10,0))}
+                      >
+                       Mobile 
+                      </TableSortLabel>
+                    </StyledTableCell>
+
+                    <StyledTableCell key="email" >
+                      <TableSortLabel
+                        direction={contactdata.order==="desc"?"asc":"desc"}
+                        onClick={() => dispatch(fetchContacts("email",contactdata.order==="desc"?"asc":"desc",10,0))}
+                      >
+                       E-mail
+                      </TableSortLabel>
+                    </StyledTableCell>
+
+                    <StyledTableCell key="address" >
+                      <TableSortLabel
+                        direction={contactdata.order==="desc"?"asc":"desc"}
+                        onClick={() => dispatch(fetchContacts("addresslineone",contactdata.order==="desc"?"asc":"desc",10,0))}
+                      >
+                       Address
+                      </TableSortLabel>
+                    </StyledTableCell>
+
+                    <StyledTableCell key="user" >
+                      <TableSortLabel
+                        direction={contactdata.order==="desc"?"asc":"desc"}
+                        onClick={() => dispatch(fetchContacts("user",contactdata.order==="desc"?"asc":"desc",10,0))}
+                      >
+                       Created By 
+                      </TableSortLabel>
+                    </StyledTableCell>
+
+                    <StyledTableCell key="dateCreated" >
+                      <TableSortLabel
+                          direction={contactdata.order==="desc"?"asc":"desc"}
+                          onClick={() => dispatch(fetchContacts("dateCreated",contactdata.order==="desc"?"asc":"desc",10,0))}
+                        >
+                       Date Created 
+                      </TableSortLabel>
+                    </StyledTableCell>
+
+                    <StyledTableCell key="lastUpdated" > 
+                      <TableSortLabel
+                        direction={contactdata.order==="desc"?"asc":"desc"}
+                        onClick={() => dispatch(fetchContacts("lastUpdated",contactdata.order==="desc"?"asc":"desc",10,0))}
+                      >
+                      Last Updated
+                      </TableSortLabel>
+                    </StyledTableCell>
+
                     <StyledTableCell > Edit </StyledTableCell>
 
                   </TableRow>
