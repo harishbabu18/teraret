@@ -16,6 +16,8 @@ import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import TableContainer from '@material-ui/core/TableContainer';
 import Paper from '@material-ui/core/Paper';
+import SERVER_URL from '../../../config';
+import { SAMLCredentials } from 'aws-sdk';
 
 const useStyles = makeStyles( theme => ({
   root: {
@@ -62,6 +64,7 @@ const StyledTableCell = withStyles(theme => ({
   head: {
     backgroundColor: theme.palette.common.default,
     color: theme.palette.common.black,
+    size: 'small'
   },
   body: {
     fontSize: 14,
@@ -82,6 +85,7 @@ function CompanyList(){
   const companydata = useSelector(state => state.company )
 
   const dispatch = useDispatch()
+  const UI = 'http://in.teraret.com'
 
    useEffect(() => {
        dispatch(fetchCompanys(companydata.sort,companydata.order,10,0))
@@ -216,7 +220,7 @@ function CompanyList(){
 
            <StyledTableCell component="th" scope="row">
             <IconButton color="secondary" aria-label="Edit Contact">
-              <Avatar alt={company.name} src={(company.avatar)?company.avatar:company.name} />
+              <Avatar alt={company.name} src={(company.avatar)?'/'+company.avatar:company.name} />
             </IconButton>
            </StyledTableCell>
            <StyledTableCell component="th" scope="row">{company.name}</StyledTableCell>

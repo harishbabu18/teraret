@@ -99,7 +99,7 @@ class CreateContact extends React.Component {
 
     console.log("Logged In User is "+JSON.parse(localStorage.auth).username);
     console.log(this.state);
-    const url = SERVER_URL+"/userByUsername?username="+JSON.parse(localStorage.auth).username;
+    const url = SERVER_URL+"/userByUsername?username="+JSON.parse(localStorage.auth).data.username;
     fetch(url)
     .then(r => r.json())
     .then(json => this.setState({userValue: json.id}))
@@ -192,6 +192,15 @@ class CreateContact extends React.Component {
     this.setState({ stateValue: val });
   }
   
+ handleChangeDemo = (event,value) => {
+   if (value === null){
+     this.setState({companyValue:value})
+   }else{
+    this.setState({companyValue:value.id})
+
+   }
+}
+
   handleSubmit=(event)=>{
     event.preventDefault()
     let ContactDetail={
@@ -316,7 +325,11 @@ class CreateContact extends React.Component {
     Create Contact Profile
    </Typography>
 
-                    <AsynchronousDropdown name={'/company'} />
+                    <AsynchronousDropdown 
+                      handleChange={this.handleChangeDemo}
+                      address={'/companyList'}
+                      label = {'Choose Company'} />
+
                     <TextField
                         id="outlined-full-width"
                         label="First Name"
