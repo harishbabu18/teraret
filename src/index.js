@@ -17,11 +17,16 @@ import CompanyCreate from './page/addressbook/company/CompanyCreate';
 import ShowCompanyPage from './page/addressbook/company/ShowCompanyPage';
 import ShowContactPage from './page/addressbook/contact/ShowContactPage';
 
+
+import SupplierList from './page/addressbook/supplier/SupplierList';
+import SupplierCreate from './page/addressbook/supplier/SupplierCreate';
+
 import ShowEmployeePage from './page/addressbook/employee/ShowEmployeePage';
 import ContactList from './page/addressbook/contact/ContactList';
 
 import ContactCreate from './page/addressbook/contact/ContactCreate';
 import EmployeeList from './page/addressbook/employee/EmployeeList';
+import EmployeeCreate from './page/addressbook/employee/EmployeeCreate';
 import ProductList from './page/warehouse/product/ProductList';
 import MeanList from './page/warehouse/means/MeansList';
 import EquipmentList from './page/warehouse/equipment/EquipmentList';
@@ -137,6 +142,11 @@ function Index(props) {
                 <EmployeeList/>
               </PrivateRoute>
 
+
+              <PrivateRoute  exact path="/addressbook/supplier/list">
+                <SupplierList/>
+              </PrivateRoute>
+
               <PrivateRoute  exact path="/warehouse/product/list">
                 <ProductList/>
               </PrivateRoute>
@@ -157,6 +167,13 @@ function Index(props) {
             
              <PrivateRoute  exact path="/addressbook/company/create">
                <CompanyCreate/>
+             </PrivateRoute>
+             <PrivateRoute  exact path="/addressbook/employee/create">
+               <EmployeeCreate/>
+             </PrivateRoute>
+
+             <PrivateRoute  exact path="/addressbook/supplier/create">
+               <SupplierCreate/>
              </PrivateRoute>
 
              <PrivateRoute  exact path="/addressbook/company/show">

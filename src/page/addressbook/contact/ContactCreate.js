@@ -16,6 +16,7 @@ import CardContent from '@material-ui/core/CardContent';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import FormLabel from '@material-ui/core/FormLabel';
 import AsynchronousDropdown from '../../../components/AsynchronousDropdown';
+import axios from 'axios';
 
 const useStyles = theme => ({
   root: {
@@ -65,6 +66,7 @@ class CreateContact extends React.Component {
       firstname:'',
       lastname:'',
       dob:'',
+      note:'',
       companyValue: '',
       positionValue: '',
 
@@ -80,6 +82,7 @@ class CreateContact extends React.Component {
       faxValue:'',
       updatedValue:'',
       userValue:'',
+      avatar:''
     }
   }
 
@@ -105,6 +108,16 @@ class CreateContact extends React.Component {
     .then(json => this.setState({userValue: json.id}))
     .catch(error => console.error('Error retrieving Companies: ' + error));
   }
+
+
+
+
+  handleFile(e){
+    console.log(e.target.files)
+    console.log(e.target.files[0])
+    this.setState({avatar:e.target.files[0]})
+
+  }
   
   
   handleChangefirstname=(event)=>{
@@ -119,6 +132,11 @@ class CreateContact extends React.Component {
 
   handleChangelastname=(event)=>{
     this.setState({lastname:event.target.value});
+
+  }
+
+  handleChangeNote=(event)=>{
+    this.setState({note:event.target.value});
 
   }
 
@@ -201,65 +219,73 @@ class CreateContact extends React.Component {
    }
 }
 
+
   handleSubmit=(event)=>{
     event.preventDefault()
-    let ContactDetail={
-      firstName:this.state.firstname,
-      lastName:this.state.lastname,
-      dob:this.state.dob,
-      company:this.state.companyValue,
-      position:this.state.positionValue,
-      mobile:this.state.mobileValue,
-      email:this.state.emailValue,
-      addresslineone: this.state.addressValue,
-      addresslinetwo:this.state.addressTwoValue,
-      country: this.state.countryValue,
-      state:this.state.stateValue,
-      city:this.state.cityValue,
-      zip: this.state.zipValue,
-      user:this.state.userValue
 
+    let formdata = new FormData()
+
+    console.log("Value of Profile Image is"+this.state.avatar)
+   
+   if(this.state.avatar!=''){
+     console.log("Inside Not null")
+    formdata.append('featuredImageFile',this.state.avatar)
     }
-    console.log(ContactDetail)
+    
+   
 
+    if(this.state.note!=''){
+    formdata.append('note',this.state.note)
+    }
+    formdata.append('firstName',this.state.firstname)
+    formdata.append( 'lastName',this.state.lastname)
+    
+    
+    if(this.state.addressTwoValue!=''){
+    formdata.append('addresslinetwo',this.state.addressTwoValue)
+    }
+    formdata.append('dob',this.state.dob)
+    formdata.append( 'company',this.state.companyValue)
+    formdata.append('position',this.state.positionValue)
+    formdata.append( 'mobile',this.state.mobileValue)
+    formdata.append('email',this.state.emailValue)
+    formdata.append( 'addresslineone',this.state.addressValue)
+    formdata.append( 'country',this.state.countryValue)
+    formdata.append( 'state',this.state.stateValue)
+    formdata.append('city',this.state.cityValue)
+    formdata.append('zip', this.state.zipValue)
+    formdata.append('user',this.state.userValue)
 
-    fetch(SERVER_URL+'/contact', { 
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(ContactDetail)
-    }).then(r=> r.json()).then(json =>{
+    axios({
+      method: 'post',
+      url: SERVER_URL+'/contact',
+      data: formdata
+    }).then(json =>{
       let updatedValue = this.state.updatedValue;
-      if(typeof json.total==='undefined'){
+      updatedValue="Added Successfully ID "+json.data.id
+      this.setState({updatedValue}) 
+
+    }).catch(error =>{
+        console.error("The Error Message is "+error.response.data.total)
+        let updatedValue = this.state.updatedValue;
+          if(typeof error.response.data.total==='undefined'){
         updatedValue="";
-        if(typeof json.message==='undefined'){
-          updatedValue += "Contact is Added Successfully"
-        } 
-        else
-        {
-          updatedValue +=json.message;
-        }
+        updatedValue +=error.response.data.message;
+        
       }
       else{
          updatedValue = "Errors Are "
-         for(let i=0;i<json.total;i++){
-          updatedValue +=json._embedded.errors[i].message
+         for(let i=0;i<error.response.data.total;i++){
+          updatedValue +=error.response.data._embedded.errors[i].message
            
          }
-
       }
-      
-    this.setState({updatedValue})
-    }).catch(error =>{
+      this.setState({updatedValue}) 
+  
      
-      console.error("The Error Message is "+error)
-
-
+      });
    
-    } )
-    };
+   };
 
     handleclear=(event)=>{
       event.preventDefault()
@@ -281,6 +307,8 @@ class CreateContact extends React.Component {
         stateValue:'',
         cityValue:'',
         zipValue:'',
+        avatar:'',
+        note:'',
 
         helperTextEmail: '',
       })
@@ -367,20 +395,40 @@ class CreateContact extends React.Component {
                         variant="outlined"
                     />
 
-                      {/* <TextField
-                        id="company"
-                        select 
-                        label="Company"
-                        value={this.state.companyValue}
-                        onChange={this.handleChangecompany.bind(this)}
+
+
+<Button
+     variant="contained"
+     component="label"
+     >
+     Upload Profile Picture
+    <input
+    name="file"
+    type="file"
+    onChange={(e)=>this.handleFile(e)}
+    style={{ display: "none" }}
+
+
+     />
+   </Button>
+
+
+
+   <TextField
+                        id="outlined-full-width"
+                        label="Note"
+                        style={{ margin: 8 }}
+                        placeholder='Note'
+                        fullWidth
+                        margin="normal"
+                        onChange={this.handleChangeNote}
+                        InputLabelProps={{
+                        shrink: true,
+                        }}
+                        
                         variant="outlined"
-                        >
-                            {this.state.company.map(option =>(
-                                <MenuItem key={option.id} value={option.id}>
-                                    {option.name}
-                                </MenuItem>
-                            ))}
-                        </TextField> */}
+                    />
+
 
                         <TextField
                         id="position"

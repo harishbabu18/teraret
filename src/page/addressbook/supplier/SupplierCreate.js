@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -617,4 +618,5 @@ class SupplierCreate extends React.Component {
 );
 }}
 
-export default  withStyles(useStyles)(CompanyCreate);
+export default  withStyles(useStyles)(SupplierCreate);
+
