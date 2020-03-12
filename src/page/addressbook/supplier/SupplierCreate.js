@@ -72,6 +72,7 @@ class SupplierCreate extends React.Component {
           mobile: '', 
           fax: '',
           services:'',
+          note:'',
           addresslineone:'',
           addresslinetwo:'',
           country:'',
@@ -128,6 +129,11 @@ class SupplierCreate extends React.Component {
 
     handleServicesValue=(event)=>{
       this.setState({services:event.target.value})
+    }
+
+
+    handleNoteValue=(event)=>{
+      this.setState({note:event.target.value})
     }
 
   handleChangeMobileValue=(event)=>{
@@ -188,52 +194,52 @@ class SupplierCreate extends React.Component {
 
     
    
-     let CompanyDetail={
-      establishedDate:this.state.companyDateCreated,
-      description:this.state.companyDescription,
-      name:this.state.companyName,
+     let SupplierDetail={
+      name:this.state.supplierName,
+      vat:this.state.vat,
+      pec:this.state.pec,
       mobile:this.state.mobileValue,
-      website:this.state.websiteValue,
+      supplierstatus:this.state.supplierstatus,
+      services:this.state.services,
+      note:this.state.note,
       email:this.state.emailValue,
       fax: this.state.faxValue,
-      officeType:this.state.officeTypeValue,
       addresslineone: this.state.addressValue,
       addresslinetwo:this.state.addressTwoValue,
       country: this.state.countryValue,
       state:this.state.stateValue,
-      city:this.state.cityValue,
       zip: this.state.zipValue,
       user:this.state.userValue,
     }
-    console.log("Company Details establishedDate"+CompanyDetail.establishedDate)
-    console.log("Company Details description"+CompanyDetail.description)
-    console.log("Company Details name"+CompanyDetail.name)
-    console.log("Company Details mobile"+CompanyDetail.mobile)
-    console.log("Company Details website"+CompanyDetail.website)
-    console.log("Company Details email"+CompanyDetail.email)
-    console.log("Company Details fax"+CompanyDetail.fax)
-    console.log("Company Details officeType"+CompanyDetail.officeType)
-    console.log("Company Details addresslineone"+CompanyDetail.addresslineone)
-    console.log("Company Details addresslinetwo"+CompanyDetail.addresslinetwo)
-    console.log("Company Details country"+CompanyDetail.country)
-    console.log("Company Details state"+CompanyDetail.state)
-    console.log("Company Details City"+CompanyDetail.city)
-    console.log("Company Details zip"+CompanyDetail.zip)
-    console.log("Company Details user"+CompanyDetail.user)
+    // console.log("Company Details establishedDate"+CompanyDetail.establishedDate)
+    // console.log("Company Details description"+CompanyDetail.description)
+    // console.log("Company Details name"+CompanyDetail.name)
+    // console.log("Company Details mobile"+CompanyDetail.mobile)
+    // console.log("Company Details website"+CompanyDetail.website)
+    // console.log("Company Details email"+CompanyDetail.email)
+    // console.log("Company Details fax"+CompanyDetail.fax)
+    // console.log("Company Details officeType"+CompanyDetail.officeType)
+    // console.log("Company Details addresslineone"+CompanyDetail.addresslineone)
+    // console.log("Company Details addresslinetwo"+CompanyDetail.addresslinetwo)
+    // console.log("Company Details country"+CompanyDetail.country)
+    // console.log("Company Details state"+CompanyDetail.state)
+    // console.log("Company Details City"+CompanyDetail.city)
+    // console.log("Company Details zip"+CompanyDetail.zip)
+    // console.log("Company Details user"+CompanyDetail.user)
 
-    fetch(SERVER_URL+'/company', { 
+    fetch(SERVER_URL+'/supplier', { 
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(CompanyDetail)
+      body: JSON.stringify(SupplierDetail)
     }).then(r=> r.json()).then(json =>{
       let updatedValue = this.state.updatedValue;
       if(typeof json.total==='undefined'){
         updatedValue="";
         if(typeof json.message==='undefined'){
-          updatedValue += "Company is Added Successfully"
+          updatedValue += "Supplier is Added Successfully"
         } 
         else
         {
@@ -401,6 +407,20 @@ class SupplierCreate extends React.Component {
           fullWidth
           margin="normal"
           onChange={this.handleServicesValue}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          variant="outlined"
+        /> 
+                          < TextField
+          id="outlined-full-width"
+          className={classes.textField}
+          label="Note"
+          style={{ margin: 8 }}
+          placeholder="Note"
+          fullWidth
+          margin="normal"
+          onChange={this.handleNoteValue}
           InputLabelProps={{
             shrink: true,
           }}
