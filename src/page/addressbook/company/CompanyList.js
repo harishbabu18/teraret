@@ -18,6 +18,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import Paper from '@material-ui/core/Paper';
 import SERVER_URL from '../../../config';
 import { SAMLCredentials } from 'aws-sdk';
+import CompanySearch from './CompanySearch';
+import Hidden from '@material-ui/core/Hidden';
 
 const useStyles = makeStyles( theme => ({
   root: {
@@ -100,11 +102,14 @@ function CompanyList(){
             ) : (
           
             <div> 
-              <Grid item  sm={6} md={12} className={classes.root} >
-                <ButtonGroup fullWidth aria-label="full width outlined button group">
+                <CompanySearch />
+              <Grid item  sm={12} md={12} className={classes.root} >
+              
+             
+                {/* <ButtonGroup fullWidth aria-label="full width outlined button group">
                   <Button className={classes.content} href="/addressbook/company/list">List Company</Button>
                   <Button className={classes.content} href="/addressbook/company/create">Create Company</Button>
-                </ButtonGroup>
+                </ButtonGroup> */}
               </Grid>
               
               <Grid item  sm={12} md={12} className={classes.content} >
@@ -114,6 +119,7 @@ function CompanyList(){
           
                 <TableHead>
                   <TableRow>
+                  <Hidden only={['sm', 'xs']}>
                     <StyledTableCell key = 'id' >
                     <TableSortLabel
                       direction={companydata.order==="desc"?"asc":"desc"}
@@ -122,6 +128,7 @@ function CompanyList(){
                        Company ID
                     </TableSortLabel>
                     </StyledTableCell>
+                   </Hidden>  
 
                     <StyledTableCell key="logo">
                       <TableSortLabel
@@ -138,6 +145,9 @@ function CompanyList(){
                         Name 
                       </TableSortLabel>
                     </StyledTableCell>
+
+                    <Hidden only={['sm', 'xs']}>
+
 
                     <StyledTableCell key="description">
                       <TableSortLabel
@@ -210,20 +220,24 @@ function CompanyList(){
                       </TableSortLabel>
                     </StyledTableCell>
 
+                    </Hidden>
+
                     <StyledTableCell > Edit </StyledTableCell>
 
                   </TableRow>
                 </TableHead>
                 <TableBody>
            {companydata.companys.map(company =>  <StyledTableRow key={company.id}>
+            <Hidden only={['sm', 'xs']}>
             <StyledTableCell component="th" scope="row">{company.id}</StyledTableCell>
-
+            </Hidden>
            <StyledTableCell component="th" scope="row">
             <IconButton color="secondary" aria-label="Edit Contact">
               <Avatar alt={company.name} src={(company.avatar)?'/'+company.avatar:company.name} />
             </IconButton>
            </StyledTableCell>
            <StyledTableCell component="th" scope="row">{company.name}</StyledTableCell>
+           <Hidden only={['sm', 'xs']}>
            <StyledTableCell component="th" scope="row">{company.description}</StyledTableCell>
            <StyledTableCell component="th" scope="row">{company.email}</StyledTableCell>
            <StyledTableCell component="th" scope="row">{company.mobile}</StyledTableCell>
@@ -233,6 +247,7 @@ function CompanyList(){
            <StyledTableCell component="th" scope="row">{company.user}</StyledTableCell>
            <StyledTableCell component="th" scope="row">{company.establishedDate}</StyledTableCell>
            <StyledTableCell component="th" scope="row">{company.lastUpdated}</StyledTableCell>
+           </Hidden>
            <StyledTableCell component="th" scope="row">
             <IconButton color="secondary" aria-label="Edit Company">
               <EditIcon/>          

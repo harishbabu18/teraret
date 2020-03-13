@@ -1,4 +1,4 @@
-import {FETCH_COMPANYS_REQUEST,FETCH_COMPANYS_SUCCESS,FETCH_COMPANYS_FAILURE,LOADMORE_COMPANYS_SUCCESS} from './companyType'; 
+import {FETCH_COMPANYS_REQUEST,FETCH_COMPANYS_SUCCESS,FETCH_COMPANYS_FAILURE,LOADMORE_COMPANYS_SUCCESS,SEARCH_COMPANYS_SUCCESS } from './companyType'; 
 
 const initialState = {
     loading:false,
@@ -40,6 +40,17 @@ const companyReducer = (state = initialState,action) => {
                 companys:[...state.companys,...action.payload],
                 error:''
                 }
+        case SEARCH_COMPANYS_SUCCESS :
+            return{
+                loading: false,
+                sort:'',
+                order:'',
+                max:'',
+                offset:'',
+                companys:action.payload,
+                error:''
+
+            }
 
         case FETCH_COMPANYS_FAILURE:
             return{
