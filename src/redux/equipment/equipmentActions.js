@@ -1,4 +1,4 @@
-import {FETCH_EQUIPMENTS_REQUEST,FETCH_EQUIPMENTS_SUCCESS,FETCH_EQUIPMENTS_FAILURE, LOADMORE_EQUIPMENTS_SUCCESS} from './equipmentType'; 
+import {FETCH_EQUIPMENTS_REQUEST,FETCH_EQUIPMENTS_SUCCESS,FETCH_EQUIPMENTS_FAILURE, LOADMORE_EQUIPMENTS_SUCCESS,SEARCH_EQUIPMENTS_SUCCESS} from './equipmentType'; 
 import axios from 'axios';
 import SERVER_URL from '../../config';
 
@@ -20,6 +20,15 @@ const fetchEquipmentsSuccess = (equipments, max, order, sort, offset) => {
     }
 }
 
+
+const searchEquipmentsSuccess = (equipments) => {
+    return{
+        type:SEARCH_EQUIPMENTS_SUCCESS,
+        payload:equipments,
+       
+    }
+}
+
 const fetchEquipmentsFailure = error => {
     return{
         type:FETCH_EQUIPMENTS_FAILURE,
@@ -36,6 +45,24 @@ const loadEquipmentsSuccess = (equipments, max, order, sort, offset) => {
         payloadorder:order,
         payloadsort:sort,
         payloadoffset:offset
+    }
+}
+
+
+export const searchEquipment=(searchColoumn,search)=>{
+    return (dispatch) => {
+        dispatch(fetchEquipmentsRequest)
+        axios.get(SERVER_URL+'/equipmentSearch?search='+search+'&searchColumn='+searchColoumn)
+        .then(response => {
+            var equipments = response.data.equipment
+            console.log("search value is "+equipments)
+            dispatch(searchEquipmentsSuccess(equipments))
+           // dispatch(loadCompanysSuccess(companys, max, order, sort, offset))
+        }).catch(error => {
+            const errorMsg = error.message
+            dispatch(fetchEquipmentsFailure(errorMsg))
+        }
+        )
     }
 }
 
