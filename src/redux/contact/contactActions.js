@@ -44,14 +44,6 @@ const searchContactsSuccess = (contacts) => {
     }
 }
 
-const fetchContactsFailure = error => {
-    return{
-        type:FETCH_CONTACTS_FAILURE,
-        payload:error
-        
-    }
-}
-
 export const searchContact=(searchColoumn,search)=>{
     return (dispatch) => {
         dispatch(fetchContactsRequest)

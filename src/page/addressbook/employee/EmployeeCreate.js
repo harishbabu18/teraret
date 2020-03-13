@@ -80,7 +80,7 @@ class CreateEmployee extends React.Component {
     .then(json => this.setState({employee: json}))
     .catch(error => console.error('Error retrieving Tickrts: ' + error));
 
-    const url = SERVER_URL+"/userByUsername?username="+JSON.parse(localStorage.auth).username;
+    const url = SERVER_URL+"/userByUsername?username="+JSON.parse(localStorage.auth).data.username;
     fetch(url)
     .then(r => r.json())
     .then(json => this.setState({userValue: json.id}))
@@ -99,8 +99,6 @@ class CreateEmployee extends React.Component {
     this.setState({ helperTextEmail: 'Bad email format' })
   }
 }
-
-
 
 handleFile(e){
     console.log(e.target.files)
@@ -135,8 +133,12 @@ handleFile(e){
   }
 
   handleProfilepicValue=(event)=>{
-    this.setState({profilepicValue:'profilpic.jpg'});
+    this.setState({profilepicValue:event.target.files[0]});
 
+  }
+
+  handleMobileValue=(event)=>{
+    this.setState({mobileValue:event.target.value})
   }
 
   
@@ -211,11 +213,12 @@ handleSubmit=(event)=>{
   
     formdata.append('firstName',this.state.firstNameValue)
     formdata.append('relievingdate',this.state.relievingdateValue)
-    formdata.append( 'joinindate',this.state.joinindateValue)
+    formdata.append( 'joiningdate',this.state.joinindateValue)
     formdata.append('lastName',this.state.lastNameValue)
     formdata.append('dob',this.state.dobValue)
     formdata.append('email',this.state.emailValue,)
     formdata.append('user',this.state.userValue)
+    formdata.append('mobile', this.state.mobileValue)
 
     axios({
       method: 'post',
@@ -375,6 +378,22 @@ handleSubmit=(event)=>{
      variant="outlined"
    />
     
+    <TextField
+          id="outlined-full-width"
+          className={classes.textField}
+          label="Mobile"
+          type = "Number"
+          style={{ margin: 8 }}
+          placeholder="Mobile"
+          fullWidth
+          margin="normal"
+          onChange={this.handleMobileValue}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          variant="outlined"
+        />
+
     <TextField
     id="date"
     label="Date Of Birth"

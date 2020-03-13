@@ -104,12 +104,11 @@ function CompanyList(){
             <div> 
                 <CompanySearch />
               <Grid item  sm={12} md={12} className={classes.root} >
-              
              
-                {/* <ButtonGroup fullWidth aria-label="full width outlined button group">
+                <ButtonGroup fullWidth aria-label="full width outlined button group">
                   <Button className={classes.content} href="/addressbook/company/list">List Company</Button>
                   <Button className={classes.content} href="/addressbook/company/create">Create Company</Button>
-                </ButtonGroup> */}
+                </ButtonGroup>
               </Grid>
               
               <Grid item  sm={12} md={12} className={classes.content} >

@@ -85,7 +85,6 @@ function CompanySearch(){
                       shrink: true,
                     }}
                   />   */}
-             <Button  onClick={() => dispatch(searchCompany(searchcolumn,search))} >Search</Button> 
              <Button
               variant="contained"
              color="primary"

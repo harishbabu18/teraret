@@ -143,6 +143,15 @@ function EmployeeList(){
                       </TableSortLabel>
                     </StyledTableCell>
 
+                    <StyledTableCell key="mobile" > 
+                      <TableSortLabel
+                            direction={employeedata.order==="desc"?"asc":"desc"}
+                            onClick={() => dispatch(fetchEmployees("mobile",employeedata.order==="desc"?"asc":"desc",10,0))}
+                        >
+                        Mobile 
+                      </TableSortLabel>
+                    </StyledTableCell>
+
                     <StyledTableCell key="dob" >
                       <TableSortLabel
                         direction={employeedata.order==="desc"?"asc":"desc"}
@@ -212,6 +221,7 @@ function EmployeeList(){
             </StyledTableCell>
             <StyledTableCell component="th" scope="row">{employee.firstName} {employee.lastName}</StyledTableCell>
             <StyledTableCell component="th" scope="row">{employee.email}</StyledTableCell>
+            <StyledTableCell component="th" scope="row">{employee.mobile}</StyledTableCell>
             <StyledTableCell component="th" scope="row">{employee.dob}</StyledTableCell>
             <StyledTableCell component="th" scope="row">{employee.user}</StyledTableCell>
             <StyledTableCell component="th" scope="row">{employee.joiningdate}</StyledTableCell>

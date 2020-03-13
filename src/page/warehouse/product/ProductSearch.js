@@ -6,7 +6,7 @@ import { Button } from '@material-ui/core';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import FormLabel from '@material-ui/core/FormLabel';
 import Grid from '@material-ui/core/Grid';
-import {searchEquipment} from '../../../redux/index';
+import {searchProduct} from '../../../redux/index';
 import { useSelector,useDispatch } from 'react-redux';
 
 import InputLabel from '@material-ui/core/InputLabel';

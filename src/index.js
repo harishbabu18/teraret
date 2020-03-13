@@ -16,14 +16,10 @@ import CompanyList from './page/addressbook/company/CompanyList';
 import CompanyCreate from './page/addressbook/company/CompanyCreate';
 import ShowCompanyPage from './page/addressbook/company/ShowCompanyPage';
 import ShowContactPage from './page/addressbook/contact/ShowContactPage';
-
-
 import SupplierList from './page/addressbook/supplier/SupplierList';
 import SupplierCreate from './page/addressbook/supplier/SupplierCreate';
-
 import ShowEmployeePage from './page/addressbook/employee/ShowEmployeePage';
 import ContactList from './page/addressbook/contact/ContactList';
-
 import ContactCreate from './page/addressbook/contact/ContactCreate';
 import EmployeeList from './page/addressbook/employee/EmployeeList';
 import EmployeeCreate from './page/addressbook/employee/EmployeeCreate';
@@ -33,7 +29,7 @@ import EquipmentList from './page/warehouse/equipment/EquipmentList';
 import TicketList from './page/sales/ticket/TicketList';
 import EquipmentCreate from './page/warehouse/equipment/EquipmentCreate';
 import MeansCreate from './page/warehouse/means/MeansCreate';
-
+import ProductCreate from './page/warehouse/product/ProductCreate';
 
 
 import store from './redux/store';
@@ -170,9 +166,11 @@ function Index(props) {
              <PrivateRoute  exact path="/addressbook/company/create">
                <CompanyCreate/>
              </PrivateRoute>
+
              <PrivateRoute  exact path="/addressbook/employee/create">
                <EmployeeCreate/>
              </PrivateRoute>
+             
 
              <PrivateRoute  exact path="/addressbook/supplier/create">
                <SupplierCreate/>
@@ -180,6 +178,10 @@ function Index(props) {
 
              <PrivateRoute  exact path="/warehouse/equipment/create">
                <EquipmentCreate/>
+             </PrivateRoute>
+
+             <PrivateRoute  exact path="/warehouse/product/create">
+               <ProductCreate/>
              </PrivateRoute>
 
              <PrivateRoute  exact path="/warehouse/means/create">

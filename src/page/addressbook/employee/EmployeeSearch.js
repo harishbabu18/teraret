@@ -13,6 +13,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import SearchIcon from '@material-ui/icons/Search';
 
 
 const useStyles = makeStyles(theme => ({
@@ -84,7 +85,13 @@ const handleChangeSearch=(event)=>{
                       shrink: true,
                     }}
                   />   */}
-             <Button  onClick={() => dispatch(searchEmployee(searchcolumn,search))} >Search</Button> 
+                  <Button
+              variant="contained"
+             color="primary"
+             startIcon={<SearchIcon />}
+             onClick={() => dispatch(searchEmployee(searchcolumn,search))} >
+               Search
+            </Button> 
       </form>
       </div>
     );
