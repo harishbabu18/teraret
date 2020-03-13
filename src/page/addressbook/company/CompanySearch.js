@@ -13,6 +13,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import SearchIcon from '@material-ui/icons/Search';
 
 
 const useStyles = makeStyles(theme => ({
@@ -67,22 +68,13 @@ const handleChangeSearch=(event)=>{
         <TextField id="outlined-basic" fullWidth 
         label="Search" variant="outlined" 
         onChange={handleChangeSearch}/>
-        
-        <TextField id="date" label="Record Created From" type="date" defaultValue=""
-                    //onChange={this.handleCompanyDateValue}
-                    className={classes.textField}
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                  />
-        <TextField id="date" label="Record Created Till" type="date" defaultValue=""
-                    //onChange={this.handleCompanyDateValue}
-                    className={classes.textField}
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                  />  
-             <Button  onClick={() => dispatch(searchCompany(searchcolumn,search))} >Search</Button> 
+             <Button
+              variant="contained"
+             color="primary"
+             startIcon={<SearchIcon />}
+             onClick={() => dispatch(searchCompany(searchcolumn,search))} >
+               Search
+            </Button> 
       </form>
       </div>
     );
