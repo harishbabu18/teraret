@@ -1,4 +1,4 @@
-import {FETCH_SUPPLIERS_REQUEST,FETCH_SUPPLIERS_SUCCESS,FETCH_SUPPLIERS_FAILURE, LOADMORE_SUPPLIERS_SUCCESS} from './supplierType'; 
+import {FETCH_SUPPLIERS_REQUEST,FETCH_SUPPLIERS_SUCCESS,FETCH_SUPPLIERS_FAILURE, LOADMORE_SUPPLIERS_SUCCESS,SEARCH_SUPPLIERS_SUCCESS} from './supplierType'; 
 import axios from 'axios';
 import SERVER_URL from '../../config';
 
@@ -13,6 +13,15 @@ const fetchSuppliersSuccess = suppliers => {
     return{
         type:FETCH_SUPPLIERS_SUCCESS,
         payload:suppliers
+    }
+}
+
+
+const searchSuppliersSuccess = (suppliers) => {
+    return{
+        type:SEARCH_SUPPLIERS_SUCCESS,
+        payload:suppliers,
+       
     }
 }
 
@@ -31,6 +40,24 @@ const loadSuppliersSuccess = (suppliers) => {
     }
 }
 
+
+
+export const searchSupplier=(searchColoumn,search)=>{
+    return (dispatch) => {
+        dispatch(fetchSuppliersRequest)
+        axios.get(SERVER_URL+'/supplierSearch?search='+search+'&searchColumn='+searchColoumn)
+        .then(response => {
+            var suppliers = response.data.supplier
+            console.log("search value is "+suppliers)
+            dispatch(searchSuppliersSuccess(suppliers))
+           // dispatch(loadCompanysSuccess(companys, max, order, sort, offset))
+        }).catch(error => {
+            const errorMsg = error.message
+            dispatch(fetchSuppliersFailure(errorMsg))
+        }
+        )
+    }
+}
 
 
 

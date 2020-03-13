@@ -1,4 +1,4 @@
-import {FETCH_EMPLOYEES_REQUEST,FETCH_EMPLOYEES_SUCCESS,FETCH_EMPLOYEES_FAILURE, LOADMORE_EMPLOYEES_SUCCESS} from './employeeType'; 
+import {FETCH_EMPLOYEES_REQUEST,FETCH_EMPLOYEES_SUCCESS,FETCH_EMPLOYEES_FAILURE, LOADMORE_EMPLOYEES_SUCCESS,SEARCH_EMPLOYEES_SUCCESS} from './employeeType'; 
 import axios from 'axios';
 import SERVER_URL from '../../config';
 
@@ -20,6 +20,15 @@ const fetchEmployeesSuccess = (employees, max, order, sort, offset) => {
     }
 }
 
+
+const searchEmployeesSuccess = (employees) => {
+    return{
+        type:SEARCH_EMPLOYEES_SUCCESS,
+        payload:employees,
+       
+    }
+}
+
 const fetchEmployeesFailure = error => {
     return{
         type:FETCH_EMPLOYEES_FAILURE,
@@ -36,6 +45,25 @@ const loadEmployeesSuccess = (employees, max, order, sort, offset) => {
         payloadorder:order,
         payloadsort:sort,
         payloadoffset:offset
+    }
+}
+
+
+
+export const searchEmployee=(searchColoumn,search)=>{
+    return (dispatch) => {
+        dispatch(fetchEmployeesRequest)
+        axios.get(SERVER_URL+'/employeeSearch?search='+search+'&searchColumn='+searchColoumn)
+        .then(response => {
+            var employees = response.data.employee
+            console.log("search value is "+employees)
+            dispatch(searchEmployeesSuccess(employees))
+           // dispatch(loadCompanysSuccess(companys, max, order, sort, offset))
+        }).catch(error => {
+            const errorMsg = error.message
+            dispatch(fetchEmployeesFailure(errorMsg))
+        }
+        )
     }
 }
 

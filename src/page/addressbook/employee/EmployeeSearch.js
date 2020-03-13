@@ -6,7 +6,7 @@ import { Button } from '@material-ui/core';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import FormLabel from '@material-ui/core/FormLabel';
 import Grid from '@material-ui/core/Grid';
-import {searchCompany} from '../../../redux/index';
+import {searchEmployee} from '../../../redux/index';
 import { useSelector,useDispatch } from 'react-redux';
 
 import InputLabel from '@material-ui/core/InputLabel';
@@ -24,13 +24,13 @@ const useStyles = makeStyles(theme => ({
     },
   }));
 
-function CompanySearch(){
+function EmployeeSearch(){
     const classes = useStyles();
     const dispatch = useDispatch()
     const [searchcolumn, setSearchcolumn] = React.useState('');
     const [search, setSearch] = React.useState('');
   
-    const companydata = useSelector(state => state.company )
+    // const companydata = useSelector(state => state.company )
 
 
     const inputLabel = React.useRef(null);
@@ -59,8 +59,10 @@ const handleChangeSearch=(event)=>{
           onChange={handleChange}
           //labelWidth={labelWidth}
         >
-          <MenuItem value="name">Name</MenuItem>
-          <MenuItem value="email">E-Mail</MenuItem>
+          
+          <MenuItem value="firstName">First Name</MenuItem>
+          <MenuItem value="lastNamee">Last Name</MenuItem>
+          <MenuItem value="email">Email</MenuItem>
           <MenuItem value="mobile">Mobile</MenuItem>
         </Select>
       </FormControl>
@@ -82,11 +84,11 @@ const handleChangeSearch=(event)=>{
                       shrink: true,
                     }}
                   />   */}
-             <Button  onClick={() => dispatch(searchCompany(searchcolumn,search))} >Search</Button> 
+             <Button  onClick={() => dispatch(searchEmployee(searchcolumn,search))} >Search</Button> 
       </form>
       </div>
     );
 
 
 }
-export default CompanySearch
+export default EmployeeSearch
