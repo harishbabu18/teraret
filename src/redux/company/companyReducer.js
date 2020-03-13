@@ -42,13 +42,10 @@ const companyReducer = (state = initialState,action) => {
                 }
         case SEARCH_COMPANYS_SUCCESS :
             return{
+                ...state,
                 loading: false,
-                sort:'',
-                order:'',
-                max:'',
-                offset:'',
+                
                 companys:action.payload,
-                error:''
 
             }
 

@@ -1,4 +1,4 @@
-import {FETCH_CONTACTS_REQUEST,FETCH_CONTACTS_SUCCESS,FETCH_CONTACTS_FAILURE, LOADMORE_CONTACTS_SUCCESS} from './contactType'; 
+import {FETCH_CONTACTS_REQUEST,FETCH_CONTACTS_SUCCESS,FETCH_CONTACTS_FAILURE, LOADMORE_CONTACTS_SUCCESS, SEARCH_CONTACTS_SUCCESS} from './contactType'; 
 
 const initialState = {
     loading:false,
@@ -46,6 +46,16 @@ const contactReducer = (state = initialState,action) => {
                     contacts:[...state.contacts,...action.payload],
                     error:''
                 }
+
+            case SEARCH_CONTACTS_SUCCESS :
+                return{
+                    ...state,
+                    loading: false,
+                    
+                    contacts:action.payload,
+
+                }
+        
 
        default: return state          
 
