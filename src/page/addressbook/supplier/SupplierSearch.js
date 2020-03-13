@@ -3,17 +3,16 @@ import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { Button } from '@material-ui/core';
-// import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
-// import FormLabel from '@material-ui/core/FormLabel';
-// import Grid from '@material-ui/core/Grid';
-import {searchCompany} from '../../../redux/index';
+import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
+import FormLabel from '@material-ui/core/FormLabel';
+import Grid from '@material-ui/core/Grid';
+import {searchSupplier} from '../../../redux/index';
 import { useSelector,useDispatch } from 'react-redux';
 
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import SearchIcon from '@material-ui/icons/Search';
 
 
 const useStyles = makeStyles(theme => ({
@@ -25,13 +24,13 @@ const useStyles = makeStyles(theme => ({
     },
   }));
 
-function CompanySearch(){
+function SupplierSearch(){
     const classes = useStyles();
     const dispatch = useDispatch()
     const [searchcolumn, setSearchcolumn] = React.useState('');
     const [search, setSearch] = React.useState('');
   
-    const companydata = useSelector(state => state.company )
+    // const companydata = useSelector(state => state.company )
 
 
     const inputLabel = React.useRef(null);
@@ -40,10 +39,9 @@ function CompanySearch(){
 
     const handleChange = event => {
         setSearchcolumn(event.target.value);
-        console.log("the value of search Column is "+event.target.value)
+        console.log("the value of search Supplier is "+event.target.value)
       };
-    
-    const handleChangeSearch=(event)=>{
+const handleChangeSearch=(event)=>{
     setSearch(event.target.value);
     console.log("the value of search is "+event.target.value)
 }
@@ -62,14 +60,13 @@ function CompanySearch(){
           //labelWidth={labelWidth}
         >
           <MenuItem value="name">Name</MenuItem>
-          <MenuItem value="email">E-Mail</MenuItem>
+          <MenuItem value="email">E-mail</MenuItem>
           <MenuItem value="mobile">Mobile</MenuItem>
         </Select>
       </FormControl>
         <TextField id="outlined-basic" fullWidth 
         label="Search" variant="outlined" 
         onChange={handleChangeSearch}/>
-<<<<<<< HEAD
         
         {/* <TextField id="date" label="Record Created From" type="date" defaultValue=""
                     //onChange={this.handleCompanyDateValue}
@@ -85,20 +82,11 @@ function CompanySearch(){
                       shrink: true,
                     }}
                   />   */}
-             <Button  onClick={() => dispatch(searchCompany(searchcolumn,search))} >Search</Button> 
-=======
-             <Button
-              variant="contained"
-             color="primary"
-             startIcon={<SearchIcon />}
-             onClick={() => dispatch(searchCompany(searchcolumn,search))} >
-               Search
-            </Button> 
->>>>>>> df1931f5621bbfd0ffb2ca30269a00af0f6d192b
+             <Button  onClick={() => dispatch(searchSupplier(searchcolumn,search))} >Search</Button> 
       </form>
       </div>
     );
 
 
 }
-export default CompanySearch
+export default SupplierSearch
