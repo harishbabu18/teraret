@@ -15,6 +15,7 @@ import LanguageIcon from '@material-ui/icons/Language';
 import MenuItem from '@material-ui/core/MenuItem';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import FormLabel from '@material-ui/core/FormLabel';
+import axios from 'axios';
 
 
 
@@ -62,6 +63,7 @@ class CompanyCreate extends React.Component {
       super(props);
   
       this.state = {
+          featuredImageFileName:'',
           companyName: '',
           companyDateCreated:'',
           companyDescription:'',
@@ -112,21 +114,18 @@ class CompanyCreate extends React.Component {
 
     onFileLoad = (e, file) => console.log(e.target.result, file.name);
 
-  
+
+    handleFile(e){
+      console.log(e.target.files)
+      console.log(e.target.files[0])
+      this.setState({featuredImageFileName:e.target.files[0]})
+
+    }
+
 
   handleCompanyNameValue=(event)=>{
 
     this.setState({companyName:event.target.value});
-  // if(!event.target.value) {
-  //     this.setState({ helperTextComapanyName: 'field should not be empty' })
-  //   }
-  //  else if (event.target.value.match(/^[^A-Za-z0-9]+$/)) {
-  //     this.setState({ helperTextComapanyName: '' })
-  //     this.setState({companyName:event.target.value});
-  //   } 
-  
-
-  
     
   }
 
@@ -212,82 +211,77 @@ class CompanyCreate extends React.Component {
   handleSubmit=(event)=>{
     event.preventDefault()
 
-    
-   
-     let CompanyDetail={
-      establishedDate:this.state.companyDateCreated,
-      description:this.state.companyDescription,
-      name:this.state.companyName,
-      mobile:this.state.mobileValue,
-      website:this.state.websiteValue,
-      email:this.state.emailValue,
-      fax: this.state.faxValue,
-      officeType:this.state.officeTypeValue,
-      addresslineone: this.state.addressValue,
-      addresslinetwo:this.state.addressTwoValue,
-      country: this.state.countryValue,
-      state:this.state.stateValue,
-      city:this.state.cityValue,
-      zip: this.state.zipValue,
-      user:this.state.userValue,
-    }
-    console.log("Company Details establishedDate"+CompanyDetail.establishedDate)
-    console.log("Company Details description"+CompanyDetail.description)
-    console.log("Company Details name"+CompanyDetail.name)
-    console.log("Company Details mobile"+CompanyDetail.mobile)
-    console.log("Company Details website"+CompanyDetail.website)
-    console.log("Company Details email"+CompanyDetail.email)
-    console.log("Company Details fax"+CompanyDetail.fax)
-    console.log("Company Details officeType"+CompanyDetail.officeType)
-    console.log("Company Details addresslineone"+CompanyDetail.addresslineone)
-    console.log("Company Details addresslinetwo"+CompanyDetail.addresslinetwo)
-    console.log("Company Details country"+CompanyDetail.country)
-    console.log("Company Details state"+CompanyDetail.state)
-    console.log("Company Details City"+CompanyDetail.city)
-    console.log("Company Details zip"+CompanyDetail.zip)
-    console.log("Company Details user"+CompanyDetail.user)
+    let formdata = new FormData()
 
-    fetch(SERVER_URL+'/company', { 
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(CompanyDetail)
-    }).then(r=> r.json()).then(json =>{
+    console.log("Value of Featured Image is"+this.state.featuredImageFileName)
+   
+   if(this.state.featuredImageFileName!=''){
+     console.log("Inside Not null")
+    formdata.append('featuredImageFile',this.state.featuredImageFileName)
+    }
+    
+    if(this.state.companyDateCreated!=''){
+    formdata.append('establishedDate',this.state.companyDateCreated)
+
+    }
+
+    if(this.state.companyDescription!=''){
+    formdata.append('description',this.state.companyDescription)
+    }
+    formdata.append('name',this.state.companyName)
+    formdata.append('mobile',this.state.mobileValue)
+    
+    
+    if(this.state.websiteValue!=''){
+    formdata.append('website',this.state.websiteValue)
+    }
+    formdata.append('email',this.state.emailValue)
+    
+    if(this.state.faxValue!=''){
+    formdata.append('fax', this.state.faxValue)
+    }
+    formdata.append('officeType',this.state.officeTypeValue)
+    formdata.append('addresslineone', this.state.addressValue)
+    
+    if(this.state.addressTwoValue!=''){
+    formdata.append('addresslinetwo',this.state.addressTwoValue)
+    }
+    formdata.append('country', this.state.countryValue)
+    formdata.append('state',this.state.stateValue)
+    formdata.append('city',this.state.cityValue)
+    formdata.append('zip', this.state.zipValue)
+    formdata.append('user',this.state.userValue)
+
+    axios({
+      method: 'post',
+      url: SERVER_URL+'/company',
+      data: formdata
+    }).then(json =>{
       let updatedValue = this.state.updatedValue;
-      if(typeof json.total==='undefined'){
+      updatedValue="Added Successfully ID "+json.data.id
+      this.setState({updatedValue}) 
+
+    }).catch(error =>{
+        console.error("The Error Message is "+error.response.data.total)
+        let updatedValue = this.state.updatedValue;
+          if(typeof error.response.data.total==='undefined'){
         updatedValue="";
-        if(typeof json.message==='undefined'){
-          updatedValue += "Company is Added Successfully"
-        } 
-        else
-        {
-          updatedValue +=json.message;
-        }
+        updatedValue +=error.response.data.message;
+        
       }
       else{
          updatedValue = "Errors Are "
-         for(let i=0;i<json.total;i++){
-          updatedValue +=json._embedded.errors[i].message
+         for(let i=0;i<error.response.data.total;i++){
+          updatedValue +=error.response.data._embedded.errors[i].message
            
          }
-
       }
-      
-    this.setState({updatedValue})
-    }).catch(error =>{
+      this.setState({updatedValue}) 
+  
      
-      console.error("The Error Message is "+error)
-
-
+      });
    
-    } )
-    
-
-    
-   
-  };
+   };
 
 
     handleclear=(event)=>{
@@ -359,8 +353,12 @@ class CompanyCreate extends React.Component {
      >
      Company Logo
     <input
+    name="file"
     type="file"
+    onChange={(e)=>this.handleFile(e)}
     style={{ display: "none" }}
+
+
      />
    </Button>
    <TextField
