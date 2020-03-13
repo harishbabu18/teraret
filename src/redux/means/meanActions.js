@@ -1,4 +1,4 @@
-import {FETCH_MEANS_REQUEST,FETCH_MEANS_SUCCESS,FETCH_MEANS_FAILURE, LOADMORE_MEANS_SUCCESS} from './meanType'; 
+import {FETCH_MEANS_REQUEST,FETCH_MEANS_SUCCESS,FETCH_MEANS_FAILURE, LOADMORE_MEANS_SUCCESS, SEARCH_MEANS_SUCCESS} from './meanType'; 
 import axios from 'axios';
 import SERVER_URL from '../../config';
 
@@ -39,6 +39,13 @@ const loadMeansSuccess = (means, max, order, sort, offset) => {
     }
 }
 
+const searchMeansSuccess = (means) => {
+    return{
+        type: SEARCH_MEANS_SUCCESS,
+        payload: means,
+    }
+}
+
 
 export const fetchMeans = (sort, order, max, offset) => {
     return (dispatch) => {
@@ -47,6 +54,21 @@ export const fetchMeans = (sort, order, max, offset) => {
         .then(response => {
             const means =response.data.mean
             dispatch(fetchMeansSuccess(means, max, order, sort, offset))
+        }).catch(error => {
+            const errorMsg = error.message
+            dispatch(fetchMeansFailure(errorMsg))
+        }
+        )
+    }
+}
+
+export const searchMeans = (search,searchColumn) => {
+    return (dispatch) => {
+        dispatch(fetchMeansRequest)
+        axios.get(SERVER_URL+'/mean?search='+search+'&searchColumn='+searchColumn)
+        .then(response => {
+            const means =response.data.mean
+            dispatch(searchMeansSuccess(means))
         }).catch(error => {
             const errorMsg = error.message
             dispatch(fetchMeansFailure(errorMsg))

@@ -13,6 +13,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import SearchIcon from '@material-ui/icons/Search';
 
 
 const useStyles = makeStyles(theme => ({
@@ -30,8 +31,10 @@ function ContactSearch(){
     const [searchcolumn, setSearchcolumn] = React.useState('');
     const [search, setSearch] = React.useState('');
   
+    const companydata = useSelector(state => state.company )
 
 
+    const inputLabel = React.useRef(null);
   
 
 
@@ -48,7 +51,7 @@ function ContactSearch(){
       <div>
       <form className={classes.root} noValidate autoComplete="off" >
         <FormControl variant="outlined" className={classes.formControl}>
-        <InputLabel id="demo-simple-select-outlined-label">
+        <InputLabel ref={inputLabel} id="demo-simple-select-outlined-label">
           Select Column
         </InputLabel>
         <Select
@@ -58,30 +61,22 @@ function ContactSearch(){
           onChange={handleChange}
           //labelWidth={labelWidth}
         >
-          <MenuItem value="firstName">Name</MenuItem>
-          <MenuItem value="position">Position</MenuItem>
+          <MenuItem value="firstName">First Name</MenuItem>
+          <MenuItem value="lastName">Last Name</MenuItem>
           <MenuItem value="email">E-mail</MenuItem>
+          <MenuItem value="mobile">Mobile</MenuItem>
         </Select>
       </FormControl>
         <TextField id="outlined-basic" fullWidth 
         label="Search" variant="outlined" 
         onChange={handleChangeSearch}/>
-        
-        <TextField id="date" label="Record Created From" type="date" defaultValue=""
-                    //onChange={this.handleCompanyDateValue}
-                    className={classes.textField}
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                  />
-        <TextField id="date" label="Record Created Till" type="date" defaultValue=""
-                    //onChange={this.handleCompanyDateValue}
-                    className={classes.textField}
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                  />  
-             <Button  onClick={() => dispatch(searchContact(searchcolumn,search))} >Search</Button> 
+             <Button
+              variant="contained"
+             color="primary"
+             startIcon={<SearchIcon />}
+             onClick={() => dispatch(searchContact(searchcolumn,search))} >
+               Search
+            </Button> 
       </form>
       </div>
     );

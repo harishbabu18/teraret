@@ -1,4 +1,4 @@
-import {FETCH_MEANS_REQUEST,FETCH_MEANS_SUCCESS,FETCH_MEANS_FAILURE, LOADMORE_MEANS_SUCCESS } from './meanType'; 
+import {FETCH_MEANS_REQUEST,FETCH_MEANS_SUCCESS,FETCH_MEANS_FAILURE, LOADMORE_MEANS_SUCCESS, SEARCH_MEANS_SUCCESS } from './meanType'; 
 
 const initialState = {
     loading:false,
@@ -50,6 +50,12 @@ const meanReducer = (state = initialState,action) => {
                 means:[...state.means,...action.payload],
                 error:''
                 }
+        case SEARCH_MEANS_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                means:action.payload,
+            }
 
        default: return state          
 

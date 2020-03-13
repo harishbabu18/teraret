@@ -1,4 +1,4 @@
-import {FETCH_TICKETS_REQUEST,FETCH_TICKETS_SUCCESS,FETCH_TICKETS_FAILURE, LOADMORE_TICKETS_SUCCESS } from './ticketType'; 
+import {FETCH_TICKETS_REQUEST,FETCH_TICKETS_SUCCESS,FETCH_TICKETS_FAILURE, LOADMORE_TICKETS_SUCCESS, SEARCH_TICKETS_SUCESS } from './ticketType'; 
 
 const initialState = {
     loading:false,
@@ -32,24 +32,31 @@ const ticketReducer = (state = initialState,action) => {
                 max:state.max,
             } 
 
-        case FETCH_TICKETS_FAILURE:
-            return{
-                loading: false,
-                tickets:[],
-                error: action.payload
+            case FETCH_TICKETS_FAILURE:
+                return{
+                    loading: false,
+                    tickets:[],
+                    error: action.payload
             }
             
-        case LOADMORE_TICKETS_SUCCESS:
-            return {
-                ...state,
-                loading: false,
-                sort:state.sort,
-                order:action.payloadorder,
-                max:state.max,
-                offset:state.offset+10,
-                tickets:[...state.tickets,...action.payload],
-                error:''
+            case SEARCH_TICKETS_SUCESS : 
+                return{
+                    loading: false,
+                    tickets: action.payload,
                 }
+            
+
+            case LOADMORE_TICKETS_SUCCESS:
+                return {
+                    ...state,
+                    loading: false,
+                    sort:state.sort,
+                    order:action.payloadorder,
+                    max:state.max,
+                    offset:state.offset+10,
+                    tickets:[...state.tickets,...action.payload],
+                    error:''
+                    }
 
        default: return state          
 

@@ -15,6 +15,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import TableContainer from '@material-ui/core/TableContainer';
 import Paper from '@material-ui/core/Paper';
+import TicketSearch from './TicketSearch'; 
 
 const useStyles = makeStyles( theme => ({
   root: {
@@ -88,7 +89,10 @@ function TicketList(){
           <h1>{ticketdata.error}</h1>
             ) : (
           
-              <div> 
+              <div>
+                
+                <TicketSearch /> 
+
               <Grid item  sm={6} md={12} className={classes.root} >
                 <ButtonGroup fullWidth aria-label="full width outlined button group">
                   <Button className={classes.content} href="/sales/ticket/list">List Ticket</Button>

@@ -39,31 +39,31 @@ const fetchContactsFailure = error => {
     }
 }
 
-    const searchContactsSuccess = (contact) => {
+    const searchContactsSuccess = (contacts) => {
         return{
             type: SEARCH_CONTACTS_SUCCESS,
-            payload: contact,
+            payload: contacts,
         }
     }
 
 
-export const searchContact =(searchColoumn,search)=>{
-    return (dispatch) => {
-        dispatch(fetchContactsRequest)
-        axios.get(SERVER_URL+'/contactSearch?search='+search+'&searchColumn='+searchColoumn)
-        .then(response => {
-            var contacts = response.data.contact
-            console.log("search value is "+contacts)
-            dispatch(searchContactsSuccess(contacts))
-           // dispatch(loadCompanysSuccess(companys, max, order, sort, offset))
-        }).catch(error => {
-            const errorMsg = error.message
-            dispatch(fetchContactsFailure(errorMsg))
-        }
-        )
-    }
-}
 
+    export const searchContact=(searchColoumn,search)=>{
+        return (dispatch) => {
+            dispatch(fetchContactsRequest)
+            axios.get(SERVER_URL+'/contactSearch?search='+search+'&searchColumn='+searchColoumn)
+            .then(response => {
+                var contacts = response.data.contact
+                console.log("search value is "+contacts)
+                dispatch(searchContactsSuccess(contacts))
+               // dispatch(loadCompanysSuccess(companys, max, order, sort, offset))
+            }).catch(error => {
+                const errorMsg = error.message
+                dispatch(fetchContactsFailure(errorMsg))
+            }
+            )
+        }
+    }
 
 export const fetchContacts = (sort, order, max, offset) => {
     return (dispatch) => {

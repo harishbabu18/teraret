@@ -31,6 +31,8 @@ import ProductList from './page/warehouse/product/ProductList';
 import MeanList from './page/warehouse/means/MeansList';
 import EquipmentList from './page/warehouse/equipment/EquipmentList';
 import TicketList from './page/sales/ticket/TicketList';
+import EquipmentCreate from './page/warehouse/equipment/EquipmentCreate';
+import MeansCreate from './page/warehouse/means/MeansCreate';
 
 
 
@@ -175,6 +177,14 @@ function Index(props) {
              <PrivateRoute  exact path="/addressbook/supplier/create">
                <SupplierCreate/>
              </PrivateRoute>
+
+             <PrivateRoute  exact path="/warehouse/equipment/create">
+               <EquipmentCreate/>
+             </PrivateRoute>
+
+             <PrivateRoute  exact path="/warehouse/means/create">
+               <MeansCreate/>
+             </PrivateRoute>             
 
              <PrivateRoute  exact path="/addressbook/company/show">
                <ShowCompanyPage/>

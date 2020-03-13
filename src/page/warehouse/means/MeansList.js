@@ -16,6 +16,7 @@ import Paper from '@material-ui/core/Paper';
 import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import Avatar from '@material-ui/core/Avatar';
+import MeanSearch from './MeansSearch';
 
 
 const useStyles = makeStyles( theme => ({
@@ -91,6 +92,9 @@ function MeanList(){
             ) : (
           
               <div> 
+
+              <MeanSearch />
+
               <Grid item  sm={6} md={12} className={classes.root} >
                 <ButtonGroup fullWidth aria-label="full width outlined button group">
                   <Button className={classes.content} href="/warehouse/mean/list">List Means</Button>
