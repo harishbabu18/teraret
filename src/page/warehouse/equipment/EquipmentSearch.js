@@ -3,12 +3,10 @@ import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { Button } from '@material-ui/core';
-// import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
-// import FormLabel from '@material-ui/core/FormLabel';
-// import Grid from '@material-ui/core/Grid';
+import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import FormLabel from '@material-ui/core/FormLabel';
 import Grid from '@material-ui/core/Grid';
-import {searchContact} from '../../../redux/index';
+import {searchEquipment} from '../../../redux/index';
 import { useSelector,useDispatch } from 'react-redux';
 
 import InputLabel from '@material-ui/core/InputLabel';
@@ -27,12 +25,13 @@ const useStyles = makeStyles(theme => ({
     },
   }));
 
-function ContactSearch(){
+function EquipmentSearch(){
     const classes = useStyles();
     const dispatch = useDispatch()
     const [searchcolumn, setSearchcolumn] = React.useState('');
     const [search, setSearch] = React.useState('');
   
+    const companydata = useSelector(state => state.company )
 
 
     const inputLabel = React.useRef(null);
@@ -43,8 +42,6 @@ function ContactSearch(){
         setSearchcolumn(event.target.value);
         console.log("the value of search Column is "+event.target.value)
       };
-    
-    
 const handleChangeSearch=(event)=>{
     setSearch(event.target.value);
     console.log("the value of search is "+event.target.value)
@@ -63,36 +60,36 @@ const handleChangeSearch=(event)=>{
           onChange={handleChange}
           //labelWidth={labelWidth}
         >
-          <MenuItem value="firstName"> First Name </MenuItem>
-          <MenuItem value="lastName"> Last Name </MenuItem>
-          <MenuItem value="email"> E-Mail </MenuItem>
-          <MenuItem value="mobile"> Mobile </MenuItem>
+          <MenuItem value="name">Name</MenuItem>
+          <MenuItem value="serial">Serial Number</MenuItem>
+          <MenuItem value="supplier">Supplier</MenuItem>
         </Select>
       </FormControl>
         <TextField id="outlined-basic" fullWidth 
         label="Search" variant="outlined" 
         onChange={handleChangeSearch}/>
+
         
         {/* <TextField id="date" label="Record Created From" type="date" defaultValue=""
-                    //onChange={this.handleContactDateValue}
+                    //onChange={this.handleCompanyDateValue}
                     className={classes.textField}
                     InputLabelProps={{
                       shrink: true,
                     }}
                   />
         <TextField id="date" label="Record Created Till" type="date" defaultValue=""
-                    //onChange={this.handleContactDateValue}
+                    //onChange={this.handleCompanyDateValue}
                     className={classes.textField}
                     InputLabelProps={{
                       shrink: true,
                     }}
                   />   */}
-             {/* <Button  onClick={() => dispatch(searchContact(searchcolumn,search))} >Search</Button>  */}
+           
              <Button
               variant="contained"
              color="primary"
              startIcon={<SearchIcon />}
-             onClick={() => dispatch(searchContact(searchcolumn,search))} >
+             onClick={() => dispatch(searchEquipment(searchcolumn,search))} >
                Search
             </Button> 
       </form>
@@ -101,4 +98,4 @@ const handleChangeSearch=(event)=>{
 
 
 }
-export default ContactSearch
+export default EquipmentSearch
