@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -71,13 +72,15 @@ class SupplierCreate extends React.Component {
           mobile: '', 
           fax: '',
           services:'',
+          note:'',
           addresslineone:'',
           addresslinetwo:'',
           country:'',
           state:'',
           zip:'',
           user: '',
-          supplierstatus:'',
+          supplierstatus:[],
+          supplierstatusValue:''
           
       }
     }
@@ -88,9 +91,9 @@ class SupplierCreate extends React.Component {
 
     componentDidMount(){
         
-    fetch(SERVER_URL+'/officeType')
+    fetch(SERVER_URL+'/supplierstatus')
     .then(r => r.json())
-    .then(json => this.setState({officeType: json}))
+    .then(json => this.setState({supplierstatus: json}))
     .catch(error => console.error('Error retrieving Tickrts: ' + error));
     console.log("Logged In User is "+JSON.parse(localStorage.auth).data.username);
     console.log(this.state);
@@ -107,47 +110,37 @@ class SupplierCreate extends React.Component {
 
   
 
-  handleCompanyNameValue=(event)=>{
 
-    this.setState({companyName:event.target.value});
-  // if(!event.target.value) {
-  //     this.setState({ helperTextComapanyName: 'field should not be empty' })
-  //   }
-  //  else if (event.target.value.match(/^[^A-Za-z0-9]+$/)) {
-  //     this.setState({ helperTextComapanyName: '' })
-  //     this.setState({companyName:event.target.value});
-  //   } 
-  
+    handleSupplierNameValue=(event)=>{
+      this.setState({supplierName:event.target.value})
+    }
 
-  
-    
-  }
+    handleVatValue=(event)=>{
+      this.setState({vat:event.target.value})
+    }
 
-  handleCompanyDateValue=(event)=>{
-    this.setState({companyDateCreated:event.target.value});
-    
-  }
+    handlePecValue=(event)=>{
+      this.setState({pec:event.target.value})
+    }
 
-  handleCompanyDescription=(event)=>{
-    this.setState({companyDescription:event.target.value});
-    
-  }
+    handleSupplierStatusValue=(event)=>{
+      this.setState({supplierstatusValue:event.target.value})
+    }
+
+    handleServicesValue=(event)=>{
+      this.setState({services:event.target.value})
+    }
+
+
+    handleNoteValue=(event)=>{
+      this.setState({note:event.target.value})
+    }
 
   handleChangeMobileValue=(event)=>{
     this.setState({mobileValue:event.target.value})
   }
 
-  handleChangeWebsiteValue=(event)=>{
-    if(event.target.value.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g))
-    {
-    this.setState({websiteValue:event.target.value})
-    this.setState({ helperTextWebsite: '' })
-    }
-    else
-    {
-      this.setState({ helperTextWebsite: 'Bad website format' })
-    }
-  }
+ 
 
   handleChangeEmailValue=(event)=>{
 
@@ -165,10 +158,6 @@ class SupplierCreate extends React.Component {
     this.setState({faxValue:event.target.value})
   }
 
-  handleOfficeTypeValue=(event)=>{
-    this.setState({officeTypeValue:event.target.value});
-    
-  }
 
   handleChangeAddressValue=(event)=>{
     this.setState({addressValue:event.target.value})
@@ -186,9 +175,7 @@ class SupplierCreate extends React.Component {
     this.setState({stateValue:event.target.value})
   }
 
-  handleChangeCityValue=(event)=>{
-    this.setState({cityValue:event.target.value})
-  }
+ 
 
   handleChangeZipValue=(event)=>{
     this.setState({zipValue:event.target.value})
@@ -207,52 +194,52 @@ class SupplierCreate extends React.Component {
 
     
    
-     let CompanyDetail={
-      establishedDate:this.state.companyDateCreated,
-      description:this.state.companyDescription,
-      name:this.state.companyName,
+     let SupplierDetail={
+      name:this.state.supplierName,
+      vat:this.state.vat,
+      pec:this.state.pec,
       mobile:this.state.mobileValue,
-      website:this.state.websiteValue,
+      supplierstatus:this.state.supplierstatus,
+      services:this.state.services,
+      note:this.state.note,
       email:this.state.emailValue,
       fax: this.state.faxValue,
-      officeType:this.state.officeTypeValue,
       addresslineone: this.state.addressValue,
       addresslinetwo:this.state.addressTwoValue,
       country: this.state.countryValue,
       state:this.state.stateValue,
-      city:this.state.cityValue,
       zip: this.state.zipValue,
       user:this.state.userValue,
     }
-    console.log("Company Details establishedDate"+CompanyDetail.establishedDate)
-    console.log("Company Details description"+CompanyDetail.description)
-    console.log("Company Details name"+CompanyDetail.name)
-    console.log("Company Details mobile"+CompanyDetail.mobile)
-    console.log("Company Details website"+CompanyDetail.website)
-    console.log("Company Details email"+CompanyDetail.email)
-    console.log("Company Details fax"+CompanyDetail.fax)
-    console.log("Company Details officeType"+CompanyDetail.officeType)
-    console.log("Company Details addresslineone"+CompanyDetail.addresslineone)
-    console.log("Company Details addresslinetwo"+CompanyDetail.addresslinetwo)
-    console.log("Company Details country"+CompanyDetail.country)
-    console.log("Company Details state"+CompanyDetail.state)
-    console.log("Company Details City"+CompanyDetail.city)
-    console.log("Company Details zip"+CompanyDetail.zip)
-    console.log("Company Details user"+CompanyDetail.user)
+    // console.log("Company Details establishedDate"+CompanyDetail.establishedDate)
+    // console.log("Company Details description"+CompanyDetail.description)
+    // console.log("Company Details name"+CompanyDetail.name)
+    // console.log("Company Details mobile"+CompanyDetail.mobile)
+    // console.log("Company Details website"+CompanyDetail.website)
+    // console.log("Company Details email"+CompanyDetail.email)
+    // console.log("Company Details fax"+CompanyDetail.fax)
+    // console.log("Company Details officeType"+CompanyDetail.officeType)
+    // console.log("Company Details addresslineone"+CompanyDetail.addresslineone)
+    // console.log("Company Details addresslinetwo"+CompanyDetail.addresslinetwo)
+    // console.log("Company Details country"+CompanyDetail.country)
+    // console.log("Company Details state"+CompanyDetail.state)
+    // console.log("Company Details City"+CompanyDetail.city)
+    // console.log("Company Details zip"+CompanyDetail.zip)
+    // console.log("Company Details user"+CompanyDetail.user)
 
-    fetch(SERVER_URL+'/company', { 
+    fetch(SERVER_URL+'/supplier', { 
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(CompanyDetail)
+      body: JSON.stringify(SupplierDetail)
     }).then(r=> r.json()).then(json =>{
       let updatedValue = this.state.updatedValue;
       if(typeof json.total==='undefined'){
         updatedValue="";
         if(typeof json.message==='undefined'){
-          updatedValue += "Company is Added Successfully"
+          updatedValue += "Supplier is Added Successfully"
         } 
         else
         {
@@ -288,20 +275,20 @@ class SupplierCreate extends React.Component {
       document.getElementById("create-course-form").reset()
 
       this.setState( {
-        companyDateCreated:'',
-        companyDescription:'',
-        companyName:'',
-        mobileValue:'',
-        websiteValue:'',
-        emailValue:'',
-        faxValue:'',
-        officeTypeValue:'',
-        addressValue:'',
-        addressTwoValue:'',
-        countryValue:"",
-        stateValue:'',
-        cityValue:'',
-        zipValue:'',
+        supplierName: '',
+        vat:'',
+        pec:'',
+        email:'',
+        mobile: '', 
+        fax: '',
+        services:'',
+        addresslineone:'',
+        addresslinetwo:'',
+        country:'',
+        state:'',
+        zip:'',
+        user: '',
+        supplierstatusValue:''
       })
 
     }
@@ -321,10 +308,10 @@ class SupplierCreate extends React.Component {
           <Grid sm={6} md={12}>
           <ButtonGroup fullWidth aria-label="full width button group">
 
-          <Button className={classes.content} href="/addressbook/company/list">List Company</Button>
+          <Button className={classes.content} href="/addressbook/supplier/list">List Supplier</Button>
 
 
-          <Button className={classes.content} href="/addressbook/company/create">Create Company</Button>
+          <Button className={classes.content} href="/addressbook/supplier/create">Create Supplier</Button>
           </ButtonGroup>
 
           </Grid>
@@ -355,8 +342,8 @@ class SupplierCreate extends React.Component {
           placeholder="Supplier Name "
           fullWidth
           margin="normal"
-        //   onChange={this.handleCompanyNameValue}
-          helperText= {this.state.helperTextComapanyName}
+          onChange={this.handleSupplierNameValue}
+          // helperText= {this.state.helperTextComapanyName}
           InputLabelProps={{
             shrink: true,
           }}
@@ -372,13 +359,73 @@ class SupplierCreate extends React.Component {
           type='number'
           fullWidth
           margin="normal"
-        //   onChange={this.handleCompanyDescription}
+          onChange={this.handleVatValue}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          variant="outlined"
+        /> 
+  < TextField
+          id="outlined-full-width"
+          className={classes.textField}
+          label="PEC"
+          style={{ margin: 8 }}
+          placeholder="PEC"
+          type='number'
+          fullWidth
+          margin="normal"
+          onChange={this.handlePecValue}
           InputLabelProps={{
             shrink: true,
           }}
           variant="outlined"
         /> 
 
+<TextField
+                          id="demo-simple-select-outlined-label"
+                          select 
+                          label="Supplier Status"
+                          value={this.state.supplierstatusValue}
+                          onChange={this.handleSupplierStatusValue.bind(this)}
+                          variant="outlined"
+                          >
+                              {this.state.supplierstatus.map(option =>(
+                                  <MenuItem key={option.id} value={option.id}>
+                                      {option.name}
+                                  </MenuItem>
+                              ))}
+                          </TextField>
+
+
+
+                          < TextField
+          id="outlined-full-width"
+          className={classes.textField}
+          label="Services"
+          style={{ margin: 8 }}
+          placeholder="Services"
+          fullWidth
+          margin="normal"
+          onChange={this.handleServicesValue}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          variant="outlined"
+        /> 
+                          < TextField
+          id="outlined-full-width"
+          className={classes.textField}
+          label="Note"
+          style={{ margin: 8 }}
+          placeholder="Note"
+          fullWidth
+          margin="normal"
+          onChange={this.handleNoteValue}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          variant="outlined"
+        /> 
   </div>
 </Grid>
 <Grid item  sm={12} md={4} className={classes.content}>
@@ -406,24 +453,7 @@ class SupplierCreate extends React.Component {
     }}
      variant="outlined"
    />
-   <TextField
-     id="outlined-full-width"
-     label="Website"
-     style={{ margin: 8 }}
-     fullWidth
-     margin="normal"
-     onChange={this.handleChangeWebsiteValue}
-     helperText= {this.state.helperTextWebsite}
-     InputLabelProps={{
-       shrink: true,
-     }}
-     InputProps={{
-      startAdornment: <InputAdornment position="start">
-        <LanguageIcon />
-        </InputAdornment>,
-    }}
-     variant="outlined"
-   />
+
 
    <TextField
      id="outlined-full-width"
@@ -471,22 +501,6 @@ class SupplierCreate extends React.Component {
 <Typography className={classes.title} color="primary" variant="h2" component="h1" gutterBottom>
     Create Address
 </Typography>
-
-
-                      <TextField
-                          id="demo-simple-select-outlined-label"
-                          select 
-                          label="Office Type"
-                          value={this.state.officeTypeValue}
-                          onChange={this.handleOfficeTypeValue.bind(this)}
-                          variant="outlined"
-                          >
-                              {this.state.officeType.map(option =>(
-                                  <MenuItem key={option.id} value={option.id}>
-                                      {option.name}
-                                  </MenuItem>
-                              ))}
-                          </TextField>
 
 <TextField
      id="outlined-full-width"
@@ -545,22 +559,7 @@ class SupplierCreate extends React.Component {
           }}          
           />
 
-<TextField
-     id="outlined-full-width"
-     label="City"
-     style={{ margin: 8 }}
-     fullWidth
-     margin="normal"
-     onChange={this.handleChangeCityValue}
-     InputLabelProps={{
-       shrink: true,
-     }}
-     InputProps={{
-      startAdornment: <InputAdornment position="start">
-        </InputAdornment>,
-    }}
-     variant="outlined"
-   />
+
 
 <TextField
      id="outlined-full-width"
@@ -617,4 +616,5 @@ class SupplierCreate extends React.Component {
 );
 }}
 
-export default  withStyles(useStyles)(CompanyCreate);
+export default  withStyles(useStyles)(SupplierCreate);
+
