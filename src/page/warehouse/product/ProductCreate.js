@@ -101,7 +101,7 @@ class CreateProduct extends React.Component {
     .catch(error => console.error('Error retrieving Tickrts: ' + error));
 
 
-    const url = SERVER_URL+"/userByUsername?username="+JSON.parse(localStorage.auth).username;
+    const url = SERVER_URL+"/userByUsername?username="+JSON.parse(localStorage.auth).data.username;
     fetch(url)
     .then(r => r.json())
     .then(json => this.setState({userValue: json.id}))
@@ -163,7 +163,7 @@ class CreateProduct extends React.Component {
      createBy:this.state.userValue,
 
     }
-    // console.log('Test'+products)
+    console.log('Test'+JSON.stringify(product))
     fetch(SERVER_URL+'/inventory', { 
       method: 'POST',
       headers: {

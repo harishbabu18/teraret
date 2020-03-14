@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -12,17 +11,17 @@ import CardContent from '@material-ui/core/CardContent';
 import Email from '@material-ui/icons/Email';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import PhoneAndroid from '@material-ui/icons/PhoneAndroid';
-import LanguageIcon from '@material-ui/icons/Language';
 import MenuItem from '@material-ui/core/MenuItem';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import FormLabel from '@material-ui/core/FormLabel';
+import axios from 'axios';
+import LanguageIcon from '@material-ui/icons/Language';
 
 
 
 const useStyles = theme => ({
   root: {
-   
-    
+
     '& .MuiTextField-root ': {
       margin: theme.spacing(1),
       marginBottom: 12,
@@ -40,7 +39,6 @@ const useStyles = theme => ({
 
     }
   },
-
 
   title: {
     fontSize: 18,
@@ -66,28 +64,26 @@ class SupplierCreate extends React.Component {
           supplierName: '',
           vat:'',
           pec:'',
-          email:'',
+          emailValue:'',
           fields: {},
           errors: {},
-          mobile: '', 
-          fax: '',
+          mobileValue: '', 
+          faxValue: '',
           services:'',
           note:'',
-          addresslineone:'',
-          addresslinetwo:'',
-          country:'',
-          state:'',
-          zip:'',
-          user: '',
+          addressValue:'',
+          addressTwoValue:'',
+          countryValue:'',
+          stateValue:'',
+          zipValue:'',
+          userValue: '',
           supplierstatus:[],
-          supplierstatusValue:''
+          supplierstatusValue:'',
+          avatar:'',
+          websiteValue:'',
           
       }
     }
-
-
-
-
 
     componentDidMount(){
         
@@ -175,8 +171,6 @@ class SupplierCreate extends React.Component {
     this.setState({stateValue:event.target.value})
   }
 
- 
-
   handleChangeZipValue=(event)=>{
     this.setState({zipValue:event.target.value})
   }
@@ -189,6 +183,26 @@ class SupplierCreate extends React.Component {
     this.setState({ stateValue: val });
   }
 
+
+  handleFile(e){
+    console.log(e.target.files)
+    console.log(e.target.files[0])
+    this.setState({avatar:e.target.files[0]})
+
+  }
+
+  handleChangeWebsiteValue=(event)=>{
+    if(event.target.value.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g))
+    {
+    this.setState({websiteValue:event.target.value})
+    this.setState({ helperTextWebsite: '' })
+    }
+    else
+    {
+      this.setState({ helperTextWebsite: 'Bad website format' })
+    }
+  }
+
   handleSubmit=(event)=>{
     event.preventDefault()
 
@@ -199,7 +213,7 @@ class SupplierCreate extends React.Component {
       vat:this.state.vat,
       pec:this.state.pec,
       mobile:this.state.mobileValue,
-      supplierstatus:this.state.supplierstatus,
+      supplierstatus:this.state.supplierstatusValue,
       services:this.state.services,
       note:this.state.note,
       email:this.state.emailValue,
@@ -211,59 +225,78 @@ class SupplierCreate extends React.Component {
       zip: this.state.zipValue,
       user:this.state.userValue,
     }
-    // console.log("Company Details establishedDate"+CompanyDetail.establishedDate)
-    // console.log("Company Details description"+CompanyDetail.description)
-    // console.log("Company Details name"+CompanyDetail.name)
-    // console.log("Company Details mobile"+CompanyDetail.mobile)
-    // console.log("Company Details website"+CompanyDetail.website)
-    // console.log("Company Details email"+CompanyDetail.email)
-    // console.log("Company Details fax"+CompanyDetail.fax)
-    // console.log("Company Details officeType"+CompanyDetail.officeType)
-    // console.log("Company Details addresslineone"+CompanyDetail.addresslineone)
-    // console.log("Company Details addresslinetwo"+CompanyDetail.addresslinetwo)
-    // console.log("Company Details country"+CompanyDetail.country)
-    // console.log("Company Details state"+CompanyDetail.state)
-    // console.log("Company Details City"+CompanyDetail.city)
-    // console.log("Company Details zip"+CompanyDetail.zip)
-    // console.log("Company Details user"+CompanyDetail.user)
+    console.log(SupplierDetail)
+  
+    const formdata = new FormData();
 
-    fetch(SERVER_URL+'/supplier', { 
+    if (this.state.avatar !== ''){
+      formdata.append('avatar',this.state.avatar)
+    }
+
+    if (this.state.faxValue !== ''){
+      formdata.append('fax',this.state.faxValue)
+    }
+
+    if (this.state.vat !== ''){
+      formdata.append('vat',this.state.vat)
+    }
+
+    if (this.state.pec !== ''){
+      formdata.append('pec',this.state.pec)
+    }
+
+    if (this.state.note !== ''){
+      formdata.append('note',this.state.note)
+    }
+
+    if (this.state.addresslinetwo !== ''){
+      formdata.append('addresslinetwo',this.state.addressTwoValue)
+    }
+
+    if (this.state.website !== ''){
+      formdata.append('website',this.state.websiteValue)
+    }
+
+    formdata.append('name',this.state.supplierName)
+    formdata.append('email',this.state.emailValue)
+    formdata.append('services',this.state.services)
+    formdata.append('supplierstatus',this.state.supplierstatusValue)
+    formdata.append('addresslineone',this.state.addressValue)
+    formdata.append('state',this.state.stateValue)
+    formdata.append('country',this.state.countryValue)
+    formdata.append('zip',this.state.zipValue)
+    formdata.append('mobile', this.state.mobileValue)
+    formdata.append('user',this.state.userValue)
+
+
+    axios( { 
       method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(SupplierDetail)
-    }).then(r=> r.json()).then(json =>{
+      url: SERVER_URL+'/supplier',
+      data: formdata
+    }).then(json =>{
       let updatedValue = this.state.updatedValue;
-      if(typeof json.total==='undefined'){
+      updatedValue="Added Successfully ID "+json.data.id
+      this.setState({updatedValue}) 
+
+    }).catch(error =>{
+        console.error("The Error Message is "+error.response.data.total)
+        let updatedValue = this.state.updatedValue;
+          if(typeof error.response.data.total==='undefined'){
         updatedValue="";
-        if(typeof json.message==='undefined'){
-          updatedValue += "Supplier is Added Successfully"
-        } 
-        else
-        {
-          updatedValue +=json.message;
-        }
+        updatedValue +=error.response.data.message;
+        
       }
       else{
          updatedValue = "Errors Are "
-         for(let i=0;i<json.total;i++){
-          updatedValue +=json._embedded.errors[i].message
+         for(let i=0;i<error.response.data.total;i++){
+          updatedValue +=error.response.data._embedded.errors[i].message
            
          }
-
       }
-      
-    this.setState({updatedValue})
-    }).catch(error =>{
+      this.setState({updatedValue}) 
+  
      
-      console.error("The Error Message is "+error)
-
-
-   
-    } )
-    
+      });
 
     
    
@@ -278,17 +311,19 @@ class SupplierCreate extends React.Component {
         supplierName: '',
         vat:'',
         pec:'',
-        email:'',
-        mobile: '', 
-        fax: '',
+        emailValue:'',
+        mobileValue: '', 
+        faxValue: '',
         services:'',
-        addresslineone:'',
-        addresslinetwo:'',
-        country:'',
-        state:'',
-        zip:'',
-        user: '',
-        supplierstatusValue:''
+        addressValue:'',
+        addressTwoValue:'',
+        countryValue:'',
+        stateValue:'',
+        zipValue:'',
+        userValue: '',
+        supplierstatusValue:'',
+        websiteValue:'',
+        avatar:'',
       })
 
     }
@@ -350,6 +385,22 @@ class SupplierCreate extends React.Component {
           variant="outlined"
         />
 
+
+<Button
+     variant="contained"
+     component="label"
+     >
+     Supplier Profile Picture
+    <input
+    name="file"
+    type="file"
+    onChange={(e)=>this.handleFile(e)}
+    style={{ display: "none" }}
+
+
+     />
+   </Button>
+
 <TextField
           id="outlined-full-width"
           className={classes.textField}
@@ -365,7 +416,7 @@ class SupplierCreate extends React.Component {
           }}
           variant="outlined"
         /> 
-  < TextField
+        < TextField
           id="outlined-full-width"
           className={classes.textField}
           label="PEC"
@@ -381,7 +432,26 @@ class SupplierCreate extends React.Component {
           variant="outlined"
         /> 
 
-<TextField
+                      <TextField
+                        id="outlined-full-width"
+                        label="Website"
+                        style={{ margin: 8 }}
+                        fullWidth
+                        margin="normal"
+                        onChange={this.handleChangeWebsiteValue}
+                        helperText= {this.state.helperTextWebsite}
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                        InputProps={{
+                          startAdornment: <InputAdornment position="start">
+                            <LanguageIcon />
+                            </InputAdornment>,
+                        }}
+                        variant="outlined"
+                      />
+
+                      <TextField
                           id="demo-simple-select-outlined-label"
                           select 
                           label="Supplier Status"

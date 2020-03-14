@@ -60,9 +60,9 @@ const handleChangeSearch=(event)=>{
           onChange={handleChange}
           //labelWidth={labelWidth}
         >
-          <MenuItem value="name">Name</MenuItem>
-          <MenuItem value="email">E-mail</MenuItem>
-          <MenuItem value="mobile">Mobile</MenuItem>
+          <MenuItem value="name"> Name </MenuItem>
+          <MenuItem value="email"> E-mail </MenuItem>
+          <MenuItem value="mobile"> Mobile </MenuItem>
         </Select>
       </FormControl>
         <TextField id="outlined-basic" fullWidth 

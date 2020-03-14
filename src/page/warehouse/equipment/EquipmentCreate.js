@@ -10,13 +10,11 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import MenuItem from '@material-ui/core/MenuItem';
 import axios from 'axios';
-
-
+import AsynchronousDropdown from '../../../components/AsynchronousDropdown';
 
 const useStyles = theme => ({
   root: {
-   
-    
+  
     '& .MuiTextField-root ': {
       margin: theme.spacing(1),
       marginBottom: 12,
@@ -35,7 +33,6 @@ const useStyles = theme => ({
     }
   },
 
-
   title: {
     fontSize: 18,
   },
@@ -47,11 +44,9 @@ const useStyles = theme => ({
     width: '100%',
   }
 
-
 });
  
 class CreateEquipment extends React.Component {
-
 
     constructor(props) {
       super(props);
@@ -62,32 +57,24 @@ class CreateEquipment extends React.Component {
           descriptionValue:'',
           serialValue:'',
           typeValue:'',
-
           purchasePriceValue:'',
           saleValue:'',
-
-
           fields: {},
           errors: {},
-
-          type:[],
-
+          equipmentType:[],
           supplierValue:'',
           thresholdValue:'',
           userValue:'',
+          deadline:''
           
       }
     }
 
-
-
-
-
     componentDidMount(){
         
-    fetch(SERVER_URL+'/officeType')
+    fetch(SERVER_URL+'/equipmentType')
     .then(r => r.json())
-    .then(json => this.setState({type: json}))
+    .then(json => this.setState({equipmentType: json}))
     .catch(error => console.error('Error retrieving Equipment: ' + error));
     console.log("Logged In User is "+JSON.parse(localStorage.auth).username);
     console.log(this.state);
@@ -112,6 +99,12 @@ class CreateEquipment extends React.Component {
 
   handleChangeSerialValue=(event)=>{
     this.setState({serialValue:event.target.value});
+    
+  }
+
+
+  handleChangedeadline=(event)=>{
+    this.setState({deadline:event.target.value});
     
   }
 
@@ -144,18 +137,15 @@ class CreateEquipment extends React.Component {
     let formData = new FormData()
 
     formData.append('name', this.state.nameValue)
-
-    if ( this.state.descriptionValue !== null ) {
-      formData.append('description', this.state.descriptionValue)
-    }
-
-    formData.append('type', this.state.typeValue)
-    formData.append('serial', this.state.serialValue)
-    formData.append('purchasePrice', this.state.purchasePriceValue)
-    formData.append('salesPrice', this.state.saleValue)
-    formData.append('supplierValue', this.state.supplierValue)
-    formData.append('thresholdValue', this.state.thresholdValue)
-    formData.append('userValue', this.state.userValue)
+    formData.append('description', this.state.descriptionValue)
+    formData.append('equipmentType', this.state.typeValue)
+    formData.append('serialNumber', this.state.serialValue)
+    formData.append('purchaseprice', this.state.purchasePriceValue)
+    formData.append('salesprice', this.state.saleValue)
+    formData.append('supplier', this.state.supplierValue)
+    formData.append('threshold', this.state.thresholdValue)
+    formData.append('user', this.state.userValue)
+    formData.append('deadline', this.state.deadline)
  
 
     axios( { 
@@ -208,6 +198,7 @@ class CreateEquipment extends React.Component {
         supplierValue:'',
         thresholdValue:'',
         userValue:'',
+        deadline:''
         
       })
 
@@ -279,6 +270,18 @@ class CreateEquipment extends React.Component {
                           variant="outlined"
                           />
 
+                            
+<TextField
+    id="date"
+    label="Dead Line"
+    type="date"
+    onChange={this.handleChangedeadline}
+    className={classes.textField}
+    InputLabelProps={{
+      shrink: true,
+    }}
+  />
+
                         <TextField
                           id="demo-simple-select-outlined-label"
                           select 
@@ -293,6 +296,12 @@ class CreateEquipment extends React.Component {
                                   </MenuItem>
                               ))}
                           </TextField>
+                          <AsynchronousDropdown 
+                            handleChange={this.handleChangeDemo}
+                            address={'equipmentType'}
+                            label = {'Choose Equipment'}
+                            name = {'equipment'}
+                          />
 
   </div>
 </Grid>

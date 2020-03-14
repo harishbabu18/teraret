@@ -355,8 +355,9 @@ class CreateContact extends React.Component {
 
                     <AsynchronousDropdown 
                       handleChange={this.handleChangeDemo}
-                      address={'/companyList'}
-                      label = {'Choose Company'} />
+                      address={'companyList'}
+                      label = {'Choose Company'}
+                      name =  {'company'} />
 
                     <TextField
                         id="outlined-full-width"

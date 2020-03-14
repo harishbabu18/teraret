@@ -106,9 +106,10 @@ class CreateTransport extends React.Component {
     let formatData = new FormData();
 
     formatData.append('unloading',this.state.unloadingValue)
-    formatData.append('unloading',this.state.loadingValue)
-    formatData.append('unloading',this.state.scheduleValue)
-    formatData.append('unloading',this.state.userValue) 
+    formatData.append('loading',this.state.loadingValue)
+    formatData.append('schedule',this.state.scheduleValue)
+    // formatData.append('unloading',this.state.userValue) 
+    
 
     axios( { 
       method: 'POST',

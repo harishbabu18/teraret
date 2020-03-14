@@ -7,7 +7,6 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import SERVER_URL from '../config'
 
-
 const useStyles = makeStyles(theme => ({
   root: {
 
@@ -40,7 +39,6 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
   }
 
-
 }));
 
 function sleep(delay = 0) {
@@ -66,7 +64,7 @@ export default function Asynchronous(props) {
 
     (async () => {
       // const response = await fetch('https://country.register.gov.uk/records.json?page-size=5000');
-      const response = await fetch(SERVER_URL+propValue.address)
+      const response = await fetch(SERVER_URL+'/'+propValue.address)
       await sleep(1e3); // For demo purposes.
       const company = await response.json();
     //   console.log(countries)

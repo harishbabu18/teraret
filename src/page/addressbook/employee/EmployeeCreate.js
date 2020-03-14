@@ -207,12 +207,17 @@ handleSubmit=(event)=>{
    
    if(this.state.avatar!=''){
      console.log("Inside Not null")
-    formdata.append('featuredImageFile',this.state.featuredImageFileName)
+    formdata.append('avatar',this.state.featuredImageFileName)
     }
     
+     
+   if(this.state.relievingdateValue!=''){
+    console.log("Inside Not null")
+    formdata.append('relievingdate',this.state.relievingdateValue)
+   }
+
   
     formdata.append('firstName',this.state.firstNameValue)
-    formdata.append('relievingdate',this.state.relievingdateValue)
     formdata.append( 'joiningdate',this.state.joinindateValue)
     formdata.append('lastName',this.state.lastNameValue)
     formdata.append('dob',this.state.dobValue)
