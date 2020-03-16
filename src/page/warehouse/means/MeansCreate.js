@@ -13,8 +13,7 @@ import axios from 'axios';
 
 const useStyles = theme => ({
   root: {
-   
-    
+      
     '& .MuiTextField-root ': {
       margin: theme.spacing(1),
       marginBottom: 12,
@@ -27,12 +26,10 @@ const useStyles = theme => ({
       },
       [theme.breakpoints.up('lg')]: {
         width: 295,
-
     },
 
     }
   },
-
 
   title: {
     fontSize: 18,
@@ -45,17 +42,15 @@ const useStyles = theme => ({
     width: '100%',
   }
 
-
 });
  
 class CreateTransport extends React.Component {
-
 
     constructor(props) {
       super(props);
   
       this.state = {
-          
+ 
           transport:[],
           address:[],
           unloadingValue: '',
@@ -74,16 +69,13 @@ class CreateTransport extends React.Component {
       .catch(error => console.error('Error retrieving company: ' + error));
       console.log("Logged In User is "+JSON.parse(localStorage.auth).username);
       console.log(this.state);
-      const url = SERVER_URL+"/userByUsername?username="+JSON.parse(localStorage.auth).username;
+      const url = SERVER_URL+"/userByUsername?username="+JSON.parse(localStorage.auth).data.username;
       fetch(url)
       .then(r => r.json())
       .then(json => this.setState({userValue: json.id}))
       .catch(error => console.error('Error retrieving Companies: ' + error));
     }
 
-
-    componentDidMount() {
-        }
  
   handleChangeUnloadingValue=(event)=>{
     this.setState({unloadingValue:event.target.value});
@@ -210,11 +202,11 @@ class CreateTransport extends React.Component {
                           onChange={this.handleChangeLoadingValue.bind(this)}
                           variant="outlined"
                         >
-                            {this.state.address.map(option =>(
-                                <MenuItem key={option.id} value={option.id}>
-                                    {option.addresslineone}
-                                </MenuItem>
-                            ))}
+                          {this.state.address.map(option =>(
+                              <MenuItem key={option.id} value={option.id}>
+                                  {option.addresslineone}
+                              </MenuItem>
+                          ))}
                         </TextField>
 
                         <TextField
@@ -225,11 +217,11 @@ class CreateTransport extends React.Component {
                           onChange={this.handleChangeUnloadingValue.bind(this)}
                           variant="outlined"
                         >
-                            {this.state.address.map(option =>(
-                                <MenuItem key={option.id} value={option.id}>
-                                    {option.addresslineone}
-                                </MenuItem>
-                            ))}
+                          {this.state.address.map(option =>(
+                              <MenuItem key={option.id} value={option.id}>
+                                  {option.addresslineone}
+                              </MenuItem>
+                          ))}
                         </TextField>
 
                         <TextField
@@ -252,26 +244,25 @@ class CreateTransport extends React.Component {
               </Button>
             </ButtonGroup>
 
-      <ButtonGroup fullWidth aria-label="full width outlined button group">
-        <Button type='Submit' onClick={this.handleclear} variant="contained" size="Medium" color="primary">
-         Reset
-        </Button>
-      </ButtonGroup>
+            <ButtonGroup fullWidth aria-label="full width outlined button group">
+              <Button type='Submit' onClick={this.handleclear} variant="contained" size="Medium" color="primary">
+              Reset
+              </Button>
+            </ButtonGroup>
     
-      <div className={classes.root}>
-          {this.state.updatedValue}
-       
+            <div className={classes.root}>
+                {this.state.updatedValue}
+            
+            </div>
+          </CardActions>
+
+
+        </CardContent>
       </div>
-      </CardActions>
-
-
-  </CardContent>
+    </Grid>
   </div>
-  </Grid>
-  </div>
-  </CardContent>
-  </form>
-
+</CardContent>
+</form>
 </Card>
 </div>
 
