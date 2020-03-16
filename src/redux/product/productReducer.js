@@ -5,7 +5,7 @@ const initialState = {
     loadingmore:false,
     products:[],
     offset:0,
-    sort:'firstName',
+    sort:'id',
     order:'asc',
     max:10,
     error:'',
