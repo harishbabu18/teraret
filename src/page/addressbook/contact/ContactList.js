@@ -141,7 +141,7 @@ function ContactList(){
                     <StyledTableCell key="name">
                     <TableSortLabel
                       direction={contactdata.order==="desc"?"asc":"desc"}
-                      onClick={() => dispatch(fetchContacts("name",contactdata.order==="desc"?"asc":"desc",10,0))}>
+                      onClick={() => dispatch(fetchContacts("firstName",contactdata.order==="desc"?"asc":"desc",10,0))}>
                         Name 
                       </TableSortLabel>
                     </StyledTableCell>

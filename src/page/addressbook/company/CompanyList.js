@@ -87,7 +87,6 @@ function CompanyList(){
   const companydata = useSelector(state => state.company )
 
   const dispatch = useDispatch()
-  const UI = 'http://in.teraret.com'
 
    useEffect(() => {
        dispatch(fetchCompanys(companydata.sort,companydata.order,10,0))
