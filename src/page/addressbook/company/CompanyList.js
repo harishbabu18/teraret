@@ -16,8 +16,6 @@ import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import TableContainer from '@material-ui/core/TableContainer';
 import Paper from '@material-ui/core/Paper';
-import SERVER_URL from '../../../config';
-import { SAMLCredentials } from 'aws-sdk';
 import CompanySearch from './CompanySearch';
 import Hidden from '@material-ui/core/Hidden';
 import ShowCompanyPage from './ShowCompanyPage';
@@ -91,6 +89,7 @@ const StyledTableRow = withStyles(theme => ({
 function CompanyList(){
   const classes = useStyles();
   const companydata = useSelector(state => state.company )
+  
 
   const dispatch = useDispatch()
 
@@ -257,6 +256,12 @@ function CompanyList(){
            </StyledTableCell>
 
           <StyledTableCell component="th" scope="row">{company.name}</StyledTableCell>
+           <StyledTableCell component="th" scope="row">
+
+
+           <Link to={'/addressbook/company/showcompanydetail/'+company.id}> {company.name}  </Link>
+              
+              </StyledTableCell>
            <Hidden only={['sm', 'xs']}>
            <StyledTableCell component="th" scope="row">{company.description}</StyledTableCell>
            <StyledTableCell component="th" scope="row">{company.email}</StyledTableCell>
