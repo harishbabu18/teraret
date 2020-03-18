@@ -56,9 +56,6 @@ const useStyles = makeStyles( theme => ({
     flexGrow: 1,
     padding: theme.spacing(1,0),
   },
-
-
-
 }));
 
 const StyledTableCell = withStyles(theme => ({
@@ -84,7 +81,6 @@ const StyledTableRow = withStyles(theme => ({
 function CompanyList(){
   const classes = useStyles();
   const companydata = useSelector(state => state.company )
-  
 
   const dispatch = useDispatch()
 
@@ -235,12 +231,7 @@ function CompanyList(){
             </IconButton>
            </StyledTableCell>
            <StyledTableCell component="th" scope="row">
-
-{/* 
-           {heroes.map(hero => (<Link to={'heroes/' + hero.id} />)} */}
-
-           <Link to={'/addressbook/company/showcompanydetail/'+company.id}> {company.name}  </Link>
-              
+           <Link to={'/addressbook/company/showcompanydetail/'+company.id}> {company.name}  </Link>      
               </StyledTableCell>
            <Hidden only={['sm', 'xs']}>
            <StyledTableCell component="th" scope="row">{company.description}</StyledTableCell>
@@ -265,15 +256,8 @@ function CompanyList(){
           </Table>
           <Button onClick={() => dispatch(loadCompanys(companydata.sort,companydata.order,companydata.max,companydata.offset))}>Load More</Button>
         </TableContainer>
-
     </Grid>
-  </div>
-          
-          
-      )
+  </div>)
     
 }
-
 export default CompanyList;
-
-
