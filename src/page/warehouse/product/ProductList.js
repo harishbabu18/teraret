@@ -17,6 +17,8 @@ import IconButton from '@material-ui/core/IconButton';
 import TableContainer from '@material-ui/core/TableContainer';
 import Paper from '@material-ui/core/Paper';
 import ProductSearch from './ProductSearch';
+import Hidden from '@material-ui/core/Hidden';
+
 
 const useStyles = makeStyles( theme => ({
   root: {
@@ -112,14 +114,16 @@ function ProductList(){
           
                 <TableHead>
                   <TableRow>
-                    <StyledTableCell key = 'id' >
-                    <TableSortLabel
-                      direction={productdata.order==="desc"?"asc":"desc"}
-                      onClick={() => dispatch(fetchProducts("id",productdata.order==="desc"?"asc":"desc",10,0))}
-                    >
-                       Product ID
-                    </TableSortLabel>
-                    </StyledTableCell>
+                    <Hidden only={['sm', 'xs']}>
+                      <StyledTableCell key = 'id' >
+                      <TableSortLabel
+                        direction={productdata.order==="desc"?"asc":"desc"}
+                        onClick={() => dispatch(fetchProducts("id",productdata.order==="desc"?"asc":"desc",10,0))}
+                      >
+                        Product ID
+                      </TableSortLabel>
+                      </StyledTableCell>
+                    </Hidden>
 
                     <StyledTableCell key="name">
                     <TableSortLabel
@@ -129,13 +133,16 @@ function ProductList(){
                       </TableSortLabel>
                     </StyledTableCell>
 
-                    <StyledTableCell key="barcode">
-                      <TableSortLabel
-                      direction={productdata.order==="desc"?"asc":"desc"}
-                      onClick={() => dispatch(fetchProducts("barcode",productdata.order==="desc"?"asc":"desc",10,0))}>
-                        Barcode 
-                      </TableSortLabel>
-                    </StyledTableCell>
+                    <Hidden only={['sm', 'xs']}>
+
+                      <StyledTableCell key="barcode">
+                        <TableSortLabel
+                        direction={productdata.order==="desc"?"asc":"desc"}
+                        onClick={() => dispatch(fetchProducts("barcode",productdata.order==="desc"?"asc":"desc",10,0))}>
+                          Barcode 
+                        </TableSortLabel>
+                      </StyledTableCell>
+                    </Hidden>
 
                     <StyledTableCell key="price" >
                       <TableSortLabel
@@ -145,53 +152,56 @@ function ProductList(){
                       </TableSortLabel>   
                     </StyledTableCell>
 
-                    <StyledTableCell key="quantity" > 
-                      <TableSortLabel
-                      direction={productdata.order==="desc"?"asc":"desc"}
-                      onClick={() => dispatch(fetchProducts("quantity",productdata.order==="desc"?"asc":"desc",10,0))}>
-                        Quantity 
-                      </TableSortLabel>    
-                    </StyledTableCell>
+                    <Hidden only={['sm', 'xs']}>
 
-                    <StyledTableCell key="number" >
-                      <TableSortLabel
+                      <StyledTableCell key="quantity" > 
+                        <TableSortLabel
                         direction={productdata.order==="desc"?"asc":"desc"}
-                        onClick={() => dispatch(fetchProducts("number",productdata.order==="desc"?"asc":"desc",10,0))}>
-                        Number Of Items
+                        onClick={() => dispatch(fetchProducts("quantity",productdata.order==="desc"?"asc":"desc",10,0))}>
+                          Quantity 
+                        </TableSortLabel>    
+                      </StyledTableCell>
+
+                      <StyledTableCell key="number" >
+                        <TableSortLabel
+                          direction={productdata.order==="desc"?"asc":"desc"}
+                          onClick={() => dispatch(fetchProducts("number",productdata.order==="desc"?"asc":"desc",10,0))}>
+                          Number Of Items
+                          </TableSortLabel>
+                      </StyledTableCell>
+
+                      <StyledTableCell key="address" >
+                        <TableSortLabel
+                          direction={productdata.order==="desc"?"asc":"desc"}
+                          onClick={() => dispatch(fetchProducts("addresslineone",productdata.order==="desc"?"asc":"desc",10,0))}>
+                          Address
+                          </TableSortLabel>
+                      </StyledTableCell>
+
+                      <StyledTableCell key="createdBy" >
+                        <TableSortLabel
+                          direction={productdata.order==="desc"?"asc":"desc"}
+                          onClick={() => dispatch(fetchProducts("user",productdata.order==="desc"?"asc":"desc",10,0))}>
+                        Created By 
                         </TableSortLabel>
-                    </StyledTableCell>
+                      </StyledTableCell>
 
-                    <StyledTableCell key="address" >
-                      <TableSortLabel
-                        direction={productdata.order==="desc"?"asc":"desc"}
-                        onClick={() => dispatch(fetchProducts("addresslineone",productdata.order==="desc"?"asc":"desc",10,0))}>
-                        Address
+                      <StyledTableCell key="dateCreated" >
+                        <TableSortLabel
+                          direction={productdata.order==="desc"?"asc":"desc"}
+                          onClick={() => dispatch(fetchProducts("dateCreated",productdata.order==="desc"?"asc":"desc",10,0))}>
+                              Date Created
                         </TableSortLabel>
-                    </StyledTableCell>
+                      </StyledTableCell>
 
-                    <StyledTableCell key="createdBy" >
-                      <TableSortLabel
-                        direction={productdata.order==="desc"?"asc":"desc"}
-                        onClick={() => dispatch(fetchProducts("user",productdata.order==="desc"?"asc":"desc",10,0))}>
-                       Created By 
-                      </TableSortLabel>
-                    </StyledTableCell>
-
-                    <StyledTableCell key="dateCreated" >
-                      <TableSortLabel
-                        direction={productdata.order==="desc"?"asc":"desc"}
-                        onClick={() => dispatch(fetchProducts("dateCreated",productdata.order==="desc"?"asc":"desc",10,0))}>
-                            Date Created
-                      </TableSortLabel>
-                    </StyledTableCell>
-
-                    <StyledTableCell key="lastUpdated" > 
-                      <TableSortLabel
-                        direction={productdata.order==="desc"?"asc":"desc"}
-                        onClick={() => dispatch(fetchProducts("lastUpdated",productdata.order==="desc"?"asc":"desc",10,0))}>
-                        Last Updated
-                      </TableSortLabel>
-                    </StyledTableCell>
+                      <StyledTableCell key="lastUpdated" > 
+                        <TableSortLabel
+                          direction={productdata.order==="desc"?"asc":"desc"}
+                          onClick={() => dispatch(fetchProducts("lastUpdated",productdata.order==="desc"?"asc":"desc",10,0))}>
+                          Last Updated
+                        </TableSortLabel>
+                      </StyledTableCell>
+                    </Hidden>
 
                     <StyledTableCell > Edit </StyledTableCell>
 
@@ -199,21 +209,33 @@ function ProductList(){
                 </TableHead>
                 <TableBody>
            {productdata.products.map(product =>  <StyledTableRow key={product.id}>
-            <StyledTableCell component="th" scope="row">{product.id}</StyledTableCell>
+            
+            <Hidden only={['sm', 'xs']}>
+              <StyledTableCell component="th" scope="row">{product.id}</StyledTableCell>
+            </Hidden>
+
            <StyledTableCell component="th" scope="row">{product.name}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{product.barcode}</StyledTableCell>
+           
+           <Hidden only={['sm', 'xs']}>
+             <StyledTableCell component="th" scope="row">{product.barcode}</StyledTableCell>
+           </Hidden>
+           
            <StyledTableCell component="th" scope="row">{product.price}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{product.quantity} {product.quantityType}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{product.number}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{product.addresslineone} {product.addresslinetwo}, {product.state}-{product.zip}, {product.country} </StyledTableCell>
-           <StyledTableCell component="th" scope="row">{product.user}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{product.dateCreated }</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{product.lastUpdated}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">
+           
+           <Hidden only={['sm', 'xs']}>
+            <StyledTableCell component="th" scope="row">{product.quantity} {product.quantityType}</StyledTableCell>
+            <StyledTableCell component="th" scope="row">{product.number}</StyledTableCell>
+            <StyledTableCell component="th" scope="row">{product.addresslineone} {product.addresslinetwo}, {product.state}-{product.zip}, {product.country} </StyledTableCell>
+            <StyledTableCell component="th" scope="row">{product.user}</StyledTableCell>
+            <StyledTableCell component="th" scope="row">{product.dateCreated }</StyledTableCell>
+            <StyledTableCell component="th" scope="row">{product.lastUpdated}</StyledTableCell>
+           </Hidden>
+            
+          <StyledTableCell component="th" scope="row">
             <IconButton color="secondary" aria-label="Edit Product">
               <EditIcon/>          
             </IconButton>
-           </StyledTableCell>
+          </StyledTableCell>
 
                 </StyledTableRow>
               )}

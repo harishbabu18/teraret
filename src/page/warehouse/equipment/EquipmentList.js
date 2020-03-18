@@ -17,7 +17,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import Avatar from '@material-ui/core/Avatar';
 import EquipmentSearch from './EquipmentSearch';
-
+import Hidden from '@material-ui/core/Hidden';
 
 const useStyles = makeStyles( theme => ({
   root: {
@@ -94,7 +94,7 @@ function EquipmentList(){
               <div> 
 
                 <EquipmentSearch/>
-              <Grid item  sm={6} md={12} className={classes.root} >
+              <Grid item  sm={12} md={12} className={classes.root} >
                 <ButtonGroup fullWidth aria-label="full width outlined button group">
                   <Button className={classes.content} href="/warehouse/equipment/list">List Equipments</Button>
                   <Button className={classes.content} href="/warehouse/equipment/create">Create Equipment</Button>
@@ -107,14 +107,17 @@ function EquipmentList(){
           
                 <TableHead>
                   <TableRow>
-                    <StyledTableCell key="id" >
-                      <TableSortLabel
-                        direction={equipmentdata.order==="desc"?"asc":"desc"}
-                        onClick={() => dispatch(fetchEquipments("id",equipmentdata.order==="desc"?"asc":"desc",10,0))}
-                      >
-                        Equipment ID
-                      </TableSortLabel>
-                    </StyledTableCell>
+                  
+                    <Hidden only={['xs', 'sm']}>
+                      <StyledTableCell key="id" >
+                        <TableSortLabel
+                          direction={equipmentdata.order==="desc"?"asc":"desc"}
+                          onClick={() => dispatch(fetchEquipments("id",equipmentdata.order==="desc"?"asc":"desc",10,0))}
+                        >
+                          Equipment ID
+                        </TableSortLabel>
+                      </StyledTableCell>
+                    </Hidden>
 
                     <StyledTableCell key="name" >
                       <TableSortLabel
@@ -124,42 +127,44 @@ function EquipmentList(){
                         Name 
                       </TableSortLabel>
                     </StyledTableCell>
+                    
+                    <Hidden only={['xs', 'sm']}>
+                      <StyledTableCell key="description" > 
+                        <TableSortLabel
+                              direction={equipmentdata.order==="desc"?"asc":"desc"}
+                              onClick={() => dispatch(fetchEquipments("description",equipmentdata.order==="desc"?"asc":"desc",10,0))}
+                          >
+                          Description 
+                        </TableSortLabel>
+                      </StyledTableCell>
 
-                    <StyledTableCell key="description" > 
-                      <TableSortLabel
-                            direction={equipmentdata.order==="desc"?"asc":"desc"}
-                            onClick={() => dispatch(fetchEquipments("description",equipmentdata.order==="desc"?"asc":"desc",10,0))}
+                      <StyledTableCell key="serial" >
+                        <TableSortLabel
+                          direction={equipmentdata.order==="desc"?"asc":"desc"}
+                          onClick={() => dispatch(fetchEquipments("serial",equipmentdata.order==="desc"?"asc":"desc",10,0))}
                         >
-                        Description 
-                      </TableSortLabel>
-                    </StyledTableCell>
+                          Serial Number 
+                        </TableSortLabel>
+                      </StyledTableCell>
 
-                    <StyledTableCell key="serial" >
-                      <TableSortLabel
-                        direction={equipmentdata.order==="desc"?"asc":"desc"}
-                        onClick={() => dispatch(fetchEquipments("serial",equipmentdata.order==="desc"?"asc":"desc",10,0))}
-                      >
-                        Serial Number 
-                      </TableSortLabel>
-                    </StyledTableCell>
+                      <StyledTableCell key="type" >
+                        <TableSortLabel
+                          direction={equipmentdata.order==="desc"?"asc":"desc"}
+                          onClick={() => dispatch(fetchEquipments("type",equipmentdata.order==="desc"?"asc":"desc",10,0))}
+                        >
+                          Type 
+                        </TableSortLabel>
+                      </StyledTableCell>
 
-                    <StyledTableCell key="type" >
-                      <TableSortLabel
-                        direction={equipmentdata.order==="desc"?"asc":"desc"}
-                        onClick={() => dispatch(fetchEquipments("type",equipmentdata.order==="desc"?"asc":"desc",10,0))}
-                      >
-                        Type 
-                      </TableSortLabel>
-                    </StyledTableCell>
-
-                    <StyledTableCell key="supplier" > 
-                      <TableSortLabel
-                        direction={equipmentdata.order==="desc"?"asc":"desc"}
-                        onClick={() => dispatch(fetchEquipments("supplier",equipmentdata.order==="desc"?"asc":"desc",10,0))}
-                      >
-                        Supplier 
-                      </TableSortLabel>
-                    </StyledTableCell>
+                      <StyledTableCell key="supplier" > 
+                        <TableSortLabel
+                          direction={equipmentdata.order==="desc"?"asc":"desc"}
+                          onClick={() => dispatch(fetchEquipments("supplier",equipmentdata.order==="desc"?"asc":"desc",10,0))}
+                        >
+                          Supplier 
+                        </TableSortLabel>
+                      </StyledTableCell>
+                    </Hidden>
 
                     <StyledTableCell key="salesPrice" > 
                       <TableSortLabel
@@ -178,33 +183,35 @@ function EquipmentList(){
                         Purchase Price 
                       </TableSortLabel>
                     </StyledTableCell>
-
-                    <StyledTableCell key="user" > 
-                      <TableSortLabel
-                        direction={equipmentdata.order==="desc"?"asc":"desc"}
-                        onClick={() => dispatch(fetchEquipments("user",equipmentdata.order==="desc"?"asc":"desc",10,0))}
-                      >
-                          Craeted By
-                      </TableSortLabel>
-                    </StyledTableCell>
-
-                    <StyledTableCell key="dateCreated" > 
-                      <TableSortLabel
-                        direction={equipmentdata.order==="desc"?"asc":"desc"}
-                        onClick={() => dispatch(fetchEquipments("dateCreated",equipmentdata.order==="desc"?"asc":"desc",10,0))}
-                      >
-                        Date Created 
-                      </TableSortLabel>
-                    </StyledTableCell>
-
-                    <StyledTableCell key="lastUpdated" > 
-                      <TableSortLabel
-                        direction={equipmentdata.order==="desc"?"asc":"desc"}
-                        onClick={() => dispatch(fetchEquipments("lastUpdated",equipmentdata.order==="desc"?"asc":"desc",10,0))}
+                   
+                    <Hidden only={['xs', 'sm']}>
+                      <StyledTableCell key="user" > 
+                        <TableSortLabel
+                          direction={equipmentdata.order==="desc"?"asc":"desc"}
+                          onClick={() => dispatch(fetchEquipments("user",equipmentdata.order==="desc"?"asc":"desc",10,0))}
                         >
-                        Last Updated 
-                      </TableSortLabel> 
-                    </StyledTableCell>
+                            Craeted By
+                        </TableSortLabel>
+                      </StyledTableCell>
+
+                      <StyledTableCell key="dateCreated" > 
+                        <TableSortLabel
+                          direction={equipmentdata.order==="desc"?"asc":"desc"}
+                          onClick={() => dispatch(fetchEquipments("dateCreated",equipmentdata.order==="desc"?"asc":"desc",10,0))}
+                        >
+                          Date Created 
+                        </TableSortLabel>
+                      </StyledTableCell>
+
+                      <StyledTableCell key="lastUpdated" > 
+                        <TableSortLabel
+                          direction={equipmentdata.order==="desc"?"asc":"desc"}
+                          onClick={() => dispatch(fetchEquipments("lastUpdated",equipmentdata.order==="desc"?"asc":"desc",10,0))}
+                          >
+                          Last Updated 
+                        </TableSortLabel> 
+                      </StyledTableCell>
+                    </Hidden>
 
                     <StyledTableCell > Edit </StyledTableCell>
 
@@ -213,18 +220,29 @@ function EquipmentList(){
                 <TableBody>
            {equipmentdata.equipments.map(equipment =>  
            <StyledTableRow key={equipment.id}>
-               
-            <StyledTableCell component="th" scope="row">{equipment.id}</StyledTableCell>
+            
+            <Hidden only={['xs', 'sm']}>
+              <StyledTableCell component="th" scope="row">{equipment.id}</StyledTableCell>
+            </Hidden>
+
             <StyledTableCell component="th" scope="row">{equipment.name} </StyledTableCell>
-            <StyledTableCell component="th" scope="row">{equipment.description}</StyledTableCell>
-            <StyledTableCell component="th" scope="row">{equipment.serial}</StyledTableCell>
-            <StyledTableCell component="th" scope="row">{equipment.type}</StyledTableCell>
-            <StyledTableCell component="th" scope="row">{equipment.supplier}</StyledTableCell>
+            
+            <Hidden only={['xs', 'sm']}>
+              <StyledTableCell component="th" scope="row">{equipment.description}</StyledTableCell>
+              <StyledTableCell component="th" scope="row">{equipment.serial}</StyledTableCell>
+              <StyledTableCell component="th" scope="row">{equipment.type}</StyledTableCell>
+              <StyledTableCell component="th" scope="row">{equipment.supplier}</StyledTableCell>
+            </Hidden>
+
             <StyledTableCell component="th" scope="row">{equipment.salesPrice}</StyledTableCell>
             <StyledTableCell component="th" scope="row">{equipment.purchasePrice}</StyledTableCell>
-            <StyledTableCell component="th" scope="row">{equipment.user}</StyledTableCell>
-            <StyledTableCell component="th" scope="row">{equipment.dateCreated}</StyledTableCell>
-            <StyledTableCell component="th" scope="row">{equipment.lastUpdated}</StyledTableCell>
+            
+            <Hidden only={['xs', 'sm']}>
+              <StyledTableCell component="th" scope="row">{equipment.user}</StyledTableCell>
+              <StyledTableCell component="th" scope="row">{equipment.dateCreated}</StyledTableCell>
+              <StyledTableCell component="th" scope="row">{equipment.lastUpdated}</StyledTableCell>
+            </Hidden>
+            
             <StyledTableCell component="th" scope="row">
             <IconButton color="secondary" aria-label="Edit Contact">
               <EditIcon/>          

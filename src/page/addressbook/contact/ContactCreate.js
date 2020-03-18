@@ -323,7 +323,7 @@ class CreateContact extends React.Component {
 <div>
   <div  component="main" className={classes.root}  >
         <div  className={classes.root}  >
-          <Grid sm={6} md={12}>
+          <Grid sm={12} md={12}>
 
           <ButtonGroup fullWidth aria-label="full width button group">
 

@@ -103,7 +103,7 @@ function ContactList(){
           
               <div> 
                 <ContactSearch />
-              <Grid item  sm={6} md={12} className={classes.root} >
+              <Grid item  sm={12} md={12} className={classes.root} >
           
                            
                 <ButtonGroup fullWidth aria-label="full width outlined button group">
@@ -221,30 +221,33 @@ function ContactList(){
                 <TableBody>
            {contactdata.contacts.map(contact =>  <StyledTableRow key={contact.id}>
             <Hidden only={['sm', 'xs']}>
-            <StyledTableCell component="th" scope="row">{contact.id}</StyledTableCell>
+              <StyledTableCell component="th" scope="row">{contact.id}</StyledTableCell>
             </Hidden>
+           
            <StyledTableCell component="th" scope="row">
             <IconButton color="secondary" aria-label="Edit Contact">
               <Avatar alt={contact.name} src={(contact.avatar)?'/'+contact.avatar:contact.name} />
             </IconButton>
            </StyledTableCell>
            <StyledTableCell component="th" scope="row">{contact.firstName} {contact.lastName}</StyledTableCell>
+           
            <Hidden only={['sm', 'xs']}>
-           <StyledTableCell component="th" scope="row">{contact.position}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{contact.dob}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{contact.email}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{contact.addresslineone} {contact.addresslinetwo}, {contact.state}-{contact.zip}, {contact.country} </StyledTableCell>
-           <StyledTableCell component="th" scope="row">{contact.user}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{contact.dateCreated}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{contact.lastUpdated}</StyledTableCell>
+            <StyledTableCell component="th" scope="row">{contact.position}</StyledTableCell>
+            <StyledTableCell component="th" scope="row">{contact.dob}</StyledTableCell>
+            <StyledTableCell component="th" scope="row">{contact.email}</StyledTableCell>
+            <StyledTableCell component="th" scope="row">{contact.addresslineone} {contact.addresslinetwo}, {contact.state}-{contact.zip}, {contact.country} </StyledTableCell>
+            <StyledTableCell component="th" scope="row">{contact.user}</StyledTableCell>
+            <StyledTableCell component="th" scope="row">{contact.dateCreated}</StyledTableCell>
+            <StyledTableCell component="th" scope="row">{contact.lastUpdated}</StyledTableCell>
            </Hidden>
+
            <StyledTableCell component="th" scope="row">
             <IconButton color="secondary" aria-label="Edit Contact">
               <EditIcon/>          
             </IconButton>
            </StyledTableCell>
 
-                </StyledTableRow>
+              </StyledTableRow>
               )}
             </TableBody>
           </Table>

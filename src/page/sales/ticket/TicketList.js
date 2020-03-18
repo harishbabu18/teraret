@@ -15,7 +15,8 @@ import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import TableContainer from '@material-ui/core/TableContainer';
 import Paper from '@material-ui/core/Paper';
-import TicketSearch from './TicketSearch'; 
+import TicketSearch from './TicketSearch';
+import Hidden from '@material-ui/core/Hidden';
 
 const useStyles = makeStyles( theme => ({
   root: {
@@ -93,7 +94,7 @@ function TicketList(){
                 
                 <TicketSearch /> 
 
-              <Grid item  sm={6} md={12} className={classes.root} >
+              <Grid item  sm={12} md={12} className={classes.root} >
                 <ButtonGroup fullWidth aria-label="full width outlined button group">
                   <Button className={classes.content} href="/sales/ticket/list">List Ticket</Button>
                   <Button className={classes.content} href="/sales/ticket/create">Create Ticket</Button>
@@ -107,14 +108,17 @@ function TicketList(){
           
                 <TableHead>
                   <TableRow>
-                    <StyledTableCell key="id" >
-                      <TableSortLabel
-                        onClick={() => dispatch(fetchTickets("id",ticketdata.order==="desc"?"asc":"desc",10,0))}
-                        direction={ticketdata.order==="desc"?"asc":"desc"}
-                      >
-                        Ticket ID
-                      </TableSortLabel>
-                    </StyledTableCell>
+
+                    <Hidden only={['xs', 'sm']}>
+                      <StyledTableCell key="id" >
+                        <TableSortLabel
+                          onClick={() => dispatch(fetchTickets("id",ticketdata.order==="desc"?"asc":"desc",10,0))}
+                          direction={ticketdata.order==="desc"?"asc":"desc"}
+                        >
+                          Ticket ID
+                        </TableSortLabel>
+                      </StyledTableCell>
+                    </Hidden>
 
                     <StyledTableCell key="ticket" >
                       <TableSortLabel
@@ -125,14 +129,16 @@ function TicketList(){
                       </TableSortLabel> 
                     </StyledTableCell>
 
-                    <StyledTableCell key="description" >
-                      <TableSortLabel
-                        direction={ticketdata.order==="desc"?"asc":"desc"}
-                        onClick={() => dispatch(fetchTickets("description",ticketdata.order==="desc"?"asc":"desc",10,0))}
-                      >
-                       Description 
-                      </TableSortLabel>
-                    </StyledTableCell>
+                    <Hidden only={['xs', 'sm']}>
+                      <StyledTableCell key="description" >
+                        <TableSortLabel
+                          direction={ticketdata.order==="desc"?"asc":"desc"}
+                          onClick={() => dispatch(fetchTickets("description",ticketdata.order==="desc"?"asc":"desc",10,0))}
+                        >
+                        Description 
+                        </TableSortLabel>
+                      </StyledTableCell>
+                    </Hidden>
 
                     <StyledTableCell key="contact" >
                       <TableSortLabel
@@ -152,50 +158,52 @@ function TicketList(){
                       </TableSortLabel>
                     </StyledTableCell>
 
-                    <StyledTableCell key="ticketSource" >
-                      <TableSortLabel
-                        direction={ticketdata.order==="desc"?"asc":"desc"}
-                        onClick={() => dispatch(fetchTickets("ticketSource",ticketdata.order==="desc"?"asc":"desc",10,0))}
-                      >
-                       Ticket Source
-                      </TableSortLabel>
-                    </StyledTableCell>
-
-                    <StyledTableCell key="user" >
-                      <TableSortLabel
-                        direction={ticketdata.order==="desc"?"asc":"desc"}
-                        onClick={() => dispatch(fetchTickets("user",ticketdata.order==="desc"?"asc":"desc",10,0))}
-                      >
-                       Created By 
-                      </TableSortLabel>
-                    </StyledTableCell>
-
-                    <StyledTableCell key="assignedTo" >
-                      <TableSortLabel
-                        direction={ticketdata.order==="desc"?"asc":"desc"}
-                        onClick={() => dispatch(fetchTickets("assignedTo",ticketdata.order==="desc"?"asc":"desc",10,0))}
-                      >
-                       AssignedTo
-                      </TableSortLabel>
-                    </StyledTableCell>
-
-                    <StyledTableCell key="dateCreated" >
-                      <TableSortLabel
+                    <Hidden only={['xs', 'sm']}>
+                      <StyledTableCell key="ticketSource" >
+                        <TableSortLabel
                           direction={ticketdata.order==="desc"?"asc":"desc"}
-                          onClick={() => dispatch(fetchTickets("dateCreated",ticketdata.order==="desc"?"asc":"desc",10,0))}
+                          onClick={() => dispatch(fetchTickets("ticketSource",ticketdata.order==="desc"?"asc":"desc",10,0))}
                         >
-                       Date Created 
-                      </TableSortLabel>
-                    </StyledTableCell>
+                        Ticket Source
+                        </TableSortLabel>
+                      </StyledTableCell>
 
-                    <StyledTableCell key="lastUpdated" > 
-                      <TableSortLabel
-                        direction={ticketdata.order==="desc"?"asc":"desc"}
-                        onClick={() => dispatch(fetchTickets("lastUpdated",ticketdata.order==="desc"?"asc":"desc",10,0))}
-                      >
-                      Last Updated
-                      </TableSortLabel>
-                    </StyledTableCell>
+                      <StyledTableCell key="user" >
+                        <TableSortLabel
+                          direction={ticketdata.order==="desc"?"asc":"desc"}
+                          onClick={() => dispatch(fetchTickets("user",ticketdata.order==="desc"?"asc":"desc",10,0))}
+                        >
+                        Created By 
+                        </TableSortLabel>
+                      </StyledTableCell>
+
+                      <StyledTableCell key="assignedTo" >
+                        <TableSortLabel
+                          direction={ticketdata.order==="desc"?"asc":"desc"}
+                          onClick={() => dispatch(fetchTickets("assignedTo",ticketdata.order==="desc"?"asc":"desc",10,0))}
+                        >
+                        AssignedTo
+                        </TableSortLabel>
+                      </StyledTableCell>
+
+                      <StyledTableCell key="dateCreated" >
+                        <TableSortLabel
+                            direction={ticketdata.order==="desc"?"asc":"desc"}
+                            onClick={() => dispatch(fetchTickets("dateCreated",ticketdata.order==="desc"?"asc":"desc",10,0))}
+                          >
+                        Date Created 
+                        </TableSortLabel>
+                      </StyledTableCell>
+
+                      <StyledTableCell key="lastUpdated" > 
+                        <TableSortLabel
+                          direction={ticketdata.order==="desc"?"asc":"desc"}
+                          onClick={() => dispatch(fetchTickets("lastUpdated",ticketdata.order==="desc"?"asc":"desc",10,0))}
+                        >
+                        Last Updated
+                        </TableSortLabel>
+                      </StyledTableCell>
+                    </Hidden>
 
                     <StyledTableCell > Edit </StyledTableCell>
 
@@ -204,17 +212,26 @@ function TicketList(){
 
                 <TableBody>
                   {ticketdata.tickets.map(ticket =>  <StyledTableRow key={ticket.id}>
-
-                  <StyledTableCell component="th" scope="row">{ticket.id}</StyledTableCell>
+                  <Hidden only={['xs', 'sm']}>
+                    <StyledTableCell component="th" scope="row">{ticket.id}</StyledTableCell>
+                  </Hidden>
+                  
                   <StyledTableCell component="th" scope="row">{ticket.ticket} </StyledTableCell>
-                  <StyledTableCell component="th" scope="row">{ticket.description}</StyledTableCell>
+                  
+                  <Hidden only={['xs', 'sm']}>
+                    <StyledTableCell component="th" scope="row">{ticket.description}</StyledTableCell>
+                  </Hidden>
                   <StyledTableCell component="th" scope="row">{ticket.contact}</StyledTableCell>
                   <StyledTableCell component="th" scope="row">{ticket.ticketStatus}</StyledTableCell>
-                  <StyledTableCell component="th" scope="row">{ticket.ticketSource}</StyledTableCell>
-                  <StyledTableCell component="th" scope="row">{ticket.user}</StyledTableCell>
-                  <StyledTableCell component="th" scope="row">{ticket.assignedTo} </StyledTableCell>
-                  <StyledTableCell component="th" scope="row">{ticket.dateCreated}</StyledTableCell>
-                  <StyledTableCell component="th" scope="row">{ticket.lastUpdated}</StyledTableCell>
+                  
+                  <Hidden only={['xs', 'sm']}>
+                    <StyledTableCell component="th" scope="row">{ticket.ticketSource}</StyledTableCell>
+                    <StyledTableCell component="th" scope="row">{ticket.user}</StyledTableCell>
+                    <StyledTableCell component="th" scope="row">{ticket.assignedTo} </StyledTableCell>
+                    <StyledTableCell component="th" scope="row">{ticket.dateCreated}</StyledTableCell>
+                    <StyledTableCell component="th" scope="row">{ticket.lastUpdated}</StyledTableCell>
+                  </Hidden>
+
                   <StyledTableCell component="th" scope="row">
                     <IconButton color="secondary" aria-label="Edit Ticket">
                       <EditIcon/>          

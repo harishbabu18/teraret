@@ -17,7 +17,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import Avatar from '@material-ui/core/Avatar';
 import MeanSearch from './MeansSearch';
-
+import Hidden from '@material-ui/core/Hidden';
 
 const useStyles = makeStyles( theme => ({
   root: {
@@ -95,7 +95,7 @@ function MeanList(){
 
               <MeanSearch />
 
-              <Grid item  sm={6} md={12} className={classes.root} >
+              <Grid item  sm={12} md={12} className={classes.root} >
                 <ButtonGroup fullWidth aria-label="full width outlined button group">
                   <Button className={classes.content} href="/warehouse/mean/list">List Means</Button>
                   <Button className={classes.content} href="/warehouse/mean/create">Create Mean</Button>
@@ -108,6 +108,8 @@ function MeanList(){
           
                 <TableHead>
                   <TableRow>
+                  <Hidden only={['sm', 'xs']}>
+
                     <StyledTableCell key="id" >
                       <TableSortLabel
                         direction={meandata.order==="desc"?"asc":"desc"}
@@ -116,6 +118,7 @@ function MeanList(){
                         Mean ID
                       </TableSortLabel>
                     </StyledTableCell>
+                  </Hidden>
 
                     <StyledTableCell key="name" >
                       <TableSortLabel
@@ -144,6 +147,8 @@ function MeanList(){
                       </TableSortLabel>
                     </StyledTableCell>
 
+                  <Hidden only={['sm', 'xs']}>
+
                     <StyledTableCell key="createdBy" >
                       <TableSortLabel
                         direction={meandata.order==="desc"?"asc":"desc"}
@@ -170,6 +175,7 @@ function MeanList(){
                         Last Updated 
                       </TableSortLabel> 
                     </StyledTableCell>
+                  </Hidden>
 
                     <StyledTableCell > Edit </StyledTableCell>
 
@@ -178,13 +184,19 @@ function MeanList(){
                 <TableBody>
            {meandata.means.map(mean =>  
            <StyledTableRow key={mean.id}>
-            <StyledTableCell component="th" scope="row">{mean.id}</StyledTableCell>
+            <Hidden only={['sm', 'xs']}>
+              <StyledTableCell component="th" scope="row">{mean.id}</StyledTableCell>
+            </Hidden>
             <StyledTableCell component="th" scope="row">{mean.loading}</StyledTableCell>
             <StyledTableCell component="th" scope="row">{mean.unloading}</StyledTableCell>
             <StyledTableCell component="th" scope="row">{mean.schedule}</StyledTableCell>
-            <StyledTableCell component="th" scope="row">{mean.user}</StyledTableCell>
-            <StyledTableCell component="th" scope="row">{mean.dateCreated}</StyledTableCell>
-            <StyledTableCell component="th" scope="row">{mean.lastUpdated}</StyledTableCell>
+
+            <Hidden only={['sm', 'xs']}>
+              <StyledTableCell component="th" scope="row">{mean.user}</StyledTableCell>
+              <StyledTableCell component="th" scope="row">{mean.dateCreated}</StyledTableCell>
+              <StyledTableCell component="th" scope="row">{mean.lastUpdated}</StyledTableCell>
+            </Hidden>
+
             <StyledTableCell component="th" scope="row">
             <IconButton color="secondary" aria-label="Edit Contact">
               <EditIcon/>          

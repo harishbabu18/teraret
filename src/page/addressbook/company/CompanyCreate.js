@@ -319,7 +319,7 @@ class CompanyCreate extends React.Component {
 
         <div  component="main" className={classes.root}  >
         <div  className={classes.root}  >
-          <Grid sm={6} md={12}>
+          <Grid sm={12} md={12}>
           <ButtonGroup fullWidth aria-label="full width button group">
 
           <Button className={classes.content} href="/addressbook/company/list">List Company</Button>
@@ -550,15 +550,19 @@ class CompanyCreate extends React.Component {
     }}
      variant="outlined"
    />
+
     <FormLabel component="legend">Country</FormLabel>
     <CountryDropdown
+         id="outlined-full-width"
+
           value={this.state.countryValue}
           onChange={(val) => this.selectCountry(val)} 
           style={{
             background:'white',
-            fontSize: 18,
-            width:300,
-            height:50
+            fontSize: 14,
+            width:295,
+            height:50,
+            margin:8,
           }}
           />
    <FormLabel component="legend">State/Region</FormLabel>      
@@ -568,9 +572,10 @@ class CompanyCreate extends React.Component {
           onChange={(val) => this.selectRegion(val)}
           style={{
             background:'white',
-            fontSize: 18,
-            width:300,
-            height:50
+            fontSize: 14,
+            height:50,
+            width:295,
+            margin: 8
           }}          
           />
 

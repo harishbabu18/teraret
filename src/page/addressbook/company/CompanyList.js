@@ -20,6 +20,12 @@ import SERVER_URL from '../../../config';
 import { SAMLCredentials } from 'aws-sdk';
 import CompanySearch from './CompanySearch';
 import Hidden from '@material-ui/core/Hidden';
+import ShowCompanyPage from './ShowCompanyPage';
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { IoIosBrush } from "react-icons/io";
+import {Link} from 'react-router-dom'; 
+
 
 const useStyles = makeStyles( theme => ({
   root: {
@@ -92,6 +98,19 @@ function CompanyList(){
        dispatch(fetchCompanys(companydata.sort,companydata.order,10,0))
    },[])
 
+   const [open, setOpen] = React.useState(false);
+   const theme = useTheme();
+   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+ 
+   const handleClickOpen = (e) => {
+     setOpen(true);
+     let id = (e.target.id)
+   };
+ 
+   const handleClose = () => {
+     setOpen(false);
+   };
+
   return companydata.loading ?(
             <div className={classes.root}>
             <LinearProgress />
@@ -111,6 +130,7 @@ function CompanyList(){
               </Grid>
               
               <Grid item  sm={12} md={12} className={classes.content} >
+
               <TableContainer component={Paper}>
 
                 <Table className={classes.table} aria-label="customized table">
@@ -226,15 +246,17 @@ function CompanyList(){
                 </TableHead>
                 <TableBody>
            {companydata.companys.map(company =>  <StyledTableRow key={company.id}>
+
             <Hidden only={['sm', 'xs']}>
             <StyledTableCell component="th" scope="row">{company.id}</StyledTableCell>
             </Hidden>
            <StyledTableCell component="th" scope="row">
-            <IconButton color="secondary" aria-label="Edit Contact">
+            <IconButton color="secondary" aria-label="Profile Picture">
               <Avatar alt={company.name} src={(company.avatar)?'/'+company.avatar:company.name} />
             </IconButton>
            </StyledTableCell>
-           <StyledTableCell component="th" scope="row">{company.name}</StyledTableCell>
+
+          <StyledTableCell component="th" scope="row">{company.name}</StyledTableCell>
            <Hidden only={['sm', 'xs']}>
            <StyledTableCell component="th" scope="row">{company.description}</StyledTableCell>
            <StyledTableCell component="th" scope="row">{company.email}</StyledTableCell>
@@ -246,13 +268,18 @@ function CompanyList(){
            <StyledTableCell component="th" scope="row">{company.establishedDate}</StyledTableCell>
            <StyledTableCell component="th" scope="row">{company.lastUpdated}</StyledTableCell>
            </Hidden>
-           <StyledTableCell component="th" scope="row">
-            <IconButton color="secondary" aria-label="Edit Company">
-              <EditIcon/>          
+           <StyledTableCell component="th"  scope="row">
+            <IconButton color="secondary" id={company.id} onClick={handleClickOpen} aria-label="Edit Company">
+              <Link to='/compny/id:company.id'component={company.id} ><EditIcon /></Link> 
             </IconButton>
            </StyledTableCell>
-
-                </StyledTableRow>
+            {/* <ShowCompanyPage
+              open = {open}
+              fullScreen = {fullScreen}
+              handleClose = {handleClose}
+              companydata = {company.id}
+            /> */}
+          </StyledTableRow>
               )}
             </TableBody>
           </Table>

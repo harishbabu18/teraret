@@ -18,6 +18,7 @@ import IconButton from '@material-ui/core/IconButton';
 import TableContainer from '@material-ui/core/TableContainer';
 import Paper from '@material-ui/core/Paper';
 import SupplierSearch from './SupplierSearch';
+import Hidden from '@material-ui/core/Hidden';
 
 const useStyles = makeStyles( theme => ({
   root: {
@@ -64,6 +65,7 @@ const StyledTableCell = withStyles(theme => ({
   head: {
     backgroundColor: theme.palette.common.default,
     color: theme.palette.common.black,
+    size: 'small'
   },
   body: {
     fontSize: 14,
@@ -78,7 +80,6 @@ const StyledTableRow = withStyles(theme => ({
   },
   
 }))(TableRow);
-
 function SupplierList(){
   const classes = useStyles();
   const supplierdata = useSelector(state => state.supplier )
@@ -100,7 +101,7 @@ function SupplierList(){
             <div> 
 
                <SupplierSearch/>
-              <Grid item  sm={6} md={12} className={classes.root} >
+              <Grid item  sm={12} md={12} className={classes.root} >
                 <ButtonGroup fullWidth aria-label="full width outlined button group">
                   <Button className={classes.content} href="/addressbook/supplier/list">List Supplier</Button>
                   <Button className={classes.content} href="/addressbook/supplier/create">Create Supplier</Button>
@@ -114,14 +115,16 @@ function SupplierList(){
           
                 <TableHead>
                   <TableRow>
-                    <StyledTableCell key = 'id' >
-                    <TableSortLabel
-                      direction={supplierdata.order==="desc"?"asc":"desc"}
-                      onClick={() => dispatch(fetchSuppliers("id",supplierdata.order==="desc"?"asc":"desc",10,0))}
-                    >
-                       Supplier ID
-                    </TableSortLabel>
-                    </StyledTableCell>
+                    <Hidden only = {['sm', 'xs']}>
+                      <StyledTableCell key = 'id' >
+                      <TableSortLabel
+                        direction={supplierdata.order==="desc"?"asc":"desc"}
+                        onClick={() => dispatch(fetchSuppliers("id",supplierdata.order==="desc"?"asc":"desc",10,0))}
+                      >
+                        Supplier ID
+                      </TableSortLabel>
+                      </StyledTableCell>
+                    </Hidden>
 
                     <StyledTableCell key="name">
                       <TableSortLabel
@@ -131,21 +134,24 @@ function SupplierList(){
                        </TableSortLabel>
                     </StyledTableCell>
 
-                    <StyledTableCell key="vat">
-                    <TableSortLabel
-                      direction={supplierdata.order==="desc"?"asc":"desc"}
-                      onClick={() => dispatch(fetchSuppliers("vat",supplierdata.order==="desc"?"asc":"desc",10,0))}>
-                        VAT
-                      </TableSortLabel>
-                    </StyledTableCell>
+                    <Hidden only = {['sm', 'xs']}>
 
-                    <StyledTableCell key="pec">
+                      <StyledTableCell key="vat">
                       <TableSortLabel
-                      direction={supplierdata.order==="desc"?"asc":"desc"}
-                      onClick={() => dispatch(fetchSuppliers("pec",supplierdata.order==="desc"?"asc":"desc",10,0))}>
-                        PEC 
-                      </TableSortLabel>
-                    </StyledTableCell>
+                        direction={supplierdata.order==="desc"?"asc":"desc"}
+                        onClick={() => dispatch(fetchSuppliers("vat",supplierdata.order==="desc"?"asc":"desc",10,0))}>
+                          VAT
+                        </TableSortLabel>
+                      </StyledTableCell>
+
+                      <StyledTableCell key="pec">
+                        <TableSortLabel
+                        direction={supplierdata.order==="desc"?"asc":"desc"}
+                        onClick={() => dispatch(fetchSuppliers("pec",supplierdata.order==="desc"?"asc":"desc",10,0))}>
+                          PEC 
+                        </TableSortLabel>
+                      </StyledTableCell>
+                    </Hidden>
 
                     <StyledTableCell key="email" >
                       <TableSortLabel
@@ -154,77 +160,81 @@ function SupplierList(){
                        E-mail 
                       </TableSortLabel>   
                     </StyledTableCell>
-                    <StyledTableCell key="mobile" > 
-                      <TableSortLabel
-                      direction={supplierdata.order==="desc"?"asc":"desc"}
-                      onClick={() => dispatch(fetchSuppliers("mobile",supplierdata.order==="desc"?"asc":"desc",10,0))}>
+                    <Hidden only = {['sm', 'xs']}>
 
-                        Mobile 
-                      </TableSortLabel>    
-                    </StyledTableCell>
+                      <StyledTableCell key="mobile" > 
+                        <TableSortLabel
+                        direction={supplierdata.order==="desc"?"asc":"desc"}
+                        onClick={() => dispatch(fetchSuppliers("mobile",supplierdata.order==="desc"?"asc":"desc",10,0))}>
 
-                    <StyledTableCell key="fax" >
-                      <TableSortLabel
-                        direction={supplierdata.order==="desc"?"asc":"desc"}
-                        onClick={() => dispatch(fetchSuppliers("fax",supplierdata.order==="desc"?"asc":"desc",10,0))}>
-                        Fax 
-                      </TableSortLabel>
-                    </StyledTableCell>
+                          Mobile 
+                        </TableSortLabel>    
+                      </StyledTableCell>
 
-                    <StyledTableCell key="note" > 
-                      <TableSortLabel
-                        direction={supplierdata.order==="desc"?"asc":"desc"}
-                        onClick={() => dispatch(fetchSuppliers("note",supplierdata.order==="desc"?"asc":"desc",10,0))}>
-                        Note
-                      </TableSortLabel>
-                     </StyledTableCell>
-                     <StyledTableCell key="services" > 
-                      <TableSortLabel
-                        direction={supplierdata.order==="desc"?"asc":"desc"}
-                        onClick={() => dispatch(fetchSuppliers("services",supplierdata.order==="desc"?"asc":"desc",10,0))}>
-                        Services
-                      </TableSortLabel>
-                     </StyledTableCell>
+                      <StyledTableCell key="fax" >
+                        <TableSortLabel
+                          direction={supplierdata.order==="desc"?"asc":"desc"}
+                          onClick={() => dispatch(fetchSuppliers("fax",supplierdata.order==="desc"?"asc":"desc",10,0))}>
+                          Fax 
+                        </TableSortLabel>
+                      </StyledTableCell>
 
-                     <StyledTableCell key="address" > 
-                      <TableSortLabel
-                        direction={supplierdata.order==="desc"?"asc":"desc"}
-                        onClick={() => dispatch(fetchSuppliers("addresslineone",supplierdata.order==="desc"?"asc":"desc",10,0))}>
-                        Address
-                      </TableSortLabel>
-                     </StyledTableCell>
+                      <StyledTableCell key="note" > 
+                        <TableSortLabel
+                          direction={supplierdata.order==="desc"?"asc":"desc"}
+                          onClick={() => dispatch(fetchSuppliers("note",supplierdata.order==="desc"?"asc":"desc",10,0))}>
+                          Note
+                        </TableSortLabel>
+                      </StyledTableCell>
+                      <StyledTableCell key="services" > 
+                      
+                        <TableSortLabel
+                          direction={supplierdata.order==="desc"?"asc":"desc"}
+                          onClick={() => dispatch(fetchSuppliers("services",supplierdata.order==="desc"?"asc":"desc",10,0))}>
+                          Services
+                        </TableSortLabel>
+                      </StyledTableCell>
 
-                    <StyledTableCell key="createdBy" >
-                      <TableSortLabel
-                        direction={supplierdata.order==="desc"?"asc":"desc"}
-                        onClick={() => dispatch(fetchSuppliers("user",supplierdata.order==="desc"?"asc":"desc",10,0))}>
-                       Created By 
-                      </TableSortLabel>
-                    </StyledTableCell>
+                      <StyledTableCell key="address" > 
+                        <TableSortLabel
+                          direction={supplierdata.order==="desc"?"asc":"desc"}
+                          onClick={() => dispatch(fetchSuppliers("addresslineone",supplierdata.order==="desc"?"asc":"desc",10,0))}>
+                          Address
+                        </TableSortLabel>
+                      </StyledTableCell>
 
-                    <StyledTableCell key="supplierstatus" >
-                      <TableSortLabel
-                        direction={supplierdata.order==="desc"?"asc":"desc"}
-                        onClick={() => dispatch(fetchSuppliers("supplierstatus",supplierdata.order==="desc"?"asc":"desc",10,0))}>
-                       Supplier Status
-                      </TableSortLabel>
-                    </StyledTableCell>
+                      <StyledTableCell key="createdBy" >
+                        <TableSortLabel
+                          direction={supplierdata.order==="desc"?"asc":"desc"}
+                          onClick={() => dispatch(fetchSuppliers("user",supplierdata.order==="desc"?"asc":"desc",10,0))}>
+                        Created By 
+                        </TableSortLabel>
+                      </StyledTableCell>
 
-                    <StyledTableCell key="dateCreated" > 
-                      <TableSortLabel
-                        direction={supplierdata.order==="desc"?"asc":"desc"}
-                        onClick={() => dispatch(fetchSuppliers("dateCreated",supplierdata.order==="desc"?"asc":"desc",10,0))}>
-                        Date Created
-                      </TableSortLabel>
-                    </StyledTableCell>
+                      <StyledTableCell key="supplierstatus" >
+                        <TableSortLabel
+                          direction={supplierdata.order==="desc"?"asc":"desc"}
+                          onClick={() => dispatch(fetchSuppliers("supplierstatus",supplierdata.order==="desc"?"asc":"desc",10,0))}>
+                        Supplier Status
+                        </TableSortLabel>
+                      </StyledTableCell>
 
-                    <StyledTableCell key="lastUpdated" > 
-                      <TableSortLabel
-                        direction={supplierdata.order==="desc"?"asc":"desc"}
-                        onClick={() => dispatch(fetchSuppliers("lastUpdated",supplierdata.order==="desc"?"asc":"desc",10,0))}>
-                        Last Updated
-                      </TableSortLabel>
-                    </StyledTableCell>
+                      <StyledTableCell key="dateCreated" > 
+                        <TableSortLabel
+                          direction={supplierdata.order==="desc"?"asc":"desc"}
+                          onClick={() => dispatch(fetchSuppliers("dateCreated",supplierdata.order==="desc"?"asc":"desc",10,0))}>
+                          Date Created
+                        </TableSortLabel>
+                      </StyledTableCell>
+
+                      <StyledTableCell key="lastUpdated" > 
+                        <TableSortLabel
+                          direction={supplierdata.order==="desc"?"asc":"desc"}
+                          onClick={() => dispatch(fetchSuppliers("lastUpdated",supplierdata.order==="desc"?"asc":"desc",10,0))}>
+                          Last Updated
+                        </TableSortLabel>
+                      </StyledTableCell>
+                    </Hidden>
 
                     <StyledTableCell > Edit </StyledTableCell>
 
@@ -232,26 +242,33 @@ function SupplierList(){
                 </TableHead>
                 <TableBody>
            {supplierdata.suppliers.map(supplier =>  <StyledTableRow key={supplier.id}>
-            <StyledTableCell component="th" scope="row">{supplier.id}</StyledTableCell>
+            <Hidden only = {['sm', 'xs']}>
+              <StyledTableCell component="th" scope="row">{supplier.id}</StyledTableCell>
+            </Hidden>
+            <StyledTableCell component="th" scope="row">{supplier.name}</StyledTableCell>
 
-           <StyledTableCell component="th" scope="row">{supplier.name}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{supplier.vat}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{supplier.pec}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{supplier.email}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{supplier.mobile}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{supplier.fax }</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{supplier.note}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{supplier.services }</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{supplier.addresslineone} {supplier.addresslinetwo}, {supplier.state}-{supplier.zip}, {supplier.country} </StyledTableCell>
-           <StyledTableCell component="th" scope="row">{supplier.user}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{supplier.supplierstatus}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{supplier.dateCreated}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{supplier.lastUpdated}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">
-            <IconButton color="secondary" aria-label="Edit Supplier">
-              <EditIcon/>          
-            </IconButton>
-           </StyledTableCell>
+            <Hidden only = {['sm', 'xs']}>
+              <StyledTableCell component="th" scope="row">{supplier.vat}</StyledTableCell>
+              <StyledTableCell component="th" scope="row">{supplier.pec}</StyledTableCell>
+            </Hidden>
+            <StyledTableCell component="th" scope="row">{supplier.email}</StyledTableCell>
+
+            <Hidden only = {['sm', 'xs']}>
+              <StyledTableCell component="th" scope="row">{supplier.mobile}</StyledTableCell>
+              <StyledTableCell component="th" scope="row">{supplier.fax }</StyledTableCell>
+              <StyledTableCell component="th" scope="row">{supplier.note}</StyledTableCell>
+              <StyledTableCell component="th" scope="row">{supplier.services }</StyledTableCell>
+              <StyledTableCell component="th" scope="row">{supplier.addresslineone} {supplier.addresslinetwo}, {supplier.state}-{supplier.zip}, {supplier.country} </StyledTableCell>
+              <StyledTableCell component="th" scope="row">{supplier.user}</StyledTableCell>
+              <StyledTableCell component="th" scope="row">{supplier.supplierstatus}</StyledTableCell>
+              <StyledTableCell component="th" scope="row">{supplier.dateCreated}</StyledTableCell>
+              <StyledTableCell component="th" scope="row">{supplier.lastUpdated}</StyledTableCell>
+            </Hidden>
+              <StyledTableCell component="th" scope="row">
+                <IconButton color="secondary" aria-label="Edit Supplier">
+                  <EditIcon/>          
+                </IconButton>
+              </StyledTableCell>
 
                 </StyledTableRow>
               )}

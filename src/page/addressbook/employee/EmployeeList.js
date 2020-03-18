@@ -17,6 +17,8 @@ import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import Avatar from '@material-ui/core/Avatar';
 import EmployeeSearch from './EmployeeSearch';
+import Hidden from '@material-ui/core/Hidden';
+
 
 
 const useStyles = makeStyles( theme => ({
@@ -94,7 +96,7 @@ function EmployeeList(){
               <div> 
 
                    <EmployeeSearch/>
-              <Grid item  sm={6} md={12} className={classes.root} >
+              <Grid item  sm={12} md={12} className={classes.root} >
                 <ButtonGroup fullWidth aria-label="full width outlined button group">
                   <Button className={classes.content} href="/addressbook/employee/list">List Employees</Button>
                   <Button className={classes.content} href="/addressbook/employee/create">Create Employee</Button>
@@ -107,6 +109,9 @@ function EmployeeList(){
           
                 <TableHead>
                   <TableRow>
+
+                  <Hidden only={['sm', 'xs']}>
+
                     <StyledTableCell key="id" >
                       <TableSortLabel
                         direction={employeedata.order==="desc"?"asc":"desc"}
@@ -115,6 +120,7 @@ function EmployeeList(){
                         Employee ID
                       </TableSortLabel>
                     </StyledTableCell>
+                    </Hidden>
 
                     <StyledTableCell key="avatar" > 
                       <TableSortLabel
@@ -133,6 +139,8 @@ function EmployeeList(){
                         Name 
                       </TableSortLabel>
                     </StyledTableCell>
+                  
+                  <Hidden only={['sm', 'xs']}>
 
                     <StyledTableCell key="email" > 
                       <TableSortLabel
@@ -205,6 +213,7 @@ function EmployeeList(){
                         Last Updated 
                       </TableSortLabel> 
                     </StyledTableCell>
+                  </Hidden>
 
                     <StyledTableCell > Edit </StyledTableCell>
 
@@ -213,26 +222,32 @@ function EmployeeList(){
                 <TableBody>
            {employeedata.employees.map(employee =>  
            <StyledTableRow key={employee.id}>
-            <StyledTableCell component="th" scope="row">{employee.id}</StyledTableCell>
+            <Hidden only={['xs', 'sm']}>
+              <StyledTableCell component="th" scope="row">{employee.id}</StyledTableCell>
+            </Hidden>
+
             <StyledTableCell component="th" scope="row">
               <IconButton color="secondary" aria-label="Edit Contact">
                 <Avatar alt={employee.firstName} src={(employee.avatar)?employee.avatar:employee.firstName} />
               </IconButton>
             </StyledTableCell>
             <StyledTableCell component="th" scope="row">{employee.firstName} {employee.lastName}</StyledTableCell>
-            <StyledTableCell component="th" scope="row">{employee.email}</StyledTableCell>
-            <StyledTableCell component="th" scope="row">{employee.mobile}</StyledTableCell>
-            <StyledTableCell component="th" scope="row">{employee.dob}</StyledTableCell>
-            <StyledTableCell component="th" scope="row">{employee.user}</StyledTableCell>
-            <StyledTableCell component="th" scope="row">{employee.joiningdate}</StyledTableCell>
-            <StyledTableCell component="th" scope="row">{employee.relievingdate}</StyledTableCell>
-            <StyledTableCell component="th" scope="row">{employee.dateCreated}</StyledTableCell>
-            <StyledTableCell component="th" scope="row">{employee.lastUpdated}</StyledTableCell>
-            <StyledTableCell component="th" scope="row">
-            <IconButton color="secondary" aria-label="Edit Contact">
-              <EditIcon/>          
-            </IconButton>
-           </StyledTableCell>
+          
+            <Hidden only={['xs', 'sm']}> 
+              <StyledTableCell component="th" scope="row">{employee.email}</StyledTableCell>
+              <StyledTableCell component="th" scope="row">{employee.mobile}</StyledTableCell>
+              <StyledTableCell component="th" scope="row">{employee.dob}</StyledTableCell>
+              <StyledTableCell component="th" scope="row">{employee.user}</StyledTableCell>
+              <StyledTableCell component="th" scope="row">{employee.joiningdate}</StyledTableCell>
+              <StyledTableCell component="th" scope="row">{employee.relievingdate}</StyledTableCell>
+              <StyledTableCell component="th" scope="row">{employee.dateCreated}</StyledTableCell>
+              <StyledTableCell component="th" scope="row">{employee.lastUpdated}</StyledTableCell>
+            </Hidden>
+              <StyledTableCell component="th" scope="row">
+                <IconButton color="secondary" aria-label="Edit Contact">
+                  <EditIcon/>          
+                </IconButton>
+              </StyledTableCell>
 
            </StyledTableRow>)}
           </TableBody>
