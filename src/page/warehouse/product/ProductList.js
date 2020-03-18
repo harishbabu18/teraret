@@ -161,14 +161,6 @@ function ProductList(){
                         </TableSortLabel>
                     </StyledTableCell>
 
-                    <StyledTableCell key="address" >
-                      <TableSortLabel
-                        direction={productdata.order==="desc"?"asc":"desc"}
-                        onClick={() => dispatch(fetchProducts("addresslineone",productdata.order==="desc"?"asc":"desc",10,0))}>
-                        Address
-                        </TableSortLabel>
-                    </StyledTableCell>
-
                     <StyledTableCell key="createdBy" >
                       <TableSortLabel
                         direction={productdata.order==="desc"?"asc":"desc"}
@@ -205,8 +197,7 @@ function ProductList(){
            <StyledTableCell component="th" scope="row">{product.price}</StyledTableCell>
            <StyledTableCell component="th" scope="row">{product.quantity} {product.quantityType}</StyledTableCell>
            <StyledTableCell component="th" scope="row">{product.number}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{product.addresslineone} {product.addresslinetwo}, {product.state}-{product.zip}, {product.country} </StyledTableCell>
-           <StyledTableCell component="th" scope="row">{product.user}</StyledTableCell>
+           <StyledTableCell component="th" scope="row">{product.createdBy}</StyledTableCell>
            <StyledTableCell component="th" scope="row">{product.dateCreated }</StyledTableCell>
            <StyledTableCell component="th" scope="row">{product.lastUpdated}</StyledTableCell>
            <StyledTableCell component="th" scope="row">

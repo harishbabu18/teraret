@@ -217,11 +217,11 @@ function EquipmentList(){
             <StyledTableCell component="th" scope="row">{equipment.id}</StyledTableCell>
             <StyledTableCell component="th" scope="row">{equipment.name} </StyledTableCell>
             <StyledTableCell component="th" scope="row">{equipment.description}</StyledTableCell>
-            <StyledTableCell component="th" scope="row">{equipment.serial}</StyledTableCell>
-            <StyledTableCell component="th" scope="row">{equipment.type}</StyledTableCell>
+            <StyledTableCell component="th" scope="row">{equipment.serialNumber}</StyledTableCell>
+            <StyledTableCell component="th" scope="row">{equipment.equipmentType}</StyledTableCell>
             <StyledTableCell component="th" scope="row">{equipment.supplier}</StyledTableCell>
-            <StyledTableCell component="th" scope="row">{equipment.salesPrice}</StyledTableCell>
-            <StyledTableCell component="th" scope="row">{equipment.purchasePrice}</StyledTableCell>
+            <StyledTableCell component="th" scope="row">{equipment.salesprice}</StyledTableCell>
+            <StyledTableCell component="th" scope="row">{equipment.purchaseprice}</StyledTableCell>
             <StyledTableCell component="th" scope="row">{equipment.user}</StyledTableCell>
             <StyledTableCell component="th" scope="row">{equipment.dateCreated}</StyledTableCell>
             <StyledTableCell component="th" scope="row">{equipment.lastUpdated}</StyledTableCell>
