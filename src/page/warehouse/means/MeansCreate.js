@@ -180,8 +180,8 @@ class CreateTransport extends React.Component {
               <div  className={classes.root}  >
                 <Grid sm={6} md={12}>
            <ButtonGroup fullWidth aria-label="full width outlined button group">
-           <Button className={classes.content} href="/warehouse/transport/list">List Transport</Button>
-           <Button className={classes.content} href="/warehouse/transport/create">Create Transport</Button>
+           <Button className={classes.content} href="/warehouse/means/list">List Means</Button>
+           <Button className={classes.content} href="/warehouse/means/create">Create Means</Button>
          </ButtonGroup>
          </Grid>
                </div>
@@ -200,7 +200,7 @@ class CreateTransport extends React.Component {
              <CardContent >
 
    <Typography className={classes.title} color="primary" variant="h2" component="h1" gutterBottom>
-    Create Transport
+    Create Means
    </Typography>
                         <TextField
                           id="demo-simple-select-outlined-label"

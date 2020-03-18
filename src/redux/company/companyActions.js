@@ -54,7 +54,6 @@ export const searchCompany=(searchColoumn,search)=>{
             var companys = response.data.company
             console.log("search value is "+companys)
             dispatch(searchCompanysSuccess(companys))
-           // dispatch(loadCompanysSuccess(companys, max, order, sort, offset))
         }).catch(error => {
             const errorMsg = error.message
             dispatch(fetchCompanysFailure(errorMsg))

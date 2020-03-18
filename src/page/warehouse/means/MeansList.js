@@ -97,8 +97,8 @@ function MeanList(){
 
               <Grid item  sm={6} md={12} className={classes.root} >
                 <ButtonGroup fullWidth aria-label="full width outlined button group">
-                  <Button className={classes.content} href="/warehouse/mean/list">List Means</Button>
-                  <Button className={classes.content} href="/warehouse/mean/create">Create Mean</Button>
+                  <Button className={classes.content} href="/warehouse/means/list">List Means</Button>
+                  <Button className={classes.content} href="/warehouse/means/create">Create Mean</Button>
                 </ButtonGroup>
               </Grid>
               
