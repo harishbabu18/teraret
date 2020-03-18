@@ -57,13 +57,14 @@ function MeanSearch(){
         <Select
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
+          label = "Select Column"
           value={searchcolumn}
           onChange={handleChange}
           //labelWidth={labelWidth}
         >
-          <MenuItem value="name">Name</MenuItem>
-          <MenuItem value="email">E-Mail</MenuItem>
-          <MenuItem value="mobile">Mobile</MenuItem>
+          <MenuItem value="loading">Loading</MenuItem>
+          <MenuItem value="unloading">Un-Loading</MenuItem>
+          <MenuItem value="schedule">Schedule</MenuItem>
         </Select>
       </FormControl>
         <TextField id="outlined-basic" fullWidth 

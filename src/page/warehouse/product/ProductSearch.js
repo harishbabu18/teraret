@@ -56,13 +56,14 @@ const handleChangeSearch=(event)=>{
         <Select
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
+          label = "Select Column"
           value={searchcolumn}
           onChange={handleChange}
           //labelWidth={labelWidth}
         >
           <MenuItem value="name">Name</MenuItem>
-          <MenuItem value="serial">Serial Number</MenuItem>
-          <MenuItem value="supplier">Supplier</MenuItem>
+          <MenuItem value="number">Number Of Items </MenuItem>
+          <MenuItem value="quantity">Quantity</MenuItem>
         </Select>
       </FormControl>
         <TextField id="outlined-basic" fullWidth 

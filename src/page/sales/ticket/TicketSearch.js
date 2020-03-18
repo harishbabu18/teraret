@@ -58,7 +58,8 @@ function TicketSearch(){
           id="demo-simple-select-outlined"
           value={searchcolumn}
           onChange={handleChange}
-          //labelWidth={labelWidth}
+          label = "Select Column"
+          // labelWidth={labelWidth}
         >
           <MenuItem value="name">Name</MenuItem>
           <MenuItem value="email">E-Mail</MenuItem>

@@ -59,6 +59,7 @@ const handleChangeSearch=(event)=>{
         <Select
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
+          label = "Select Column"
           value={searchcolumn}
           onChange={handleChange}
           //labelWidth={labelWidth}
