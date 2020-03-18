@@ -296,10 +296,13 @@ class CreateEquipment extends React.Component {
                           onChange={this.handleChangeTypeValue.bind(this)}
                           variant="outlined"
                           >
-                              {this.state.type.map(option =>(
+                              {this.state.equipmentType.map(option =>(
                                   <MenuItem key={option.id} value={option.id}>
                                       {option.name}
                                   </MenuItem>
+
+
+
                               ))}
                           </TextField> */}
                           <AsynchronousDropdown 
