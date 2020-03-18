@@ -14,6 +14,7 @@ import history from './history'
 import Admin from './layout/Admin'
 import CompanyList from './page/addressbook/company/CompanyList';
 import CompanyCreate from './page/addressbook/company/CompanyCreate';
+import ShowCompanyDetail from './page/addressbook/company/ShowCompanyDetail';
 import ShowCompanyPage from './page/addressbook/company/ShowCompanyPage';
 import ShowContactPage from './page/addressbook/contact/ShowContactPage';
 import SupplierList from './page/addressbook/supplier/SupplierList';
@@ -130,6 +131,10 @@ function Index(props) {
              <Provider store={store}>
               <PrivateRoute  exact path="/addressbook/company/list">
                 <CompanyList/>
+              </PrivateRoute>
+
+              <PrivateRoute  exact path="/addressbook/company/showcompanydetail/:id" >
+                <ShowCompanyDetail />
               </PrivateRoute>
 
               <PrivateRoute  exact path="/addressbook/contact/list">
