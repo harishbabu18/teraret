@@ -1,8 +1,8 @@
-import React from 'react';
+import React  from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { Button } from '@material-ui/core';
-import {searchCompany} from '../../../redux/index';
+import {searchOfferings} from '../../../redux/index';
 import { useDispatch } from 'react-redux';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -20,13 +20,12 @@ const useStyles = makeStyles(theme => ({
     },
   }));
 
-function CompanySearch(){
+function OfferSearch(){
     const classes = useStyles();
     const dispatch = useDispatch()
     const [searchcolumn, setSearchcolumn] = React.useState('');
     const [search, setSearch] = React.useState('');
-
-
+  
     const inputLabel = React.useRef(null);
   
 
@@ -36,7 +35,8 @@ function CompanySearch(){
         console.log("the value of search Column is "+event.target.value)
       };
     
-    const handleChangeSearch=(event)=>{
+    
+const handleChangeSearch=(event)=>{
     setSearch(event.target.value);
     console.log("the value of search is "+event.target.value)
 }
@@ -55,35 +55,36 @@ function CompanySearch(){
           onChange={handleChange}
           //labelWidth={labelWidth}
         >
-          <MenuItem value="name">Name</MenuItem>
-          <MenuItem value="email">E-Mail</MenuItem>
-          <MenuItem value="mobile">Mobile</MenuItem>
+          <MenuItem value="firstName"> First Name </MenuItem>
+          <MenuItem value="lastName"> Last Name </MenuItem>
+          <MenuItem value="email"> E-Mail </MenuItem>
+          <MenuItem value="mobile"> Mobile </MenuItem>
         </Select>
       </FormControl>
         <TextField id="outlined-basic" fullWidth 
         label="Search" variant="outlined" 
         onChange={handleChangeSearch}/>
-
         
         {/* <TextField id="date" label="Record Created From" type="date" defaultValue=""
-                    //onChange={this.handleCompanyDateValue}
+                    //onChange={this.handleContactDateValue}
                     className={classes.textField}
                     InputLabelProps={{
                       shrink: true,
                     }}
                   />
         <TextField id="date" label="Record Created Till" type="date" defaultValue=""
-                    //onChange={this.handleCompanyDateValue}
+                    //onChange={this.handleContactDateValue}
                     className={classes.textField}
                     InputLabelProps={{
                       shrink: true,
                     }}
                   />   */}
+             {/* <Button  onClick={() => dispatch(searchContact(searchcolumn,search))} >Search</Button>  */}
              <Button
               variant="contained"
              color="primary"
              startIcon={<SearchIcon />}
-             onClick={() => dispatch(searchCompany(searchcolumn,search))} >
+             onClick={() => dispatch(searchOfferings(searchcolumn,search))} >
                Search
             </Button> 
       </form>
@@ -92,4 +93,4 @@ function CompanySearch(){
 
 
 }
-export default CompanySearch
+export default OfferSearch

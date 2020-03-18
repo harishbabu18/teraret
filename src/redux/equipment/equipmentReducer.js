@@ -29,7 +29,6 @@ const equipmentReducer = (state = initialState,action) => {
                 offset:action.payloadoffset+10,
                 equipments:action.payload,
                 error:'',
-                max:state.max,
             } 
 
         case FETCH_EQUIPMENTS_FAILURE:

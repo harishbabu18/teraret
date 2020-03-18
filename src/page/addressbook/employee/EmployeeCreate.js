@@ -3,7 +3,6 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { Button ,ButtonGroup} from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
-
 import SERVER_URL from '../../../config';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
@@ -205,13 +204,13 @@ handleSubmit=(event)=>{
 
     console.log("Value of Featured Image is"+this.state.avatar)
    
-   if(this.state.avatar!=''){
+   if(this.state.avatar!==''){
      console.log("Inside Not null")
     formdata.append('avatar',this.state.featuredImageFileName)
     }
     
      
-   if(this.state.relievingdateValue!=''){
+   if(this.state.relievingdateValue!==''){
     console.log("Inside Not null")
     formdata.append('relievingdate',this.state.relievingdateValue)
    }
@@ -424,7 +423,7 @@ handleSubmit=(event)=>{
 
 <input
   accept="image/*"
-  id="outlined-full-width"
+  // id="outlined-full-width"
   className={classes.root}
   onChange={this.handleProfilepicValue}
   style={{ display: 'none' }}

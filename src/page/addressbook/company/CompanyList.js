@@ -4,7 +4,6 @@ import { Button, makeStyles,withStyles } from '@material-ui/core';
 import { ButtonGroup} from '@material-ui/core';
 import {loadCompanys, fetchCompanys} from '../../../redux/index';
 import { useSelector,useDispatch } from 'react-redux';
-import LinearProgress from '@material-ui/core/LinearProgress';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -18,10 +17,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import Paper from '@material-ui/core/Paper';
 import CompanySearch from './CompanySearch';
 import Hidden from '@material-ui/core/Hidden';
-import ShowCompanyPage from './ShowCompanyPage';
-import { useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { IoIosBrush } from "react-icons/io";
+// import { useTheme } from '@material-ui/core/styles';
 import {Link} from 'react-router-dom'; 
 
 
@@ -30,7 +26,6 @@ const useStyles = makeStyles( theme => ({
     '& > * + * .MuiTextField-root ': {
       margin: theme.spacing(1),
       marginBottom: 12,
-      margin: theme.spacing(1),
 
 
     [theme.breakpoints.down('sm')]: {
@@ -97,22 +92,22 @@ function CompanyList(){
        dispatch(fetchCompanys(companydata.sort,companydata.order,10,0))
    },[])
 
-   const [open, setOpen] = React.useState(false);
-   const theme = useTheme();
-   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+   const [, setOpen] = React.useState(false);
+  //  const theme = useTheme();
+  //  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
  
    const handleClickOpen = (e) => {
      setOpen(true);
-     let id = (e.target.id)
+    //  let id = (e.target.id)
    };
  
-   const handleClose = () => {
-     setOpen(false);
-   };
+  //  const handleClose = () => {
+  //    setOpen(false);
+  //  };
 
   return companydata.loading ?(
             <div className={classes.root}>
-            <LinearProgress />
+            {/* <LinearProgress /> */}
           </div>
           ): companydata.error ? (
           <h1>{companydata.error}</h1>
@@ -255,7 +250,6 @@ function CompanyList(){
             </IconButton>
            </StyledTableCell>
 
-          <StyledTableCell component="th" scope="row">{company.name}</StyledTableCell>
            <StyledTableCell component="th" scope="row">
 
 
@@ -275,7 +269,7 @@ function CompanyList(){
            </Hidden>
            <StyledTableCell component="th"  scope="row">
             <IconButton color="secondary" id={company.id} onClick={handleClickOpen} aria-label="Edit Company">
-              <Link to='/compny/id:company.id'component={company.id} ><EditIcon /></Link> 
+              <EditIcon />
             </IconButton>
            </StyledTableCell>
             {/* <ShowCompanyPage

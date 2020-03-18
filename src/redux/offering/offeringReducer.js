@@ -1,4 +1,4 @@
-import {FETCH_OFFERINGS_REQUEST,FETCH_OFFERINGS_SUCCESS,FETCH_OFFERINGS_FAILURE, LOADMORE_OFFERINGS_SUCCESS} from './offeringType'; 
+import {FETCH_OFFERINGS_REQUEST,FETCH_OFFERINGS_SUCCESS,FETCH_OFFERINGS_FAILURE, LOADMORE_OFFERINGS_SUCCESS, SEARCH_OFFERINGS_SUCCESS} from './offeringType'; 
 
 const initialState = {
     loading:false,
@@ -18,16 +18,18 @@ const offeringReducer = (state = initialState,action) => {
                 ...state,
                 loading:true
             }
+
         case FETCH_OFFERINGS_SUCCESS:
             return {
                 loading: false,
-                offset: state.offset+10,
-                sort:state.sort,
-                max:state.max,
-                offset:state.offset+10,
+                sort:action.payloadsort,
+                order:action.payloadorder,
+                max:action.payloadmax,
+                offset:action.payloadoffset+10,
                 offerings:action.payload,
                 error:''
             } 
+            
         case FETCH_OFFERINGS_FAILURE:
             return{
                 loading: false,
@@ -37,14 +39,22 @@ const offeringReducer = (state = initialState,action) => {
 
         case LOADMORE_OFFERINGS_SUCCESS:
             return {
-                    ...state,
-                    loading: false,
-                    sort:state.sort,
-                    max:state.max,
-                    offset:state.offset+10,
-                    offerings:[...state.offerings,...action.payload],
-                    error:''
+                ...state,
+                loading: false,
+                sort:state.sort,
+                order:action.payloadorder,
+                max:state.max,
+                offset:state.offset+10,
+                offerings:[...state.offerings,...action.payload],
+                error:''
                 }
+
+        case SEARCH_OFFERINGS_SUCCESS:
+            return {
+                ...state,
+                loading : false,
+                offerings:action.payload
+            }
 
        default: return state          
 

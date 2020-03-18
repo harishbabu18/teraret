@@ -29,7 +29,6 @@ const employeeReducer = (state = initialState,action) => {
                 offset:action.payloadoffset+10,
                 employees:action.payload,
                 error:'',
-                max:state.max,
             } 
 
         case FETCH_EMPLOYEES_FAILURE:

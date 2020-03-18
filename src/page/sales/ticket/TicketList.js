@@ -226,7 +226,7 @@ function TicketList(){
                   
                   <Hidden only={['xs', 'sm']}>
                     <StyledTableCell component="th" scope="row">{ticket.ticketSource}</StyledTableCell>
-                    <StyledTableCell component="th" scope="row">{ticket.user}</StyledTableCell>
+                    <StyledTableCell component="th" scope="row">{ticket.createdBy}</StyledTableCell>
                     <StyledTableCell component="th" scope="row">{ticket.assignedTo} </StyledTableCell>
                     <StyledTableCell component="th" scope="row">{ticket.dateCreated}</StyledTableCell>
                     <StyledTableCell component="th" scope="row">{ticket.lastUpdated}</StyledTableCell>

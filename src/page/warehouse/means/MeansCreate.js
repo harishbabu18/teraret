@@ -1,7 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import { Button ,ButtonGroup, formatMs} from '@material-ui/core';
+import { Button ,ButtonGroup} from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import SERVER_URL from '../../../config';
 import Grid from '@material-ui/core/Grid';
@@ -158,13 +158,6 @@ class CreateTransport extends React.Component {
 
   render() {
     const { classes } = this.props;
-    function renderLoadingRow(address) {
-        return (<MenuItem value={address.id}>{address.addresslineone}</MenuItem>);
-      }
-
-      function renderUnloadingRow(address) {
-        return (<MenuItem value={address.id}>{address.addresslineone}</MenuItem>);
-      }
 
       return(
         <div>

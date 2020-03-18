@@ -20,12 +20,9 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import SendIcon from '@material-ui/icons/Send';
-
-
 import Dialog from '@material-ui/core/Dialog';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
-
 import CreateCompany from '../pages/CreateCompany';
 import CreateContact from '../pages/CreateContact';
 import CreateTask from '../pages/CreateTask';

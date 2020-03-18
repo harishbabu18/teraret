@@ -1,14 +1,9 @@
-import React, { useEffect } from 'react';
-
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { Button } from '@material-ui/core';
-// import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
-// import FormLabel from '@material-ui/core/FormLabel';
-// import Grid from '@material-ui/core/Grid';
 import {searchTickets} from '../../../redux/index';
-import { useSelector,useDispatch } from 'react-redux';
-
+import { useDispatch } from 'react-redux';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
@@ -31,7 +26,6 @@ function TicketSearch(){
     const [searchcolumn, setSearchcolumn] = React.useState('');
     const [search, setSearch] = React.useState('');
   
-    const ticketdata = useSelector(state => state.ticket )
 
     const inputLabel = React.useRef(null);
   
@@ -61,9 +55,9 @@ function TicketSearch(){
           label = "Select Column"
           // labelWidth={labelWidth}
         >
-          <MenuItem value="name">Name</MenuItem>
-          <MenuItem value="email">E-Mail</MenuItem>
-          <MenuItem value="mobile">Mobile</MenuItem>
+          <MenuItem value="ticket">Ticket</MenuItem>
+          <MenuItem value="contact">Contact</MenuItem>
+          <MenuItem value="ticketStatus">Ticket Status</MenuItem>
         </Select>
       </FormControl>
         <TextField id="outlined-basic" fullWidth 

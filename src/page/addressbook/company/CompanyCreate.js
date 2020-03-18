@@ -215,35 +215,35 @@ class CompanyCreate extends React.Component {
 
     console.log("Value of Featured Image is"+this.state.featuredImageFileName)
    
-   if(this.state.featuredImageFileName!=''){
+   if(this.state.featuredImageFileName!==''){
      console.log("Inside Not null")
     formdata.append('featuredImageFile',this.state.featuredImageFileName)
     }
     
-    if(this.state.companyDateCreated!=''){
+    if(this.state.companyDateCreated!==''){
     formdata.append('establishedDate',this.state.companyDateCreated)
 
     }
 
-    if(this.state.companyDescription!=''){
+    if(this.state.companyDescription!==''){
     formdata.append('description',this.state.companyDescription)
     }
     formdata.append('name',this.state.companyName)
     formdata.append('mobile',this.state.mobileValue)
     
     
-    if(this.state.websiteValue!=''){
+    if(this.state.websiteValue!==''){
     formdata.append('website',this.state.websiteValue)
     }
     formdata.append('email',this.state.emailValue)
     
-    if(this.state.faxValue!=''){
+    if(this.state.faxValue!==''){
     formdata.append('fax', this.state.faxValue)
     }
     formdata.append('officeType',this.state.officeTypeValue)
     formdata.append('addresslineone', this.state.addressValue)
     
-    if(this.state.addressTwoValue!=''){
+    if(this.state.addressTwoValue!==''){
     formdata.append('addresslinetwo',this.state.addressTwoValue)
     }
     formdata.append('country', this.state.countryValue)
@@ -312,7 +312,7 @@ class CompanyCreate extends React.Component {
   render() {
     const { classes } = this.props;
 
-    const { country, region } = this.state;
+    // const { country, region } = this.state;
 
    
       return(

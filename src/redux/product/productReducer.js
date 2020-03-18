@@ -29,7 +29,6 @@ const productReducer = (state = initialState,action) => {
                 offset:action.payloadoffset+10,
                 products:action.payload,
                 error:'',
-                max:state.max,
             } 
 
         case FETCH_PRODUCTS_FAILURE:

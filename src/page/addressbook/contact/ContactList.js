@@ -16,8 +16,6 @@ import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import TableContainer from '@material-ui/core/TableContainer';
 import Paper from '@material-ui/core/Paper';
-import SERVER_URL from '../../../config';
-import { SAMLCredentials } from 'aws-sdk';
 import ContactSearch from './ContactSearch';
 import Hidden from '@material-ui/core/Hidden';
 
@@ -26,7 +24,6 @@ const useStyles = makeStyles( theme => ({
     '& > * + * .MuiTextField-root ': {
       margin: theme.spacing(1),
       marginBottom: 12,
-      margin: theme.spacing(1),
 
 
     [theme.breakpoints.down('sm')]: {
@@ -87,7 +84,7 @@ function ContactList(){
   const contactdata = useSelector(state => state.contact )
 
   const dispatch = useDispatch()
-  const UI = 'http://in.teraret.com'
+  // const UI = 'http://in.teraret.com'
 
    useEffect(() => {
        dispatch(fetchContacts(contactdata.sort,contactdata.order,10,0))

@@ -227,21 +227,21 @@ class CreateContact extends React.Component {
 
     console.log("Value of Profile Image is"+this.state.avatar)
    
-   if(this.state.avatar!=''){
+   if(this.state.avatar!==''){
      console.log("Inside Not null")
     formdata.append('featuredImageFile',this.state.avatar)
     }
     
    
 
-    if(this.state.note!=''){
+    if(this.state.note!==''){
     formdata.append('note',this.state.note)
     }
     formdata.append('firstName',this.state.firstname)
     formdata.append( 'lastName',this.state.lastname)
     
     
-    if(this.state.addressTwoValue!=''){
+    if(this.state.addressTwoValue!==''){
     formdata.append('addresslinetwo',this.state.addressTwoValue)
     }
     formdata.append('dob',this.state.dob)
@@ -317,7 +317,7 @@ class CreateContact extends React.Component {
 
 
   render(){
-  const {classes} = this .props;
+  const {classes} = this.props;
 
   return (
 <div>

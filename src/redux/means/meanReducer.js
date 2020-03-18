@@ -29,7 +29,6 @@ const meanReducer = (state = initialState,action) => {
                 offset:action.payloadoffset+10,
                 means:action.payload,
                 error:'',
-                max:state.max,
             } 
 
         case FETCH_MEANS_FAILURE:

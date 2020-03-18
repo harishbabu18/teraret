@@ -29,7 +29,6 @@ const ticketReducer = (state = initialState,action) => {
                 offset:action.payloadoffset+10,
                 tickets:action.payload,
                 error:'',
-                max:state.max,
             } 
 
             case FETCH_TICKETS_FAILURE:

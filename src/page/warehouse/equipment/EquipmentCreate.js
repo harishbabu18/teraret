@@ -1,7 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import { Button ,ButtonGroup, formatMs} from '@material-ui/core';
+import { Button ,ButtonGroup} from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import SERVER_URL from '../../../config';
 import Grid from '@material-ui/core/Grid';
@@ -62,6 +62,7 @@ class CreateEquipment extends React.Component {
           fields: {},
           errors: {},
           equipmentType:[],
+          supplierType: [],
           supplierValue:'',
           thresholdValue:'',
           userValue:'',
@@ -74,11 +75,16 @@ class CreateEquipment extends React.Component {
         
     fetch(SERVER_URL+'/equipmentType')
     .then(r => r.json())
-    .then(json => this.setState({equipmentType: json}))
+    .then(json => this.setState({equipmentType: json.equipmentType}))
     .catch(error => console.error('Error retrieving Equipment: ' + error));
+
+    fetch(SERVER_URL+'/supplier')
+    .then(r => r.json())
+    .then(json => this.setState({supplierType: json.supplier}))
+    .catch(error => console.error('Error retrieving Supplier: ' + error));
     console.log("Logged In User is "+JSON.parse(localStorage.auth).username);
     console.log(this.state);
-    const url = SERVER_URL+"/userByUsername?username="+JSON.parse(localStorage.auth).username;
+    const url = SERVER_URL+"/userByUsername?username="+JSON.parse(localStorage.auth).data.username;
     fetch(url)
     .then(r => r.json())
     .then(json => this.setState({userValue: json.id}))
@@ -282,7 +288,7 @@ class CreateEquipment extends React.Component {
     }}
   />
 
-                        <TextField
+                        {/* <TextField
                           id="demo-simple-select-outlined-label"
                           select 
                           label="Type"
@@ -295,66 +301,66 @@ class CreateEquipment extends React.Component {
                                       {option.name}
                                   </MenuItem>
                               ))}
-                          </TextField>
+                          </TextField> */}
                           <AsynchronousDropdown 
                             handleChange={this.handleChangeDemo}
                             address={'equipmentType'}
                             label = {'Choose Equipment'}
                             name = {'equipment'}
                           />
+                </div>
+              </Grid>
 
-  </div>
-</Grid>
-                <Grid item  sm={12} md={6} className={classes.content}>
-                <div className={classes.content}>
+            <Grid item  sm={12} md={6} className={classes.content}>
+              <div className={classes.content}>
 
-                <Typography className={classes.title} color="primary" variant="h2" component="h1" gutterBottom>
+                {/* <Typography className={classes.title} color="primary" variant="h2" component="h1" gutterBottom>
                     Supplier
-                </Typography>
+                </Typography> */}
 
-                <TextField
+                        <TextField
                           id="demo-simple-select-outlined-label"
                           select 
                           label="Supplier"
                           value={this.state.supplierValue}
                           onChange={this.handleChangeSupplierValue.bind(this)}
                           variant="outlined"
-                          >
-                              {['idli','Vada','Sambar'].map(option =>(
-                                  <MenuItem key={option.id} value={option.id}>
-                                      {option}
-                                  </MenuItem>
-                              ))}
+                        >
+                          {this.state.supplierType.map(option =>(
+                              <MenuItem key={option.id} value={option.id}>
+                                  {option}
+                              </MenuItem>
+                          ))}
                           </TextField>
 
                           <TextField
-                          id="outlined-uncontrolled"
-                          label="Threshold"
-                          type="number"
-                          margin="normal"
-                          onChange={this.handleChangeThresholdValue}
-                      
-                          variant="outlined"
+                            id="outlined-uncontrolled"
+                            label="Threshold"
+                            type="number"
+                            margin="normal"
+                            onChange={this.handleChangeThresholdValue}
+                        
+                            variant="outlined"
                           />
 
-                        <TextField
-                          id="outlined-uncontrolled"
-                          label="Purchase Price"
-                          type="number"
-                          margin="normal"
-                          onChange={this.handleChangePurchasePriceValue}
-                      
-                          variant="outlined"
+                          <TextField
+                            id="outlined-uncontrolled"
+                            label="Purchase Price"
+                            type="number"
+                            margin="normal"
+                            onChange={this.handleChangePurchasePriceValue}
+                        
+                            variant="outlined"
                           />
 
-                        <TextField
-                          id="outlined-uncontrolled"
-                          label="Sales Price"
-                          type="number"
-                          margin="normal"
-                          onChange={this.handleChangeSalesValue}
-                      
-                          variant="outlined"
+                          <TextField
+                            id="outlined-uncontrolled"
+                            label="Sales Price"
+                            type="number"
+                            margin="normal"
+                            onChange={this.handleChangeSalesValue}
+                        
+                            variant="outlined"
                           />
                           
                 </div>

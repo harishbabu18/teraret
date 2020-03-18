@@ -24,7 +24,6 @@ const supplierReducer = (state = initialState,action) => {
                 offset: state.offset+10,
                 sort:state.sort,
                 max:state.max,
-                offset:state.offset+10,
                 suppliers:action.payload,
                 error:''
             } 

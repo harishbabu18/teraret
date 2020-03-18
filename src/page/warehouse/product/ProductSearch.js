@@ -1,20 +1,14 @@
-import React, { useEffect } from 'react';
-
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { Button } from '@material-ui/core';
-import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
-import FormLabel from '@material-ui/core/FormLabel';
-import Grid from '@material-ui/core/Grid';
 import {searchProduct} from '../../../redux/index';
-import { useSelector,useDispatch } from 'react-redux';
-
+import { useDispatch } from 'react-redux';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import SearchIcon from '@material-ui/icons/Search';
-
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -30,9 +24,6 @@ function ProductSearch(){
     const dispatch = useDispatch()
     const [searchcolumn, setSearchcolumn] = React.useState('');
     const [search, setSearch] = React.useState('');
-  
-    // const companydata = useSelector(state => state.company )
-
 
     const inputLabel = React.useRef(null);
   

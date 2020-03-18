@@ -11,7 +11,6 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
-import Avatar from '@material-ui/core/Avatar';
 import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import TableContainer from '@material-ui/core/TableContainer';
@@ -25,8 +24,6 @@ const useStyles = makeStyles( theme => ({
     '& > * + * .MuiTextField-root ': {
       margin: theme.spacing(1),
       marginBottom: 12,
-      margin: theme.spacing(1),
-
 
     [theme.breakpoints.down('sm')]: {
         width: '100%',
@@ -170,14 +167,6 @@ function ProductList(){
                           </TableSortLabel>
                       </StyledTableCell>
 
-                      <StyledTableCell key="address" >
-                        <TableSortLabel
-                          direction={productdata.order==="desc"?"asc":"desc"}
-                          onClick={() => dispatch(fetchProducts("addresslineone",productdata.order==="desc"?"asc":"desc",10,0))}>
-                          Address
-                          </TableSortLabel>
-                      </StyledTableCell>
-
                       <StyledTableCell key="createdBy" >
                         <TableSortLabel
                           direction={productdata.order==="desc"?"asc":"desc"}
@@ -225,13 +214,12 @@ function ProductList(){
            <Hidden only={['sm', 'xs']}>
             <StyledTableCell component="th" scope="row">{product.quantity} {product.quantityType}</StyledTableCell>
             <StyledTableCell component="th" scope="row">{product.number}</StyledTableCell>
-            <StyledTableCell component="th" scope="row">{product.addresslineone} {product.addresslinetwo}, {product.state}-{product.zip}, {product.country} </StyledTableCell>
-            <StyledTableCell component="th" scope="row">{product.user}</StyledTableCell>
+            <StyledTableCell component="th" scope="row">{product.CreatedBy}</StyledTableCell>
             <StyledTableCell component="th" scope="row">{product.dateCreated }</StyledTableCell>
             <StyledTableCell component="th" scope="row">{product.lastUpdated}</StyledTableCell>
            </Hidden>
-            
-          <StyledTableCell component="th" scope="row">
+
+           <StyledTableCell component="th" scope="row">
             <IconButton color="secondary" aria-label="Edit Product">
               <EditIcon/>          
             </IconButton>

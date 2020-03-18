@@ -12,7 +12,6 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
-import Avatar from '@material-ui/core/Avatar';
 import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import TableContainer from '@material-ui/core/TableContainer';
@@ -25,8 +24,6 @@ const useStyles = makeStyles( theme => ({
     '& > * + * .MuiTextField-root ': {
       margin: theme.spacing(1),
       marginBottom: 12,
-      margin: theme.spacing(1),
-
 
     [theme.breakpoints.down('sm')]: {
         width: '100%',

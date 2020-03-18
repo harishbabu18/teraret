@@ -1,4 +1,4 @@
-import {FETCH_OFFERINGS_REQUEST,FETCH_OFFERINGS_SUCCESS,FETCH_OFFERINGS_FAILURE, LOADMORE_OFFERINGS_SUCCESS} from './offeringType'; 
+import {FETCH_OFFERINGS_REQUEST,FETCH_OFFERINGS_SUCCESS,FETCH_OFFERINGS_FAILURE, LOADMORE_OFFERINGS_SUCCESS, SEARCH_OFFERINGS_SUCCESS} from './offeringType'; 
 import axios from 'axios';
 import SERVER_URL from '../../config';
 
@@ -9,10 +9,10 @@ import SERVER_URL from '../../config';
     }
 }
 
-const fetchOfferingsSuccess = contacts => {
+const fetchOfferingsSuccess = offers => {
     return{
         type:FETCH_OFFERINGS_SUCCESS,
-        payload:contacts
+        payload:offers
     }
 }
 
@@ -24,10 +24,17 @@ const fetchOfferingsFailure = error => {
     }
 }
 
-const loadOfferingsSuccess = (contacts) => {
+const loadOfferingsSuccess = (offers) => {
     return{
         type:LOADMORE_OFFERINGS_SUCCESS,
-        payload:contacts
+        payload:offers
+    }
+}
+
+const searchOfferingsSuccess = (offers) => {
+    return{
+        type: SEARCH_OFFERINGS_SUCCESS,
+        payload: offers
     }
 }
 
@@ -38,9 +45,9 @@ const loadOfferingsSuccess = (contacts) => {
 export const fetchOfferings = (sort,order,max,offset) => {
     return (dispatch) => {
         dispatch(fetchOfferingsRequest)
-        axios.get(SERVER_URL+'/contact?max='+max+'&offset='+offset+'&order='+order+'&sort='+sort)
+        axios.get(SERVER_URL+'/offer?max='+max+'&offset='+offset+'&order='+order+'&sort='+sort)
         .then(response => {
-            const offerings =response.data.offering
+            const offerings = response.data.offering
             dispatch(fetchOfferingsSuccess(offerings))
         }).catch(error => {
             const errorMsg = error.message
@@ -53,7 +60,7 @@ export const fetchOfferings = (sort,order,max,offset) => {
 export const loadOfferings = (sort,order,max,offset) => {
     return (dispatch) => {
         dispatch(fetchOfferingsRequest)
-        axios.get(SERVER_URL+'/offering?max='+max+'&offset='+offset+'&order='+order+'&sort='+sort)
+        axios.get(SERVER_URL+'/offer?max='+max+'&offset='+offset+'&order='+order+'&sort='+sort)
         .then(response => {
             var offerings = response.data.offering
             dispatch(loadOfferingsSuccess(offerings))
@@ -63,4 +70,19 @@ export const loadOfferings = (sort,order,max,offset) => {
         }
         )
     }
+}
+
+export const searchOfferings = ( searchColumn, search) => {
+    return (dispatch) => {
+        dispatch(fetchOfferingsRequest)
+        axios.get(SERVER_URL+'offerSearch?search='+search+'&searchColumn='+searchColumn)
+        .then(response => {
+            var offerings = response.data.offer
+            dispatch(searchOfferingsSuccess(offerings))
+        }).catch(error => {
+            const errorMsg = error.message
+            dispatch(fetchOfferingsFailure(errorMsg))
+        })
+    }
+
 }

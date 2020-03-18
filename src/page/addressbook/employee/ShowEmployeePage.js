@@ -334,7 +334,7 @@ class CreateEmployee extends React.Component {
 
 <input
   accept="image/*"
-  id="outlined-full-width"
+  // id="outlined-full-width"
   className={classes.root}
   onChange={this.handleProfilepicValue}
   style={{ display: 'none' }}
