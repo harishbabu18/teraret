@@ -231,8 +231,9 @@ function ContactList(){
            <Hidden only={['sm', 'xs']}>
             <StyledTableCell component="th" scope="row">{contact.position}</StyledTableCell>
             <StyledTableCell component="th" scope="row">{contact.dob}</StyledTableCell>
-            <StyledTableCell component="th" scope="row">{contact.email}</StyledTableCell>
+            <StyledTableCell component="th" scope="row">{contact.mobile}</StyledTableCell>
             <StyledTableCell component="th" scope="row">{contact.addresslineone} {contact.addresslinetwo}, {contact.state}-{contact.zip}, {contact.country} </StyledTableCell>
+            <StyledTableCell component="th" scope="row">{contact.email}</StyledTableCell>
             <StyledTableCell component="th" scope="row">{contact.user}</StyledTableCell>
             <StyledTableCell component="th" scope="row">{contact.dateCreated}</StyledTableCell>
             <StyledTableCell component="th" scope="row">{contact.lastUpdated}</StyledTableCell>

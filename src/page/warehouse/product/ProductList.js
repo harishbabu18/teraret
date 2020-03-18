@@ -214,7 +214,7 @@ function ProductList(){
            <Hidden only={['sm', 'xs']}>
             <StyledTableCell component="th" scope="row">{product.quantity} {product.quantityType}</StyledTableCell>
             <StyledTableCell component="th" scope="row">{product.number}</StyledTableCell>
-            <StyledTableCell component="th" scope="row">{product.CreatedBy}</StyledTableCell>
+            <StyledTableCell component="th" scope="row">{product.createdBy}</StyledTableCell>
             <StyledTableCell component="th" scope="row">{product.dateCreated }</StyledTableCell>
             <StyledTableCell component="th" scope="row">{product.lastUpdated}</StyledTableCell>
            </Hidden>

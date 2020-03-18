@@ -77,22 +77,22 @@ class CreateProduct extends React.Component {
     }
   }
   componentDidMount() {
-    // fetch(SERVER_URL+'/quantityType')
-    // .then(r => r.json())
-    // .then(json => this.setState({quantityType: json}))
-    // .catch(error => console.error('Error retrieving Tickrts: ' + error));
+    fetch(SERVER_URL+'/quantityType')
+    .then(r => r.json())
+    .then(json => this.setState({quantityType: json}))
+    .catch(error => console.error('Error retrieving Tickrts: ' + error));
     
 
-    // fetch(SERVER_URL+'/productName')
-    // .then(r => r.json())
-    // .then(json => this.setState({name: json}))
-    // .catch(error => console.error('Error retrieving Tickrts: ' + error));
+    fetch(SERVER_URL+'/productName')
+    .then(r => r.json())
+    .then(json => this.setState({name: json}))
+    .catch(error => console.error('Error retrieving Tickrts: ' + error));
 
 
-    // fetch(SERVER_URL+'/lot')
-    // .then(r => r.json())
-    // .then(json => this.setState({lot: json}))
-    // .catch(error => console.error('Error retrieving Tickrts: ' + error));
+    fetch(SERVER_URL+'/lot')
+    .then(r => r.json())
+    .then(json => this.setState({lot: json}))
+    .catch(error => console.error('Error retrieving Tickrts: ' + error));
 
 
     // fetch(SERVER_URL+'/address')
@@ -101,11 +101,11 @@ class CreateProduct extends React.Component {
     // .catch(error => console.error('Error retrieving Tickrts: ' + error));
 
 
-    // const url = SERVER_URL+"/userByUsername?username="+JSON.parse(localStorage.auth).data.username;
-    // fetch(url)
-    // .then(r => r.json())
-    // .then(json => this.setState({userValue: json.id}))
-    // .catch(error => console.error('Error retrieving Companies: ' + error));
+    const url = SERVER_URL+"/userByUsername?username="+JSON.parse(localStorage.auth).data.username;
+    fetch(url)
+    .then(r => r.json())
+    .then(json => this.setState({userValue: json.id}))
+    .catch(error => console.error('Error retrieving Companies: ' + error));
 
 
   
@@ -164,7 +164,7 @@ class CreateProduct extends React.Component {
 
     }
     console.log('Test'+JSON.stringify(product))
-    fetch(SERVER_URL+'/inventory', { 
+    fetch(SERVER_URL+'/product', { 
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -340,6 +340,7 @@ class CreateProduct extends React.Component {
              <TextField
           id="outlined-full-width"
           className={classes.textField}
+          type='Number'
           label="Quantity"
           style={{ margin: 8 }}
           placeholder="Quantity"
