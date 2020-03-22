@@ -120,7 +120,6 @@ function CompanyList(){
               </Grid>
               
               <Grid item  sm={12} md={12} className={classes.content} >
-
               <TableContainer component={Paper}>
 
                 <Table className={classes.table} aria-label="customized table">
@@ -236,17 +235,15 @@ function CompanyList(){
                 </TableHead>
                 <TableBody>
            {companydata.companys.map(company =>  <StyledTableRow key={company.id}>
-
             <Hidden only={['sm', 'xs']}>
             <StyledTableCell component="th" scope="row">{company.id}</StyledTableCell>
             </Hidden>
            <StyledTableCell component="th" scope="row">
-            <IconButton color="secondary" aria-label="Profile Picture">
+            <IconButton color="secondary" aria-label="Edit Contact">
               <Avatar alt={company.name} src={(company.avatar)?'/'+company.avatar:company.name} />
             </IconButton>
            </StyledTableCell>
-
-           <StyledTableCell component="th" scope="row">              
+           <StyledTableCell component="th" scope="row">
            <Link to={'/addressbook/company/showcompanydetail/'+company.id}> {company.name}  </Link>      
               </StyledTableCell>
            <Hidden only={['sm', 'xs']}>
@@ -260,18 +257,13 @@ function CompanyList(){
            <StyledTableCell component="th" scope="row">{company.establishedDate}</StyledTableCell>
            <StyledTableCell component="th" scope="row">{company.lastUpdated}</StyledTableCell>
            </Hidden>
-           <StyledTableCell component="th"  scope="row">
-            <IconButton color="secondary" id={company.id} onClick={handleClickOpen} aria-label="Edit Company">
-              <EditIcon />
+           <StyledTableCell component="th" scope="row">
+            <IconButton color="secondary" aria-label="Edit Company">
+              <EditIcon/>          
             </IconButton>
            </StyledTableCell>
-            {/* <ShowCompanyPage
-              open = {open}
-              fullScreen = {fullScreen}
-              handleClose = {handleClose}
-              companydata = {company.id}
-            /> */}
-          </StyledTableRow>
+
+                </StyledTableRow>
               )}
             </TableBody>
           </Table>
