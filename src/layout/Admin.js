@@ -6,16 +6,10 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-
-import DashboardIcon from '@material-ui/icons/Dashboard';
 import ConfirmationNumberIcon from '@material-ui/icons/ConfirmationNumber';
 import BorderColorIcon from '@material-ui/icons/BorderColor';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
@@ -28,21 +22,13 @@ import Warehouse from './../components/WarehouseDropdown'
 import Sales from './../components/SalesDropdown'
 import Storage from './../components/StorageDropdown'
 import Opportunities from './../components/OpportunitiesDropdown'
-
 import { Route ,Redirect} from 'react-router-dom';  
 import { Link } from "react-router-dom";
 import Auth from './../security/auth';
 import logo from "../qualifica.png";
-
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-
-
-
-
-
-                  
 
 const drawerWidth = 240;
 
