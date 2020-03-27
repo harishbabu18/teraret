@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-
 import companyReducer from './company/companyReducer';
 import contactReducer from './contact/contactReducer';
 import employeeReducer from './employee/employeeReducer';
@@ -11,6 +10,9 @@ import offeringReducer from './offering/offeringReducer';
 import supplierReducer from './supplier/supplierReducer';
 import opportunityReducer from './opportunity/opportunityReducer';
 import dealReducer from './deal/dealReducer';
+import ticketsReducer from './accountTickets/ticketsReducer';
+import rentReducer from './rent/rentReducer';
+import salaryReducer from './salary/salaryReducer'; 
 
 const rootReducer = combineReducers({
    
@@ -25,6 +27,9 @@ const rootReducer = combineReducers({
     supplier:supplierReducer,
     opportunities: opportunityReducer,
     deals: dealReducer,
+    tickets: ticketsReducer,
+    rent: rentReducer,
+    salary: salaryReducer,
 
 })
 
