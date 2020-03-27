@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import { Button, makeStyles,withStyles } from '@material-ui/core';
 import { ButtonGroup} from '@material-ui/core';
-import {loadOfferings,fetchOfferings} from '../../../redux/index';
+import {loadOpportunities,fetchOpportunities} from '../../../redux/index';
 import { useSelector,useDispatch } from 'react-redux';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Table from '@material-ui/core/Table';
@@ -15,7 +15,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import TableContainer from '@material-ui/core/TableContainer';
 import Paper from '@material-ui/core/Paper';
-import OfferSearch from './OfferSearch';
+import OpportunitySearch from './OpportunitySearch';
 import Hidden from '@material-ui/core/Hidden';
 
 const useStyles = makeStyles( theme => ({
@@ -79,30 +79,30 @@ const StyledTableRow = withStyles(theme => ({
 
 
 
-function OfferingList(){
+function OpportunityList(){
   const classes = useStyles();
-  const offeringdata = useSelector(state => state.offering )
+  const opportunitiesdata = useSelector(state => state.opportunities )
 
   const dispatch = useDispatch()
 
    useEffect(() => {
-       dispatch(fetchOfferings(offeringdata.sort,offeringdata.order,10,0))
+       dispatch(fetchOpportunities(opportunitiesdata.sort,opportunitiesdata.order,10,0))
    },[])
 
-  return offeringdata.loading ?(
+  return opportunitiesdata.loading ?(
             <div className={classes.root}>
             <LinearProgress />
           </div>
-          ): offeringdata.error ? (
-          <h1>{offeringdata.error}</h1>
+          ): opportunitiesdata.error ? (
+          <h1>{opportunitiesdata.error}</h1>
             ) : (
           
               <div> 
-                  <OfferSearch />
+                  <OpportunitySearch />
               <Grid item  sm={6} md={12} className={classes.root} >
                 <ButtonGroup fullWidth aria-label="full width outlined button group">
-                  <Button className={classes.content} href="/sales/offer/list">List Offer</Button>
-                  <Button className={classes.content} href="/sales/offer/create">Create Offer</Button>
+                  <Button className={classes.content} href="/sales/opportunity/list">List Opportunity</Button>
+                  <Button className={classes.content} href="/sales/opportunity/create">Create Opportunity</Button>
                 </ButtonGroup>
               </Grid>
               
@@ -116,26 +116,26 @@ function OfferingList(){
                   <Hidden only={['sm', 'xs']}>
                     <StyledTableCell key = 'id' >
                     <TableSortLabel
-                      direction={offeringdata.order==="desc"?"asc":"desc"}
-                      onClick={() => dispatch(fetchOfferings("id",offeringdata.order==="desc"?"asc":"desc",10,0))}
+                      direction={opportunitiesdata.order==="desc"?"asc":"desc"}
+                      onClick={() => dispatch(fetchOpportunities("id",opportunitiesdata.order==="desc"?"asc":"desc",10,0))}
                     >
-                       Offer ID
+                       Opportunity ID
                     </TableSortLabel>
                     </StyledTableCell>
                    </Hidden>  
 
                     <StyledTableCell key="logo">
                       <TableSortLabel
-                      direction={offeringdata.order==="desc"?"asc":"desc"}
-                      onClick={() => dispatch(fetchOfferings("company",offeringdata.order==="desc"?"asc":"desc",10,0))}>
+                      direction={opportunitiesdata.order==="desc"?"asc":"desc"}
+                      onClick={() => dispatch(fetchOpportunities("company",opportunitiesdata.order==="desc"?"asc":"desc",10,0))}>
                       Company
                        </TableSortLabel>
                     </StyledTableCell>
 
                     <StyledTableCell key="contact">
                     <TableSortLabel
-                      direction={offeringdata.order==="desc"?"asc":"desc"}
-                      onClick={() => dispatch(fetchOfferings("contact",offeringdata.order==="desc"?"asc":"desc",10,0))}>
+                      direction={opportunitiesdata.order==="desc"?"asc":"desc"}
+                      onClick={() => dispatch(fetchOpportunities("contact",opportunitiesdata.order==="desc"?"asc":"desc",10,0))}>
                         Contact 
                       </TableSortLabel>
                     </StyledTableCell>
@@ -145,48 +145,48 @@ function OfferingList(){
 
                     <StyledTableCell key="note" >
                       <TableSortLabel
-                      direction={offeringdata.order==="desc"?"asc":"desc"}
-                      onClick={() => dispatch(fetchOfferings("note",offeringdata.order==="desc"?"asc":"desc",10,0))}>
+                      direction={opportunitiesdata.order==="desc"?"asc":"desc"}
+                      onClick={() => dispatch(fetchOpportunities("note",opportunitiesdata.order==="desc"?"asc":"desc",10,0))}>
                        Note 
                       </TableSortLabel>   
                     </StyledTableCell>
 
                     <StyledTableCell key="startDate">
                       <TableSortLabel
-                      direction={offeringdata.order==="desc"?"asc":"desc"}
-                      onClick={() => dispatch(fetchOfferings("startDate",offeringdata.order==="desc"?"asc":"desc",10,0))}>
+                      direction={opportunitiesdata.order==="desc"?"asc":"desc"}
+                      onClick={() => dispatch(fetchOpportunities("startDate",opportunitiesdata.order==="desc"?"asc":"desc",10,0))}>
                         Start Date 
                       </TableSortLabel>
                     </StyledTableCell>
 
                     <StyledTableCell key="endDate" > 
                       <TableSortLabel
-                      direction={offeringdata.order==="desc"?"asc":"desc"}
-                      onClick={() => dispatch(fetchOfferings("endDate",offeringdata.order==="desc"?"asc":"desc",10,0))}>
+                      direction={opportunitiesdata.order==="desc"?"asc":"desc"}
+                      onClick={() => dispatch(fetchOpportunities("endDate",opportunitiesdata.order==="desc"?"asc":"desc",10,0))}>
                         End Date 
                       </TableSortLabel>    
                     </StyledTableCell>
 
                     <StyledTableCell key="protocol" >
                       <TableSortLabel
-                        direction={offeringdata.order==="desc"?"asc":"desc"}
-                        onClick={() => dispatch(fetchOfferings("protocol",offeringdata.order==="desc"?"asc":"desc",10,0))}>
+                        direction={opportunitiesdata.order==="desc"?"asc":"desc"}
+                        onClick={() => dispatch(fetchOpportunities("protocol",opportunitiesdata.order==="desc"?"asc":"desc",10,0))}>
                         Protocol
                         </TableSortLabel>
                     </StyledTableCell>
 
                     <StyledTableCell key="approximatedealamount" > 
                       <TableSortLabel
-                        direction={offeringdata.order==="desc"?"asc":"desc"}
-                        onClick={() => dispatch(fetchOfferings("approximatedealamount",offeringdata.order==="desc"?"asc":"desc",10,0))}>
+                        direction={opportunitiesdata.order==="desc"?"asc":"desc"}
+                        onClick={() => dispatch(fetchOpportunities("approximatedealamount",opportunitiesdata.order==="desc"?"asc":"desc",10,0))}>
                         Aprox. Deal Amount
                       </TableSortLabel>
                      </StyledTableCell>
 
                     <StyledTableCell key="dealamount" >
                       <TableSortLabel
-                        direction={offeringdata.order==="desc"?"asc":"desc"}
-                        onClick={() => dispatch(fetchOfferings("dealamount",offeringdata.order==="desc"?"asc":"desc",10,0))}>
+                        direction={opportunitiesdata.order==="desc"?"asc":"desc"}
+                        onClick={() => dispatch(fetchOpportunities("dealamount",opportunitiesdata.order==="desc"?"asc":"desc",10,0))}>
                         Deal Amount 
                       </TableSortLabel>
                     </StyledTableCell>
@@ -194,8 +194,8 @@ function OfferingList(){
 
                     <StyledTableCell key="paymentmethod" >
                       <TableSortLabel
-                        direction={offeringdata.order==="desc"?"asc":"desc"}
-                        onClick={() => dispatch(fetchOfferings("paymentmethod",offeringdata.order==="desc"?"asc":"desc",10,0))}>
+                        direction={opportunitiesdata.order==="desc"?"asc":"desc"}
+                        onClick={() => dispatch(fetchOpportunities("paymentmethod",opportunitiesdata.order==="desc"?"asc":"desc",10,0))}>
                         Payment Method 
                       </TableSortLabel>
                     </StyledTableCell>
@@ -203,8 +203,8 @@ function OfferingList(){
 
                     <StyledTableCell key="discount" >
                       <TableSortLabel
-                        direction={offeringdata.order==="desc"?"asc":"desc"}
-                        onClick={() => dispatch(fetchOfferings("discount",offeringdata.order==="desc"?"asc":"desc",10,0))}>
+                        direction={opportunitiesdata.order==="desc"?"asc":"desc"}
+                        onClick={() => dispatch(fetchOpportunities("discount",opportunitiesdata.order==="desc"?"asc":"desc",10,0))}>
                         Discount 
                       </TableSortLabel>
                     </StyledTableCell>
@@ -212,8 +212,8 @@ function OfferingList(){
 
                     <StyledTableCell key="iva" >
                       <TableSortLabel
-                        direction={offeringdata.order==="desc"?"asc":"desc"}
-                        onClick={() => dispatch(fetchOfferings("iva",offeringdata.order==="desc"?"asc":"desc",10,0))}>
+                        direction={opportunitiesdata.order==="desc"?"asc":"desc"}
+                        onClick={() => dispatch(fetchOpportunities("iva",opportunitiesdata.order==="desc"?"asc":"desc",10,0))}>
                         IVA 
                       </TableSortLabel>
                     </StyledTableCell>
@@ -221,8 +221,8 @@ function OfferingList(){
 
                     <StyledTableCell key="total" >
                       <TableSortLabel
-                        direction={offeringdata.order==="desc"?"asc":"desc"}
-                        onClick={() => dispatch(fetchOfferings("total",offeringdata.order==="desc"?"asc":"desc",10,0))}>
+                        direction={opportunitiesdata.order==="desc"?"asc":"desc"}
+                        onClick={() => dispatch(fetchOpportunities("total",opportunitiesdata.order==="desc"?"asc":"desc",10,0))}>
                         Total 
                       </TableSortLabel>
                     </StyledTableCell>
@@ -230,24 +230,24 @@ function OfferingList(){
 
                     <StyledTableCell key="user" >
                       <TableSortLabel
-                        direction={offeringdata.order==="desc"?"asc":"desc"}
-                        onClick={() => dispatch(fetchOfferings("user",offeringdata.order==="desc"?"asc":"desc",10,0))}>
+                        direction={opportunitiesdata.order==="desc"?"asc":"desc"}
+                        onClick={() => dispatch(fetchOpportunities("user",opportunitiesdata.order==="desc"?"asc":"desc",10,0))}>
                         Created By 
                       </TableSortLabel>
                     </StyledTableCell>
 
                     <StyledTableCell key="dateCreated" >
                       <TableSortLabel
-                        direction={offeringdata.order==="desc"?"asc":"desc"}
-                        onClick={() => dispatch(fetchOfferings("dateCreated",offeringdata.order==="desc"?"asc":"desc",10,0))}>
+                        direction={opportunitiesdata.order==="desc"?"asc":"desc"}
+                        onClick={() => dispatch(fetchOpportunities("dateCreated",opportunitiesdata.order==="desc"?"asc":"desc",10,0))}>
                        Date Created 
                       </TableSortLabel>
                     </StyledTableCell>
 
                     <StyledTableCell key="lastUpdated" > 
                       <TableSortLabel
-                        direction={offeringdata.order==="desc"?"asc":"desc"}
-                        onClick={() => dispatch(fetchOfferings("lastUpdated",offeringdata.order==="desc"?"asc":"desc",10,0))}>
+                        direction={opportunitiesdata.order==="desc"?"asc":"desc"}
+                        onClick={() => dispatch(fetchOpportunities("lastUpdated",opportunitiesdata.order==="desc"?"asc":"desc",10,0))}>
                         Last Updated
                       </TableSortLabel>
                     </StyledTableCell>
@@ -259,25 +259,25 @@ function OfferingList(){
                   </TableRow>
                 </TableHead>
                 <TableBody>
-           {offeringdata.offerings.map(offer =>  <StyledTableRow key={offer.id}>
-           <StyledTableCell component="th" scope="row">{offer.id}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{offer.company}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{offer.contact}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{offer.note}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{offer.startDate}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{offer.endDate}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{offer.protocol }</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{offer.approximatedealamount}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{offer.dealamount}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{offer.paymentmethod}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{offer.discount}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{offer.iva}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{offer.total}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{offer.user}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{offer.dateCreated}</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{offer.lastUpdated}</StyledTableCell>
+           {opportunitiesdata.opportunities.map(opportunities =>  <StyledTableRow key={opportunities.id}>
+           <StyledTableCell component="th" scope="row">{opportunities.id}</StyledTableCell>
+           <StyledTableCell component="th" scope="row">{opportunities.company}</StyledTableCell>
+           <StyledTableCell component="th" scope="row">{opportunities.contact}</StyledTableCell>
+           <StyledTableCell component="th" scope="row">{opportunities.note}</StyledTableCell>
+           <StyledTableCell component="th" scope="row">{opportunities.startDate}</StyledTableCell>
+           <StyledTableCell component="th" scope="row">{opportunities.endDate}</StyledTableCell>
+           <StyledTableCell component="th" scope="row">{opportunities.protocol }</StyledTableCell>
+           <StyledTableCell component="th" scope="row">{opportunities.approximatedealamount}</StyledTableCell>
+           <StyledTableCell component="th" scope="row">{opportunities.dealamount}</StyledTableCell>
+           <StyledTableCell component="th" scope="row">{opportunities.paymentmethod}</StyledTableCell>
+           <StyledTableCell component="th" scope="row">{opportunities.discount}</StyledTableCell>
+           <StyledTableCell component="th" scope="row">{opportunities.iva}</StyledTableCell>
+           <StyledTableCell component="th" scope="row">{opportunities.total}</StyledTableCell>
+           <StyledTableCell component="th" scope="row">{opportunities.user}</StyledTableCell>
+           <StyledTableCell component="th" scope="row">{opportunities.dateCreated}</StyledTableCell>
+           <StyledTableCell component="th" scope="row">{opportunities.lastUpdated}</StyledTableCell>
            <StyledTableCell component="th" scope="row">
-            <IconButton color="secondary" aria-label="Edit Company">
+            <IconButton color="secondary" aria-label="Edit Opportunity">
               <EditIcon/>          
             </IconButton>
            </StyledTableCell>
@@ -285,7 +285,7 @@ function OfferingList(){
                 </StyledTableRow>)}
                 </TableBody>
           </Table>
-          <Button onClick={() => dispatch(loadOfferings(offeringdata.sort,offeringdata.order,offeringdata.max,offeringdata.offset))}>Load More</Button>
+          <Button onClick={() => dispatch(loadOpportunities(opportunitiesdata.sort,opportunitiesdata.order,opportunitiesdata.max,opportunitiesdata.offset))}>Load More</Button>
           </TableContainer>
           </Grid>
           </div>
@@ -295,4 +295,4 @@ function OfferingList(){
     
 }
 
-export default OfferingList;
+export default OpportunityList;

@@ -1,9 +1,9 @@
-import {FETCH_OFFERINGS_REQUEST,FETCH_OFFERINGS_SUCCESS,FETCH_OFFERINGS_FAILURE, LOADMORE_OFFERINGS_SUCCESS, SEARCH_OFFERINGS_SUCCESS} from './offeringType'; 
+import {FETCH_OPPORTUNITIES_REQUEST,FETCH_OPPORTUNITIES_SUCCESS,FETCH_OPPORTUNITIES_FAILURE, LOADMORE_OPPORTUNITIES_SUCCESS, SEARCH_OPPORTUNITIES_SUCCESS} from './opportunityType'; 
 
 const initialState = {
     loading:false,
     loadingmore:false,
-    offerings:[],
+    opportunities:[],
     offset:0,
     sort:'id',
     order:'asc',
@@ -14,31 +14,31 @@ const initialState = {
 const offeringReducer = (state = initialState,action) => {
     console.log(action.payload)
     switch(action.type){
-        case FETCH_OFFERINGS_REQUEST:
+        case FETCH_OPPORTUNITIES_REQUEST:
             return {
                 ...state,
                 loading:true
             }
 
-        case FETCH_OFFERINGS_SUCCESS:
+        case FETCH_OPPORTUNITIES_SUCCESS:
             return {
                 loading: false,
                 sort:action.payloadsort,
                 order:action.payloadorder,
                 max:action.payloadmax,
                 offset:action.payloadoffset+10,
-                offerings:action.payload,
+                opportunities:action.payload,
                 error:''
             } 
             
-        case FETCH_OFFERINGS_FAILURE:
+        case FETCH_OPPORTUNITIES_FAILURE:
             return{
                 loading: false,
-                offerings:[],
+                opportunities:[],
                 error: action.payload
             }
 
-        case LOADMORE_OFFERINGS_SUCCESS:
+        case LOADMORE_OPPORTUNITIES_SUCCESS:
             return {
                 ...state,
                 loading: false,
@@ -46,15 +46,15 @@ const offeringReducer = (state = initialState,action) => {
                 order:action.payloadorder,
                 max:state.max,
                 offset:state.offset+10,
-                offerings:[...state.offerings,...action.payload],
+                opportunities:[...state.opportunities,...action.payload],
                 error:''
                 }
 
-        case SEARCH_OFFERINGS_SUCCESS:
+        case SEARCH_OPPORTUNITIES_SUCCESS:
             return {
                 ...state,
                 loading : false,
-                offerings:action.payload
+                opportunities:action.payload
             }
 
        default: return state          

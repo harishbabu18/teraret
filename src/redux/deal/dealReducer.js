@@ -1,9 +1,9 @@
-import {FETCH_OFFERINGS_REQUEST,FETCH_OFFERINGS_SUCCESS,FETCH_OFFERINGS_FAILURE, LOADMORE_OFFERINGS_SUCCESS, SEARCH_OFFERINGS_SUCCESS} from './offeringType'; 
+import {FETCH_DEALS_REQUEST,FETCH_DEALS_SUCCESS,FETCH_DEALS_FAILURE, LOADMORE_DEALS_SUCCESS, SEARCH_DEALS_SUCCESS} from './dealType'; 
 
 const initialState = {
     loading:false,
     loadingmore:false,
-    offerings:[],
+    deals:[],
     offset:0,
     sort:'id',
     order:'asc',
@@ -11,34 +11,34 @@ const initialState = {
     error:'',
 }
 
-const offeringReducer = (state = initialState,action) => {
+const dealReducer = (state = initialState,action) => {
     console.log(action.payload)
     switch(action.type){
-        case FETCH_OFFERINGS_REQUEST:
+        case FETCH_DEALS_REQUEST:
             return {
                 ...state,
                 loading:true
             }
 
-        case FETCH_OFFERINGS_SUCCESS:
+        case FETCH_DEALS_SUCCESS:
             return {
                 loading: false,
                 sort:action.payloadsort,
                 order:action.payloadorder,
                 max:action.payloadmax,
                 offset:action.payloadoffset+10,
-                offerings:action.payload,
+                deals:action.payload,
                 error:''
             } 
             
-        case FETCH_OFFERINGS_FAILURE:
+        case FETCH_DEALS_FAILURE:
             return{
                 loading: false,
-                offerings:[],
+                deals:[],
                 error: action.payload
             }
 
-        case LOADMORE_OFFERINGS_SUCCESS:
+        case LOADMORE_DEALS_SUCCESS:
             return {
                 ...state,
                 loading: false,
@@ -46,15 +46,15 @@ const offeringReducer = (state = initialState,action) => {
                 order:action.payloadorder,
                 max:state.max,
                 offset:state.offset+10,
-                offerings:[...state.offerings,...action.payload],
+                deals:[...state.deals,...action.payload],
                 error:''
                 }
 
-        case SEARCH_OFFERINGS_SUCCESS:
+        case SEARCH_DEALS_SUCCESS:
             return {
                 ...state,
                 loading : false,
-                offerings:action.payload
+                deals:action.payload
             }
 
        default: return state          
@@ -62,4 +62,4 @@ const offeringReducer = (state = initialState,action) => {
     }
 }
 
-export default offeringReducer
+export default dealReducer

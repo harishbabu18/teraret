@@ -33,7 +33,8 @@ import MeansCreate from './page/warehouse/means/MeansCreate';
 import ProductCreate from './page/warehouse/product/ProductCreate';
 import TicketCreate from './page/sales/ticket/TicketCreate';
 import OfferList from './page/sales/offer/OfferList';
-
+import OpportunityList from './page/sales/opportunity/OpportunityList';
+import DealList from './page/sales/deal/DealList';
 
 import store from './redux/store';
 import {Provider} from 'react-redux'
@@ -170,6 +171,14 @@ function Index(props) {
 
               <PrivateRoute  exact path="/sales/offer/list">
                 <OfferList/>
+              </PrivateRoute>
+
+              <PrivateRoute  exact path="/sales/opportunity/list">
+                <OpportunityList/>
+              </PrivateRoute>
+
+              <PrivateRoute  exact path="/sales/deal/list">
+                <DealList/>
               </PrivateRoute>
 
              </Provider>
