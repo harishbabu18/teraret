@@ -52,7 +52,7 @@ class CreateTransport extends React.Component {
       this.state = {
  
           transport:[],
-          address:{},
+          address:[],
           unloadingValue: '',
           loadingValue:'',
           scheduleValue:'',
