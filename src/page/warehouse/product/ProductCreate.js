@@ -93,6 +93,9 @@ class CreateProduct extends React.Component {
     .then(r => r.json())
     .then(json => this.setState({lot: json}))
     .catch(error => console.error('Error retrieving Tickrts: ' + error));
+    console.log("Logged In User is "+JSON.parse(localStorage.auth).data.id);
+    this.setState({userValue: JSON.parse(localStorage.auth).data.id});
+
 
 
     // fetch(SERVER_URL+'/address')
@@ -101,11 +104,6 @@ class CreateProduct extends React.Component {
     // .catch(error => console.error('Error retrieving Tickrts: ' + error));
 
 
-    const url = SERVER_URL+"/userByUsername?username="+JSON.parse(localStorage.auth).data.username;
-    fetch(url)
-    .then(r => r.json())
-    .then(json => this.setState({userValue: json.id}))
-    .catch(error => console.error('Error retrieving Companies: ' + error));
 
 
   

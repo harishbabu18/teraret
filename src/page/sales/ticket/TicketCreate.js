@@ -94,6 +94,9 @@ class CreateTicket extends React.Component {
     .then(r => r.json())
     .then(json => this.setState({contact: json.contact}))
     .catch(error => console.error('Error retrieving Contact: ' + error));
+    console.log("Logged In User is "+JSON.parse(localStorage.auth).data.id);
+    this.setState({userValue: JSON.parse(localStorage.auth).data.id});
+
   }
 
   handleChange=(event)=>{
