@@ -60,8 +60,8 @@ const useStyles = makeStyles( theme => ({
 
 const StyledTableCell = withStyles(theme => ({
   head: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
+    backgroundColor: theme.palette.common.white,
+    color: theme.palette.common.black,
   },
   body: {
     fontSize: 14,
@@ -81,7 +81,7 @@ const StyledTableRow = withStyles(theme => ({
 
 function OfferingList(){
   const classes = useStyles();
-  const offeringdata = useSelector(state => state.offerings )
+  const offeringdata = useSelector(state => state.offering )
 
   const dispatch = useDispatch()
 
@@ -259,7 +259,7 @@ function OfferingList(){
                   </TableRow>
                 </TableHead>
                 <TableBody>
-           {offeringdata.offer.map(offer =>  <StyledTableRow key={offer.id}>
+           {offeringdata.offerings.map(offer =>  <StyledTableRow key={offer.id}>
            <StyledTableCell component="th" scope="row">{offer.id}</StyledTableCell>
            <StyledTableCell component="th" scope="row">{offer.company}</StyledTableCell>
            <StyledTableCell component="th" scope="row">{offer.contact}</StyledTableCell>

@@ -12,6 +12,7 @@ const initialState = {
 }
 
 const offeringReducer = (state = initialState,action) => {
+    console.log(action.payload)
     switch(action.type){
         case FETCH_OFFERINGS_REQUEST:
             return {

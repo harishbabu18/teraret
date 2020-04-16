@@ -8,14 +8,14 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import logo from "../qualifica.png";
+import logo from "../teraret.png";
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://www.qualificagroup.it/">
-        Qualifica
+      <Link color="inherit" href="http://www.teraret.com/">
+        Teraret Managed Cloud Private Limited
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
     height: '100vh',
   },
   image: {
-    backgroundImage: 'url(https://source.unsplash.com/1600x900/?software,job)',
+    backgroundImage: 'url(https://source.unsplash.com/1600x900/?india,celebration,market)',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
@@ -105,7 +105,7 @@ export default function Login(props) {
               type="submit"
               fullWidth
               variant="contained"
-              color="primary"
+              color="secondary"
               className={classes.submit}
             >
               Login

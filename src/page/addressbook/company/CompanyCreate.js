@@ -101,14 +101,15 @@ class CompanyCreate extends React.Component {
     .then(r => r.json())
     .then(json => this.setState({officeType: json}))
     .catch(error => console.error('Error retrieving Tickrts: ' + error));
-    console.log("Logged In User is "+JSON.parse(localStorage.auth).data.username);
-    console.log(this.state);
-    console.log('HIIII',JSON.parse(localStorage.auth).data.username)
-    const url = SERVER_URL+"/userByUsername?username="+JSON.parse(localStorage.auth).data.username;
-    fetch(url)
-    .then(r => r.json())
-    .then(json => this.setState({userValue: json.id}))
-    .catch(error => console.error('Error retrieving Companies: ' + error));
+    console.log("Logged In User is "+JSON.parse(localStorage.auth).data.id);
+    this.setState({userValue: JSON.parse(localStorage.auth).data.id});
+    // console.log(this.state);
+    // console.log('HIIII',JSON.parse(localStorage.auth).data.username)
+    // const url = SERVER_URL+"/userByUsername?username="+JSON.parse(localStorage.auth).data.username;
+    // fetch(url)
+    // .then(r => r.json())
+    // .then(json => this.setState({userValue: json.id}))
+    // .catch(error => console.error('Error retrieving Companies: ' + error));
 
     }
 

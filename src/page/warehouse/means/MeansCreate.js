@@ -65,15 +65,10 @@ class CreateTransport extends React.Component {
       
       fetch(SERVER_URL+'/company')
       .then(r => r.json())
-      .then(json => this.setState({address: json}))
+      .then(json => this.setState({address: json.company}))
       .catch(error => console.error('Error retrieving company: ' + error));
-      console.log("Logged In User is "+JSON.parse(localStorage.auth).username);
-      console.log(this.state);
-      const url = SERVER_URL+"/userByUsername?username="+JSON.parse(localStorage.auth).data.username;
-      fetch(url)
-      .then(r => r.json())
-      .then(json => this.setState({userValue: json.id}))
-      .catch(error => console.error('Error retrieving Companies: ' + error));
+      console.log("Logged In User is "+JSON.parse(localStorage.auth).data.id);
+      this.setState({userValue: JSON.parse(localStorage.auth).data.id});
     }
 
  

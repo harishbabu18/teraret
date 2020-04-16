@@ -33,7 +33,11 @@ import MeansCreate from './page/warehouse/means/MeansCreate';
 import ProductCreate from './page/warehouse/product/ProductCreate';
 import TicketCreate from './page/sales/ticket/TicketCreate';
 import OfferList from './page/sales/offer/OfferList';
-
+import OpportunityList from './page/sales/opportunity/OpportunityList';
+import DealList from './page/sales/deal/DealList';
+import RentList from './page/account/rent/RentList';
+import SalaryList from './page/account/salary/SalaryList';
+import Ticketslist from './page/account/ticket/TicketList';
 
 import store from './redux/store';
 import {Provider} from 'react-redux'
@@ -41,13 +45,13 @@ import {Provider} from 'react-redux'
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main:'#f7ad00',
+      main:'#1e88e5',
     },
     secondary: {
       light: '#0066ff',
-      main: '#0044ff',
+      main: '#003A6F',
       // dark: will be calculated from palette.secondary.main,
-      contrastText: '#ffcc00',
+      contrastText: 'white',
     },
   },
 });
@@ -130,6 +134,10 @@ function Index(props) {
                <App logout={logoutHandler}/>                
              </PrivateRoute>
 
+             <PrivateRoute  exact path="/index.html">
+               <App logout={logoutHandler}/>                
+             </PrivateRoute>
+
              <Provider store={store}>
               <PrivateRoute  exact path="/addressbook/company/list">
                 <CompanyList/>
@@ -170,6 +178,26 @@ function Index(props) {
 
               <PrivateRoute  exact path="/sales/offer/list">
                 <OfferList/>
+              </PrivateRoute>
+
+              <PrivateRoute  exact path="/sales/opportunity/list">
+                <OpportunityList/>
+              </PrivateRoute>
+
+              <PrivateRoute  exact path="/sales/deal/list">
+                <DealList/>
+              </PrivateRoute>
+
+              <PrivateRoute  exact path="/account/rent/list">
+                <RentList/>
+              </PrivateRoute>
+
+              <PrivateRoute  exact path="/account/ticket/list">
+                <Ticketslist />
+              </PrivateRoute>
+
+              <PrivateRoute  exact path="/account/salary/list">
+                <SalaryList/>
               </PrivateRoute>
 
              </Provider>

@@ -82,13 +82,11 @@ class CreateEquipment extends React.Component {
     .then(r => r.json())
     .then(json => this.setState({supplierType: json.supplier}))
     .catch(error => console.error('Error retrieving Supplier: ' + error));
-    console.log("Logged In User is "+JSON.parse(localStorage.auth).username);
-    console.log(this.state);
-    const url = SERVER_URL+"/userByUsername?username="+JSON.parse(localStorage.auth).data.username;
-    fetch(url)
-    .then(r => r.json())
-    .then(json => this.setState({userValue: json.id}))
-    .catch(error => console.error('Error retrieving Equipment: ' + error));
+
+    console.log("Logged In User is "+JSON.parse(localStorage.auth).data.id);
+    this.setState({userValue: JSON.parse(localStorage.auth).data.id});
+
+   
 
     }
 
@@ -288,7 +286,7 @@ class CreateEquipment extends React.Component {
     }}
   />
 
-                        {/* <TextField
+                        <TextField
                           id="demo-simple-select-outlined-label"
                           select 
                           label="Type"
@@ -304,13 +302,13 @@ class CreateEquipment extends React.Component {
 
 
                               ))}
-                          </TextField> */}
-                          <AsynchronousDropdown 
+                          </TextField>
+                          {/* <AsynchronousDropdown 
                             handleChange={this.handleChangeDemo}
                             address={'equipmentType'}
                             label = {'Choose Equipment'}
                             name = {'equipment'}
-                          />
+                          /> */}
                 </div>
               </Grid>
 
@@ -331,7 +329,7 @@ class CreateEquipment extends React.Component {
                         >
                           {this.state.supplierType.map(option =>(
                               <MenuItem key={option.id} value={option.id}>
-                                  {option}
+                                  {option.name}
                               </MenuItem>
                           ))}
                           </TextField>
