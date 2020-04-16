@@ -286,7 +286,7 @@ class CreateEquipment extends React.Component {
     }}
   />
 
-                        {/* <TextField
+                        <TextField
                           id="demo-simple-select-outlined-label"
                           select 
                           label="Type"
@@ -302,13 +302,13 @@ class CreateEquipment extends React.Component {
 
 
                               ))}
-                          </TextField> */}
-                          <AsynchronousDropdown 
+                          </TextField>
+                          {/* <AsynchronousDropdown 
                             handleChange={this.handleChangeDemo}
                             address={'equipmentType'}
                             label = {'Choose Equipment'}
                             name = {'equipment'}
-                          />
+                          /> */}
                 </div>
               </Grid>
 
@@ -329,7 +329,7 @@ class CreateEquipment extends React.Component {
                         >
                           {this.state.supplierType.map(option =>(
                               <MenuItem key={option.id} value={option.id}>
-                                  {option}
+                                  {option.name}
                               </MenuItem>
                           ))}
                           </TextField>

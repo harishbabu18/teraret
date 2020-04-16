@@ -26,7 +26,7 @@ import Opportunities from './../components/OpportunitiesDropdown';
 import { Route ,Redirect} from 'react-router-dom';  
 import { Link } from "react-router-dom";
 import Auth from './../security/auth';
-import logo from "../qualifica.png";
+import logo from "../teraretwhite.png";
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';

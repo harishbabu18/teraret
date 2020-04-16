@@ -45,13 +45,13 @@ import {Provider} from 'react-redux'
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main:'#f7ad00',
+      main:'#1e88e5',
     },
     secondary: {
       light: '#0066ff',
-      main: '#0044ff',
+      main: '#003A6F',
       // dark: will be calculated from palette.secondary.main,
-      contrastText: '#ffcc00',
+      contrastText: 'white',
     },
   },
 });
@@ -131,6 +131,10 @@ function Index(props) {
              <Admin logoutHandler={logoutHandler}>
 
              <PrivateRoute  exact path="/">
+               <App logout={logoutHandler}/>                
+             </PrivateRoute>
+
+             <PrivateRoute  exact path="/index.html">
                <App logout={logoutHandler}/>                
              </PrivateRoute>
 
