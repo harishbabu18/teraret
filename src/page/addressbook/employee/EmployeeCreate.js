@@ -78,12 +78,8 @@ class CreateEmployee extends React.Component {
     .then(r => r.json())
     .then(json => this.setState({employee: json}))
     .catch(error => console.error('Error retrieving Tickrts: ' + error));
-
-    const url = SERVER_URL+"/userByUsername?username="+JSON.parse(localStorage.auth).data.username;
-    fetch(url)
-    .then(r => r.json())
-    .then(json => this.setState({userValue: json.id}))
-    .catch(error => console.error('Error retrieving Companies: ' + error));
+    console.log("Logged In User is "+JSON.parse(localStorage.auth).data.id);
+    this.setState({userValue: JSON.parse(localStorage.auth).data.id});
 
     }
 

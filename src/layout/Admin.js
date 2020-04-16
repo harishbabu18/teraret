@@ -16,16 +16,17 @@ import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 import TimerIcon from '@material-ui/icons/Timer';
 import SettingsIcon from '@material-ui/icons/Settings';
-import Calendar from './../components/DropDownSide'
-import Address from './../components/AddressDropdown'
-import Warehouse from './../components/WarehouseDropdown'
-import Sales from './../components/SalesDropdown'
-import Storage from './../components/StorageDropdown'
-import Opportunities from './../components/OpportunitiesDropdown'
+import Calendar from './../components/DropDownSide';
+import Address from './../components/AddressDropdown';
+import Warehouse from './../components/WarehouseDropdown';
+import Sales from './../components/SalesDropdown';
+import Account from'./../components/AccountDropdown';
+import Storage from './../components/StorageDropdown';
+import Opportunities from './../components/OpportunitiesDropdown';
 import { Route ,Redirect} from 'react-router-dom';  
 import { Link } from "react-router-dom";
 import Auth from './../security/auth';
-import logo from "../qualifica.png";
+import logo from "../teraretwhite.png";
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
@@ -211,7 +212,8 @@ export default function MiniDrawer({logoutHandler,component: Component, ...rest}
             {/* <Calendar /> */}
             <Address />   
             <Warehouse />  
-            <Sales />      
+            <Sales />   
+            <Account />   
             {/* <Storage /> */}
             {/* <ListItem button component={Link} to="/admin/ticket/list">
               <ListItemIcon> <ConfirmationNumberIcon /> </ListItemIcon>

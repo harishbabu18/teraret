@@ -100,13 +100,8 @@ class CreateContact extends React.Component {
     .then(json => this.setState({position: json}))
     .catch(error => console.error('Error retrieving Tickrts: ' + error));
 
-    console.log("Logged In User is "+JSON.parse(localStorage.auth).username);
-    console.log(this.state);
-    const url = SERVER_URL+"/userByUsername?username="+JSON.parse(localStorage.auth).data.username;
-    fetch(url)
-    .then(r => r.json())
-    .then(json => this.setState({userValue: json.id}))
-    .catch(error => console.error('Error retrieving Companies: ' + error));
+    console.log("Logged In User is "+JSON.parse(localStorage.auth).data.id);
+    this.setState({userValue: JSON.parse(localStorage.auth).data.id});
   }
 
 

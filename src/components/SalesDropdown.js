@@ -45,6 +45,7 @@ export default function Warehouse (props) {
         </ListItem>
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
+
             <ListItem button className={classes.nested} component={Link} to="/sales/ticket/list">
               <ListItemIcon>
                 <ConfirmationNumberIcon />
@@ -69,6 +70,14 @@ export default function Warehouse (props) {
               </ListItemIcon>
               <ListItemText primary="Offer" />
             </ListItem>
+
+            <ListItem button className={classes.nested} component={Link} to="/sales/opportunity/list">
+              <ListItemIcon>
+                <ConfirmationNumberIcon />
+              </ListItemIcon>
+              <ListItemText primary="Opportunity" />
+            </ListItem>
+
           </List>
         </Collapse>
         </div>
