@@ -134,9 +134,9 @@ function Index(props) {
                <App logout={logoutHandler}/>                
              </PrivateRoute>
 
-             <PrivateRoute  exact path="/index.html">
+             {/* <PrivateRoute  exact path="/index.html">
                <App logout={logoutHandler}/>                
-             </PrivateRoute>
+             </PrivateRoute> */}
 
              <Provider store={store}>
               <PrivateRoute  exact path="/addressbook/company/list">
