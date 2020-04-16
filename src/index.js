@@ -125,13 +125,13 @@ function Index(props) {
      <BrowserRouter forceRefresh={true}>
          <Switch>
              <LoggedInRedirect  exact path="/login" >
-               <Login LoginSubmit={LoginSubmit} _usernameValue={_usernameValue} _passwordValue={_passwordValue} />
+                <Login LoginSubmit={LoginSubmit} _usernameValue={_usernameValue} _passwordValue={_passwordValue} />
              </LoggedInRedirect>
 
              <Admin logoutHandler={logoutHandler}>
 
-             <PrivateRoute  exact path="/">
-               <App logout={logoutHandler}/>                
+             <PrivateRoute  path="/">
+                <App logout={logoutHandler}/>                
              </PrivateRoute>
 
              {/* <PrivateRoute  exact path="/index.html">
