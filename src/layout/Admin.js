@@ -10,22 +10,13 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ConfirmationNumberIcon from '@material-ui/icons/ConfirmationNumber';
-import BorderColorIcon from '@material-ui/icons/BorderColor';
-import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
-import TimerIcon from '@material-ui/icons/Timer';
-import SettingsIcon from '@material-ui/icons/Settings';
-import Calendar from './../components/DropDownSide';
+
 import Address from './../components/AddressDropdown';
 import Warehouse from './../components/WarehouseDropdown';
 import Sales from './../components/SalesDropdown';
 import Account from'./../components/AccountDropdown';
-import Storage from './../components/StorageDropdown';
-import Opportunities from './../components/OpportunitiesDropdown';
+
 import { Route ,Redirect} from 'react-router-dom';  
-import { Link } from "react-router-dom";
-import Auth from './../security/auth';
 import logo from "../teraretwhite.png";
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
@@ -147,6 +138,42 @@ export default function MiniDrawer({logoutHandler,component: Component, ...rest}
     </Menu>
   );
 
+
+
+  // const renderMenu = (<Drawer
+  //   className={classes.drawer}
+  //   variant="persistent"
+  //   anchor="right"
+  //   open={isMenuOpen}
+  //   classes={{
+  //     paper: classes.drawerPaper,
+  //   }}
+  // >
+  //   <div className={classes.drawerHeader}>
+  //     <IconButton onClick={handleDrawerClose}>
+  //       {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+  //     </IconButton>
+  //   </div>
+  //   <Divider />
+  //   <List>
+  //     {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+  //       <ListItem button key={text}>
+  //         <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+  //         <ListItemText primary={text} />
+  //       </ListItem>
+  //     ))}
+  //   </List>
+  //   <Divider />
+  //   <List>
+  //     {['All mail', 'Trash', 'Spam'].map((text, index) => (
+  //       <ListItem button key={text}>
+  //         <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+  //         <ListItemText primary={text} />
+  //       </ListItem>
+  //     ))}
+  //   </List>
+  // </Drawer>);
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -245,10 +272,10 @@ export default function MiniDrawer({logoutHandler,component: Component, ...rest}
       <main className={classes.content}>
       <div className={classes.toolbar} />
       <Route {...rest} render={Component } />
-
-
-
       </main>
+      
+
+      
       </div>
   );
 }

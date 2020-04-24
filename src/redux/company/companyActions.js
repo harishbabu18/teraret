@@ -1,6 +1,7 @@
 import {FETCH_COMPANYS_REQUEST,FETCH_COMPANYS_SUCCESS,FETCH_COMPANYS_FAILURE, LOADMORE_COMPANYS_SUCCESS,SEARCH_COMPANYS_SUCCESS } from './companyType'; 
 import axios from 'axios';
 import SERVER_URL from '../../config';
+import headers from '../../security/headers';
  const fetchCompanysRequest = () => {
     return{
         type:FETCH_COMPANYS_REQUEST
@@ -61,13 +62,15 @@ export const searchCompany=(searchColoumn,search)=>{
         )
     }
 }
-export const loadCompanys = (sort,order,max,offset) => {
+export const loadCompanys = (authorization,sort,order,max,offset) => {
     return (dispatch) => {
         dispatch(fetchCompanysRequest)
-        axios.get(SERVER_URL+'/company?max='+max+'&offset='+offset+'&order='+order+'&sort='+sort)
+        axios.get(SERVER_URL+'/account?max='+max+'&offset='+offset+'&order='+order+'&sort='+sort,{'headers':{
+             'Authorization': 'Bearer '+authorization                   
+            }})
         .then(response => {
-            var companys = response.data.company
-            dispatch(loadCompanysSuccess(companys, max, order, sort, offset))
+            const account =response.data.account
+            dispatch(fetchCompanysSuccess(account,max,order,sort,offset))
         }).catch(error => {
             const errorMsg = error.message
             dispatch(fetchCompanysFailure(errorMsg))
@@ -76,13 +79,15 @@ export const loadCompanys = (sort,order,max,offset) => {
     }
 }
 
-export const fetchCompanys = (sort,order,max,offset) => {
+export const fetchCompanys = (authorization,sort,order,max,offset) => {
     return (dispatch) => {
         dispatch(fetchCompanysRequest)
-        axios.get(SERVER_URL+'/company?max='+max+'&offset='+offset+'&order='+order+'&sort='+sort)
+        axios.get(SERVER_URL+'/account?max='+max+'&offset='+offset+'&order='+order+'&sort='+sort,{'headers':{
+            'Authorization': 'Bearer '+authorization                   
+            }})
         .then(response => {
-            const companys =response.data.company
-            dispatch(fetchCompanysSuccess(companys,max,order,sort,offset))
+            const account =response.data.account
+            dispatch(fetchCompanysSuccess(account,max,order,sort,offset))
         }).catch(error => {
             const errorMsg = error.message
             dispatch(fetchCompanysFailure(errorMsg))

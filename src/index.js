@@ -12,10 +12,10 @@ import Login from './page/Login'
 import axios from 'axios'
 import history from './history'
 import Admin from './layout/Admin'
-import CompanyList from './page/addressbook/company/CompanyList';
-import CompanyCreate from './page/addressbook/company/CompanyCreate';
-import ShowCompanyDetail from './page/addressbook/company/ShowCompanyDetail';
-import ShowCompanyPage from './page/addressbook/company/ShowCompanyPage';
+import CompanyList from './page/addressbook/Account/AccountList';
+import CompanyCreate from './page/addressbook/Account/AccountCreate';
+import ShowCompanyDetail from './page/addressbook/Account/AccountDetail';
+import ShowCompanyPage from './page/addressbook/Account/ShowAccountPage';
 import ShowContactPage from './page/addressbook/contact/ShowContactPage';
 import SupplierList from './page/addressbook/supplier/SupplierList';
 import SupplierCreate from './page/addressbook/supplier/SupplierCreate';
@@ -129,16 +129,16 @@ function Index(props) {
              </LoggedInRedirect>
 
              <Admin logoutHandler={logoutHandler}>
-
-             <PrivateRoute  path="/">
-                <App logout={logoutHandler}/>                
-             </PrivateRoute>
-
-             {/* <PrivateRoute  exact path="/index.html">
-               <App logout={logoutHandler}/>                
-             </PrivateRoute> */}
-
              <Provider store={store}>
+
+          
+
+             <PrivateRoute  path="/dashboard">
+                <App />                
+             </PrivateRoute>
+            
+
+
               <PrivateRoute  exact path="/addressbook/company/list">
                 <CompanyList/>
               </PrivateRoute>
