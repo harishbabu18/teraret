@@ -41,6 +41,7 @@ import Ticketslist from './page/account/ticket/TicketList';
 import store from './redux/store';
 import {Provider} from 'react-redux'
 import Register from './page/Register';
+import Home from './page/home';
 
 const theme = createMuiTheme({
   palette: {
@@ -127,9 +128,12 @@ function Index(props) {
              <LoggedInRedirect  exact path="/login" >
                 <Login LoginSubmit={LoginSubmit} _usernameValue={_usernameValue} _passwordValue={_passwordValue} />
              </LoggedInRedirect>
-             <Route exact path="/register">
-               <Register />
+             <Route exact path="/">
+               <Home/>
              </Route>
+             <LoggedInRedirect exact path="/register">
+               <Register />
+             </LoggedInRedirect>
              <Admin logoutHandler={logoutHandler}>
              <Provider store={store}>
              <PrivateRoute  path="/dashboard">
