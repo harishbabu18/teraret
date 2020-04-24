@@ -1,45 +1,51 @@
 import React from 'react';
-import logo from './qualifica.png';
-import { Button } from '@material-ui/core';
+import {Pie} from 'react-chartjs-2';
 
-import {
-  Chart,
-  ChartTitle,
-  ChartLegend,
-  ChartTooltip,
-  ChartSeries,
-  ChartSeriesItem,
-  ChartSeriesLabels
-} from '@progress/kendo-react-charts';
-import data from './funnel-data.json';
+const data = {
+	labels: [
+'Inquiry',
+'Lead',
+'Offering/quotes',
+'Deals',
+'Invoice',
+'Projects',
+'Completed Projects'
+	],
+	datasets: [{
+		data: [300, 50, 100,300, 50, 100,120],
+		backgroundColor: [
+		'#FF6384',
+		'#36A2EB',
+    '#FFCE56',
+    '#FF6384',
+		'#36A2EB',
+    '#FFCE56',
+    '#36A2EB'
+		],
+		hoverBackgroundColor: [
+      '#FF6384',
+      '#36A2EB',
+      '#FFCE56',
+      '#FF6384',
+      '#36A2EB',
+      '#FFCE56',
+      '#36A2EB'
+		]
+	}]
+};
 
-const tooltipRender = (({ point = {} }) => (point.category));
 function App(props) {
 
   return (
     <div className="App">
       <header className="App-header">
         <h2 >
-          Chart Sample
+          Organisational Dashboard
         </h2>
-       
       </header>
       <div>
-      <Chart style={{ margin: '0 auto', width: 360 }} >
-    <ChartTitle text="Sales funnel" />
-    <ChartSeries>
-      <ChartSeriesItem type="funnel" data={data} categoryField="stat" field="count" colorField="color"
-       dynamicSlope='dynamicSlope' dynamicHeight='dynamicHeight'>
-        <ChartSeriesLabels color="white" background="none" format="N0" />
-      </ChartSeriesItem>
-    </ChartSeries>
-    <ChartTooltip render={tooltipRender} />
-    <ChartLegend visible={true} />
-  </Chart>
-				{/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
+      <Pie data={data} />
 			</div>
-      
-
     </div>
   );
 }

@@ -8,7 +8,7 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import logo from "../teraret.png";
+import logo from "../teraret.svg";
 
 function Copyright() {
   return (
@@ -27,8 +27,11 @@ const useStyles = makeStyles(theme => ({
   root: {
     height: '100vh',
   },
+  logo:{
+    width:162
+  },
   image: {
-    backgroundImage: 'url(https://source.unsplash.com/1600x900/?india,celebration,market)',
+    backgroundImage: 'url(https://source.unsplash.com/1600x900/?market)',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
@@ -70,7 +73,7 @@ export default function Login(props) {
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
-            <img src={logo} alt="Bessppl"/>
+            <img src={logo}  className={classes.logo} alt="Teraret"/>
           <Typography component="h1" variant="h5">
             Login
           </Typography>

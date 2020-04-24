@@ -15,7 +15,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import TableContainer from '@material-ui/core/TableContainer';
 import Paper from '@material-ui/core/Paper';
-import CompanySearch from './CompanySearch';
+import CompanySearch from './AccountSearch';
 import Hidden from '@material-ui/core/Hidden';
 // import { useTheme } from '@material-ui/core/styles';
 import {Link} from 'react-router-dom'; 
@@ -85,7 +85,7 @@ function CompanyList(){
   const dispatch = useDispatch()
 
    useEffect(() => {
-       dispatch(fetchCompanys(companydata.sort,companydata.order,10,0))
+       dispatch(fetchCompanys(JSON.parse(localStorage.auth).data.access_token,companydata.sort,companydata.order,10,0))
    },[])
 
    const [, setOpen] = React.useState(false);
@@ -106,7 +106,7 @@ function CompanyList(){
             {/* <LinearProgress /> */}
           </div>
           ): companydata.error ? (
-          <h1>{companydata.error}</h1>
+          <h1>{companydata.error} {JSON.parse(localStorage.auth).data.access_token}</h1>
             ) : (
           
             <div> 
@@ -130,25 +130,25 @@ function CompanyList(){
                     <StyledTableCell key = 'id' >
                     <TableSortLabel
                       direction={companydata.order==="desc"?"asc":"desc"}
-                      onClick={() => dispatch(fetchCompanys("id",companydata.order==="desc"?"asc":"desc",10,0))}
+                      onClick={() => dispatch(fetchCompanys(JSON.parse(localStorage.auth).data.access_token,"id",companydata.order==="desc"?"asc":"desc",10,0))}
                     >
                        Company ID
                     </TableSortLabel>
                     </StyledTableCell>
                    </Hidden>  
 
-                    <StyledTableCell key="logo">
+                    {/* <StyledTableCell key="logo">
                       <TableSortLabel
                       direction={companydata.order==="desc"?"asc":"desc"}
                       onClick={() => dispatch(fetchCompanys("avatar",companydata.order==="desc"?"asc":"desc",10,0))}>
                        Logo 
                        </TableSortLabel>
-                    </StyledTableCell>
+                    </StyledTableCell> */}
 
                     <StyledTableCell key="name">
                     <TableSortLabel
                       direction={companydata.order==="desc"?"asc":"desc"}
-                      onClick={() => dispatch(fetchCompanys("name",companydata.order==="desc"?"asc":"desc",10,0))}>
+                      onClick={() => dispatch(fetchCompanys(JSON.parse(localStorage.auth).data.access_token,"name",companydata.order==="desc"?"asc":"desc",10,0))}>
                         Name 
                       </TableSortLabel>
                     </StyledTableCell>
@@ -156,25 +156,25 @@ function CompanyList(){
                     <Hidden only={['sm', 'xs']}>
 
 
-                    <StyledTableCell key="description">
+                    {/* <StyledTableCell key="description">
                       <TableSortLabel
                       direction={companydata.order==="desc"?"asc":"desc"}
                       onClick={() => dispatch(fetchCompanys("description",companydata.order==="desc"?"asc":"desc",10,0))}>
                         Description 
                       </TableSortLabel>
-                    </StyledTableCell>
+                    </StyledTableCell> */}
 
                     <StyledTableCell key="email" >
                       <TableSortLabel
                       direction={companydata.order==="desc"?"asc":"desc"}
-                      onClick={() => dispatch(fetchCompanys("email",companydata.order==="desc"?"asc":"desc",10,0))}>
+                      onClick={() => dispatch(fetchCompanys(JSON.parse(localStorage.auth).data.access_token,"email",companydata.order==="desc"?"asc":"desc",10,0))}>
                        E-mail 
                       </TableSortLabel>   
                     </StyledTableCell>
                     <StyledTableCell key="mobile" > 
                       <TableSortLabel
                       direction={companydata.order==="desc"?"asc":"desc"}
-                      onClick={() => dispatch(fetchCompanys("mobile",companydata.order==="desc"?"asc":"desc",10,0))}>
+                      onClick={() => dispatch(fetchCompanys(JSON.parse(localStorage.auth).data.access_token,"mobile",companydata.order==="desc"?"asc":"desc",10,0))}>
 
                         Mobile 
                       </TableSortLabel>    
@@ -182,7 +182,7 @@ function CompanyList(){
                     <StyledTableCell key="website" >
                       <TableSortLabel
                         direction={companydata.order==="desc"?"asc":"desc"}
-                        onClick={() => dispatch(fetchCompanys("website",companydata.order==="desc"?"asc":"desc",10,0))}>
+                        onClick={() => dispatch(fetchCompanys(JSON.parse(localStorage.auth).data.access_token,"website",companydata.order==="desc"?"asc":"desc",10,0))}>
                         Website
                         </TableSortLabel>
                     </StyledTableCell>
@@ -190,12 +190,12 @@ function CompanyList(){
                     <StyledTableCell key="fax" >
                       <TableSortLabel
                         direction={companydata.order==="desc"?"asc":"desc"}
-                        onClick={() => dispatch(fetchCompanys("fax",companydata.order==="desc"?"asc":"desc",10,0))}>
+                        onClick={() => dispatch(fetchCompanys(JSON.parse(localStorage.auth).data.access_token,"fax",companydata.order==="desc"?"asc":"desc",10,0))}>
                         Fax 
                       </TableSortLabel>
                     </StyledTableCell>
 
-                    <StyledTableCell key="address" > 
+                    {/* <StyledTableCell key="address" > 
                       <TableSortLabel
                         direction={companydata.order==="desc"?"asc":"desc"}
                         onClick={() => dispatch(fetchCompanys("addresslineone",companydata.order==="desc"?"asc":"desc",10,0))}>
@@ -209,12 +209,12 @@ function CompanyList(){
                         onClick={() => dispatch(fetchCompanys("user",companydata.order==="desc"?"asc":"desc",10,0))}>
                        Created By 
                       </TableSortLabel>
-                    </StyledTableCell>
+                    </StyledTableCell> */}
 
                     <StyledTableCell key="establishedDate" >
                       <TableSortLabel
                         direction={companydata.order==="desc"?"asc":"desc"}
-                        onClick={() => dispatch(fetchCompanys("establishedDate",companydata.order==="desc"?"asc":"desc",10,0))}>
+                        onClick={() => dispatch(fetchCompanys(JSON.parse(localStorage.auth).data.access_token,"establishedDate",companydata.order==="desc"?"asc":"desc",10,0))}>
                        Established Date 
                       </TableSortLabel>
                     </StyledTableCell>
@@ -222,7 +222,7 @@ function CompanyList(){
                     <StyledTableCell key="lastUpdated" > 
                       <TableSortLabel
                         direction={companydata.order==="desc"?"asc":"desc"}
-                        onClick={() => dispatch(fetchCompanys("lastUpdated",companydata.order==="desc"?"asc":"desc",10,0))}>
+                        onClick={() => dispatch(fetchCompanys(JSON.parse(localStorage.auth).data.access_token,"lastUpdated",companydata.order==="desc"?"asc":"desc",10,0))}>
                         Last Updated
                       </TableSortLabel>
                     </StyledTableCell>

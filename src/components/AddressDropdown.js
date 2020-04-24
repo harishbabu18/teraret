@@ -47,7 +47,7 @@ export default function Address (props) {
               <ListItemIcon>
                 <BusinessIcon />
               </ListItemIcon>
-              <ListItemText primary="Companies" />
+              <ListItemText primary="Accounts" />
             </ListItem>
 
 
