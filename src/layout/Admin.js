@@ -16,8 +16,8 @@ import Warehouse from './../components/WarehouseDropdown';
 import Sales from './../components/SalesDropdown';
 import Account from'./../components/AccountDropdown';
 
-import { Route ,Redirect} from 'react-router-dom';  
-import logo from "../teraretwhite.png";
+import { Route } from 'react-router-dom';  
+import logo from "../teraretwhite.svg";
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
@@ -27,6 +27,9 @@ const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
+  },
+  logo:{
+    width:162
   },
   grow: {
     flexGrow: 1,
@@ -140,40 +143,6 @@ export default function MiniDrawer({logoutHandler,component: Component, ...rest}
 
 
 
-  // const renderMenu = (<Drawer
-  //   className={classes.drawer}
-  //   variant="persistent"
-  //   anchor="right"
-  //   open={isMenuOpen}
-  //   classes={{
-  //     paper: classes.drawerPaper,
-  //   }}
-  // >
-  //   <div className={classes.drawerHeader}>
-  //     <IconButton onClick={handleDrawerClose}>
-  //       {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-  //     </IconButton>
-  //   </div>
-  //   <Divider />
-  //   <List>
-  //     {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-  //       <ListItem button key={text}>
-  //         <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-  //         <ListItemText primary={text} />
-  //       </ListItem>
-  //     ))}
-  //   </List>
-  //   <Divider />
-  //   <List>
-  //     {['All mail', 'Trash', 'Spam'].map((text, index) => (
-  //       <ListItem button key={text}>
-  //         <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-  //         <ListItemText primary={text} />
-  //       </ListItem>
-  //     ))}
-  //   </List>
-  // </Drawer>);
-
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -195,7 +164,7 @@ export default function MiniDrawer({logoutHandler,component: Component, ...rest}
           >
             <MenuIcon />
           </IconButton>
-          <img src={logo} alt="Qualifica Group" />
+          <img src={logo}   className={classes.logo} alt="Teraret" />
         <div className={classes.grow} />
           <IconButton
               edge="end"
@@ -232,50 +201,16 @@ export default function MiniDrawer({logoutHandler,component: Component, ...rest}
           </IconButton>
         </div>
         <List>
-            {/* <ListItem button >
-              <ListItemIcon> <DashboardIcon /> </ListItemIcon>
-              <ListItemText primary="Dashboard" />
-            </ListItem>     */}
-            {/* <Calendar /> */}
             <Address />   
             <Warehouse />  
             <Sales />   
             <Account />   
-            {/* <Storage /> */}
-            {/* <ListItem button component={Link} to="/admin/ticket/list">
-              <ListItemIcon> <ConfirmationNumberIcon /> </ListItemIcon>
-              <ListItemText primary="Ticket" />
-            </ListItem>         
-            <Opportunities />
-            <ListItem button >
-              <ListItemIcon> <BorderColorIcon /> </ListItemIcon>
-              <ListItemText primary="Contracts" />
-            </ListItem>       
-            <ListItem button >
-              <ListItemIcon> <AddShoppingCartIcon /> </ListItemIcon>
-              <ListItemText primary="Orders" />
-            </ListItem>
-            <ListItem button >
-              <ListItemIcon> <AccountBalanceIcon /> </ListItemIcon>
-              <ListItemText primary="Accounting" />
-            </ListItem>
-            <ListItem button >
-              <ListItemIcon> <TimerIcon /> </ListItemIcon>
-              <ListItemText primary="Time Keeping" />
-            </ListItem>
-            <ListItem button >
-              <ListItemIcon> <SettingsIcon /></ListItemIcon>
-              <ListItemText primary="Settings" />
-            </ListItem> */}
         </List>
       </Drawer>
       <main className={classes.content}>
       <div className={classes.toolbar} />
       <Route {...rest} render={Component } />
-      </main>
-      
-
-      
+      </main>      
       </div>
   );
 }
