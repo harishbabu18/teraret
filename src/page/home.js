@@ -15,6 +15,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import logo from "../teraret.svg";
+import clsx from 'clsx';
+
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 
 
 function Copyright() {
@@ -134,11 +138,28 @@ const footers = [
 export default function Home() {
   const classes = useStyles();
 
+  const [open, setOpen] = React.useState(false);
+
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
   return (
     <React.Fragment>
       <CssBaseline />
       <AppBar position="static" color="default" elevation={0} className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
+        <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+            edge="start"
+            className={clsx(classes.menuButton, {
+              [classes.hide]: open,
+            })}
+          >
+            <MenuIcon />
+          </IconButton>
           {/* <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
             Company name
           </Typography> */}
@@ -162,7 +183,7 @@ export default function Home() {
       {/* Hero unit */}
       <Container maxWidth="sm" component="main" className={classes.heroContent}>
         <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-          Pricing
+          Accelerate Pricing
         </Typography>
         <Typography variant="h5" align="center" color="textSecondary" component="p">
           Quickly build an effective pricing table for your potential customers with this layout.
