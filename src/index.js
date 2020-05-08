@@ -132,7 +132,11 @@ function Index(props) {
                <Home/>
              </Route>
              <LoggedInRedirect exact path="/register">
-               <Register />
+             <Provider store={store}>
+
+               <Register />    
+              </Provider>
+
              </LoggedInRedirect>
              <Admin logoutHandler={logoutHandler}>
              <Provider store={store}>

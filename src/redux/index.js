@@ -12,3 +12,4 @@ export * from './deal/dealActions';
 export * from './accountTickets/ticketsAction';
 export * from './rent/rentActions';
 export * from './salary/salaryActions';
+export * from './register/registerActions';

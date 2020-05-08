@@ -1,7 +1,7 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 
-const Inputfields = ({name, idname, labelname,type, ...otherProps}) =>{
+const Inputfields = ({name, idname, onChange, value, labelname, type, ...otherProps}) =>{
     return(
     <div>
         <TextField
@@ -12,6 +12,8 @@ const Inputfields = ({name, idname, labelname,type, ...otherProps}) =>{
             fullWidth
             id= {idname}
             label= {labelname}
+            onChange= {onChange}
+            value = {value}
             autoFocus
         />
   </div>)

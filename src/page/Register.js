@@ -23,49 +23,8 @@ export default function Register() {
           <Typography component="h1" variant="h5">
             Register
           </Typography>
-          <Forms >
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <InputfieldComponent
-                  name = 'fname'
-                  idname = 'FirstName'
-                  labelname = 'First Name'
-                  type = 'text'
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <InputfieldComponent
-                  name = 'fname'
-                  idname = 'lastnamae'
-                  labelname = 'Last Name'
-                  type = 'text'
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <InputfieldComponent
-                  name = 'emil'
-                  idname = 'Emailaddress'
-                  labelname = 'Email Address'
-                  type = 'email'
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <InputfieldComponent
-                  name = 'password'
-                  idname = 'Password'
-                  labelname = 'Password'
-                  type = 'password'
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
-              </Grid>
-            </Grid>
-          
-          </Forms>
+          <Forms />
+           
         </div>
         <Box mt={5}>
           <Copyright />
