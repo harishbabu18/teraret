@@ -1,12 +1,10 @@
 import React from 'react';
-import useStyles from "../components/StylesComponent";
 import Grid from '@material-ui/core/Grid';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import InputfieldComponent from "../components/TextfieldComponent";
 
 const RegisterformFields = ({handleChange, values, ...otherProps}) =>{
-    const classes = useStyles();
 
     return(
         <div>

@@ -8,7 +8,7 @@ const Inputfields = ({name, idname, onChange, value, labelname, type, ...otherPr
             name= {name}
             type= {type}
             variant="outlined"
-            required
+            // required
             fullWidth
             id= {idname}
             label= {labelname}
