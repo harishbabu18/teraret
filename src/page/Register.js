@@ -7,6 +7,7 @@ import logo from "../teraret.svg";
 import Forms from "../components/RegisterFormComponent";
 import Copyright from "../components/CopyrightComponent";
 import useStyles from "../components/StylesComponent";
+import validate from '../components/RegisterValidations';
 
 export default function Register() {
   const classes = useStyles();
@@ -19,7 +20,9 @@ export default function Register() {
           <Typography component="h1" variant="h5">
             Register
           </Typography>
-          <Forms address = "/register"/>
+          <Forms
+            address = "register"
+            validate = {validate}/>
            
         </div>
         <Box mt={5}>

@@ -10,23 +10,22 @@ import { useSelector,useDispatch } from 'react-redux';
 import ErrorComponent from '../components/ErrorComponent';
 import LoadingComponent from '../components/LoadingComponent';
 
-const Form = ({address, ...otherProps}) =>{
+const Form = ({address, validate, ...otherProps}) =>{
     const classes = useStyles();
     const dispatch = useDispatch();
     const registerdata = useSelector(state => state.register )
-
     const formik = useFormik({
         initialValues: {
     
         },
+        validate,
         onSubmit: values => {
             var values = JSON.stringify(values)
-            var addres = {address}
-            dispatch(post(values, addres))
+            dispatch(post(values, {address}))
         }
     })
     
-    const {handleChange, values} = formik;
+    const {handleChange,errors, values} = formik;
     return (
             registerdata.loading ? (
               <LoadingComponent />
@@ -43,6 +42,7 @@ const Form = ({address, ...otherProps}) =>{
                     <RegisterformFields
                         handleChange = {handleChange}
                         values = {values}
+                        errors = {errors}
                     />
 
                     <CustomButton

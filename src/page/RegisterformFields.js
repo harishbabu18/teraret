@@ -3,20 +3,10 @@ import Grid from '@material-ui/core/Grid';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import InputfieldComponent from "../components/TextfieldComponent";
+import Alert from '@material-ui/lab/Alert';
 
-function validateEmail(value) {
-  let error;
-  if (!value) {
-    error = 'Required';
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
-    error = 'Invalid email address';
-  }
-  return error;
-}
-
-
-const RegisterformFields = ({handleChange, values, ...otherProps}) =>{
-
+const RegisterformFields = ({handleChange, errors, values, ...otherProps}) =>{
+  
     return(
         <div>
             <Grid container spacing={2}>
@@ -26,12 +16,16 @@ const RegisterformFields = ({handleChange, values, ...otherProps}) =>{
                   name = 'firstName'
                   idname = 'FirstName'
                   labelname = 'First Name'
-                  onChange = {handleChange, validateEmail}
+                  onChange = {handleChange}
                   value = {values.firstName}
                   type = 'text'
                 />
+                {errors.firstName ? 
+                <div>   
+                  <Alert severity="error">{errors.firstName}</Alert>
+                </div> : null}
               </Grid>
-              <div>{validateEmail}</div>
+            
 
               <Grid item xs={12} sm={6}>
                 <InputfieldComponent
@@ -42,6 +36,10 @@ const RegisterformFields = ({handleChange, values, ...otherProps}) =>{
                   value = {values.lastName}
                   type = 'text'
                 />
+                {errors.lastName ? 
+                <div>   
+                  <Alert severity="error">{errors.lastName}</Alert>
+                </div> : null}
               </Grid>
 
               <Grid item xs={12}>
@@ -53,8 +51,12 @@ const RegisterformFields = ({handleChange, values, ...otherProps}) =>{
                   value = {values.email}
                   type = 'email'
                 />
+                {errors.email ? 
+                <div>   
+                  <Alert severity="error">{errors.email}</Alert>
+                </div> : null}
               </Grid>
-
+           
               <Grid item xs={12}>
                 <InputfieldComponent
                   name = 'password'

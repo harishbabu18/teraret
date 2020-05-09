@@ -24,8 +24,9 @@ const fetchProductsFailure = error => {
     }
 }
 
-export const post = (values, addres) => {
-    var address = JSON.stringify({addres})
+export const post = (values, {address}) => {
+    // var addres = JSON.stringify({address})
+    console.log (address)
     return (dispatch) => {
         dispatch(fetchProductsRequest)
         axios.post(SERVER_URL+'/'+address, {values})
