@@ -80,6 +80,7 @@ function Index(props) {
   const LoginSubmit = (e) => {
     
     e.preventDefault()
+    
     console.log(SERVER_URL+'/api/login')  
     axios.post(SERVER_URL+'/api/login',{'username':username,'password':password})
     .then(checkResponseStatus)
