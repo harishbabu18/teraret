@@ -15,11 +15,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import logo from "../teraret.svg";
-import clsx from 'clsx';
 
+import clsx from 'clsx';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-
 
 function Copyright() {
   return (
@@ -84,54 +83,51 @@ const useStyles = makeStyles((theme) => ({
 
 const tiers = [
   {
-    title: 'Small Business',
-    subheader: 'Coming Soon',
-    price: '30',
-    description: [
-      '1 user included Access',
-      'Gmail Email',
-      'Help center access',
-      'Priority email support',
-    ],
-    buttonText: 'Start Free Trail',
+    title: 'Free Trail',
+    price: '0',
+    description: ['30 Days Trail','Help center access', 'Email support'],
+    buttonText: 'Sign up for free',
     buttonVariant: 'outlined',
   },
   {
-    title: 'Medium Business',
-    subheader: 'Coming Soon',
-    price: '120',
+    title: 'Small Business',
+    subheader: 'Most popular',
+    price: '30',
     description: [
-      '5 users included',
-      'Gmail Email',
+      '1 user included',
+      '10 GB of storage',
       'Help center access',
-      'Phone & email support',
+      'Priority email support',
     ],
-    buttonText: 'Start Free Trail',
+    buttonText: 'Get started',
     buttonVariant: 'outlined',
   },
   {
     title: 'Enterprise',
-    subheader: 'Coming Soon',
-    price: '1000',
+    price: '100',
     description: [
       '50 users included',
-      'Gmail Email',
+      '30 GB of storage',
       'Help center access',
       'Phone & email support',
     ],
     buttonText: 'Contact us',
     buttonVariant: 'outlined',
-  }
+  },
+  
 ];
-
 const footers = [
   {
     title: 'Company',
-    description: ['About', 'Team', 'Vendor Partner','Support'],
+    description: ['Team', 'History', 'Contact us', 'Locations'],
   },
   {
     title: 'Features',
-    description: ['Customer Relationship Management', 'Human Resource Management System', 'Subscription Management System', 'Inventory Management System', 'Point of Sale'],
+    description: ['Cool stuff', 'Random feature', 'Team feature', 'Developer stuff', 'Another one'],
+  },
+  {
+    title: 'Resources',
+    description: ['Resource', 'Resource name', 'Another resource', 'Final resource'],
   },
   {
     title: 'Legal',
@@ -153,7 +149,7 @@ export default function Home() {
       <CssBaseline />
       <AppBar position="static" color="default" elevation={0} className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
-        <IconButton
+        {/* <IconButton
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
@@ -163,12 +159,12 @@ export default function Home() {
             })}
           >
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
           {/* <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
             Company name
           </Typography> */}
           <img src={logo}   className={classes.logo} alt="Teraret" />
-          <nav>
+          {/* <nav>
             <Link variant="button" color="textPrimary" href="#" className={classes.link}>
               Features
             </Link>
@@ -178,7 +174,7 @@ export default function Home() {
             <Link variant="button" color="textPrimary" href="#" className={classes.link}>
               Support
             </Link>
-          </nav>
+          </nav> */}
           <Button href="/dashboard" color="primary" variant="outlined" className={classes.link}>
             Dashboard
           </Button>
@@ -187,10 +183,11 @@ export default function Home() {
       {/* Hero unit */}
       <Container maxWidth="sm" component="main" className={classes.heroContent}>
         <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-          Accelerate Workflow
+          Accelerate CRM - Beta
         </Typography>
         <Typography variant="h5" align="center" color="textSecondary" component="p">
-         Marketing , Sales and Workflow Automation Cloud
+          Quickly build an effective pricing table for your potential customers with this layout.
+          It&apos;s built with default Material-UI components with little customization.
         </Typography>
       </Container>
       {/* End hero unit */}
@@ -235,12 +232,11 @@ export default function Home() {
           ))}
         </Grid>
       </Container>
-      
       {/* Footer */}
       <Container maxWidth="md" component="footer" className={classes.footer}>
         <Grid container spacing={4} justify="space-evenly">
           {footers.map((footer) => (
-            <Grid item xs={6} sm={4} key={footer.title}>
+            <Grid item xs={6} sm={3} key={footer.title}>
               <Typography variant="h6" color="textPrimary" gutterBottom>
                 {footer.title}
               </Typography>
