@@ -17,9 +17,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import Paper from '@material-ui/core/Paper';
 import CompanySearch from './AccountSearch';
 import Hidden from '@material-ui/core/Hidden';
-// import { useTheme } from '@material-ui/core/styles';
 import {Link} from 'react-router-dom'; 
-
 
 const useStyles = makeStyles( theme => ({
   root: {
@@ -137,13 +135,13 @@ function CompanyList(){
                     </StyledTableCell>
                    </Hidden>  
 
-                    {/* <StyledTableCell key="logo">
+                    <StyledTableCell key="logo">
                       <TableSortLabel
                       direction={companydata.order==="desc"?"asc":"desc"}
                       onClick={() => dispatch(fetchCompanys("avatar",companydata.order==="desc"?"asc":"desc",10,0))}>
                        Logo 
                        </TableSortLabel>
-                    </StyledTableCell> */}
+                    </StyledTableCell>
 
                     <StyledTableCell key="name">
                     <TableSortLabel
@@ -247,13 +245,13 @@ function CompanyList(){
            <Link to={'/addressbook/company/showcompanydetail/'+company.id}> {company.name}  </Link>      
               </StyledTableCell>
            <Hidden only={['sm', 'xs']}>
-           <StyledTableCell component="th" scope="row">{company.description}</StyledTableCell>
+           {/* <StyledTableCell component="th" scope="row">{company.description}</StyledTableCell> */}
            <StyledTableCell component="th" scope="row">{company.email}</StyledTableCell>
            <StyledTableCell component="th" scope="row">{company.mobile}</StyledTableCell>
            <StyledTableCell component="th" scope="row">{company.website}</StyledTableCell>
            <StyledTableCell component="th" scope="row">{company.fax }</StyledTableCell>
-           <StyledTableCell component="th" scope="row">{company.addresslineone} {company.addresslinetwo}, {company.state}-{company.zip}, {company.country} </StyledTableCell>
-           <StyledTableCell component="th" scope="row">{company.user}</StyledTableCell>
+           {/* <StyledTableCell component="th" scope="row">{company.addresslineone} {company.addresslinetwo}, {company.state}-{company.zip}, {company.country} </StyledTableCell> */}
+           {/* <StyledTableCell component="th" scope="row">{company.user}</StyledTableCell> */}
            <StyledTableCell component="th" scope="row">{company.establishedDate}</StyledTableCell>
            <StyledTableCell component="th" scope="row">{company.lastUpdated}</StyledTableCell>
            </Hidden>
