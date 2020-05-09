@@ -5,12 +5,12 @@ import CustomButton from "../components/ButtonComponent";
 import useStyles from "./StylesComponent";
 import { useFormik } from "formik";
 import RegisterformFields from '../page/RegisterformFields';
-import { fetch } from "../redux/register/registerActions";
+import { post } from "../redux/register/registerActions";
 import { useSelector,useDispatch } from 'react-redux';
 import ErrorComponent from '../components/ErrorComponent';
 import LoadingComponent from '../components/LoadingComponent';
 
-const Form = ({children, ...otherProps}) =>{
+const Form = ({address, ...otherProps}) =>{
     const classes = useStyles();
     const dispatch = useDispatch();
     const registerdata = useSelector(state => state.register )
@@ -21,7 +21,8 @@ const Form = ({children, ...otherProps}) =>{
         },
         onSubmit: values => {
             var values = JSON.stringify(values)
-            dispatch(fetch(values))
+            var addres = {address}
+            dispatch(post(values, addres))
         }
     })
     
@@ -31,7 +32,9 @@ const Form = ({children, ...otherProps}) =>{
               <LoadingComponent />
             ) :
             registerdata.error ? (
-                <ErrorComponent registerdata = {registerdata} />
+                <div>
+                    <ErrorComponent registerdata = {registerdata} />
+                </div>
             ) : (
             <div>
 

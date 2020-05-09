@@ -9,14 +9,10 @@ const fetchProductsRequest = () => {
 
 }
 
-const fetchProductsSuccess = (products, max, order, sort, offset) => {
+const fetchProductsSuccess = (products) => {
     return{
         type:FETCH_PRODUCTS_SUCCESS,
         payload:products,
-        payloadmax:max,
-        payloadorder:order,
-        payloadsort:sort,
-        payloadoffset:offset
     }
 }
 
@@ -28,10 +24,11 @@ const fetchProductsFailure = error => {
     }
 }
 
-export const fetch = (values) => {
+export const post = (values, addres) => {
+    var address = JSON.stringify({addres})
     return (dispatch) => {
         dispatch(fetchProductsRequest)
-        axios.post(SERVER_URL+'/register?',{values})
+        axios.post(SERVER_URL+'/'+address, {values})
         .then(response => {
             const products =response.data.product
             dispatch(fetchProductsSuccess(products))

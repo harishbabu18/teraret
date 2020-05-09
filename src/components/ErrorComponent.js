@@ -19,6 +19,8 @@ const ErrorComponent = ({registerdata}) => {
     const [open, setOpen] = React.useState(true);
     const handleClose = () => {
         setOpen(false);
+        window.location.reload(false);
+
       };
 
     return registerdata.error ? (
