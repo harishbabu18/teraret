@@ -18,6 +18,7 @@ import Paper from '@material-ui/core/Paper';
 import CompanySearch from './AccountSearch';
 import Hidden from '@material-ui/core/Hidden';
 import {Link} from 'react-router-dom'; 
+import ReactMediaLibraryWrapper from '../../media/ReactMediaLibraryWrapper';
 
 const useStyles = makeStyles( theme => ({
   root: {
@@ -232,7 +233,7 @@ function CompanyList(){
                   </TableRow>
                 </TableHead>
                 <TableBody>
-           {companydata.companys.map(company =>  <StyledTableRow key={company.id}>
+           {companydata.company.map(company =>  <StyledTableRow key={company.id}>
             <Hidden only={['sm', 'xs']}>
             <StyledTableCell component="th" scope="row">{company.id}</StyledTableCell>
             </Hidden>
@@ -267,6 +268,7 @@ function CompanyList(){
           </Table>
           <Button onClick={() => dispatch(loadCompanys(companydata.sort,companydata.order,companydata.max,companydata.offset))}>Load More</Button>
         </TableContainer>
+       
     </Grid>
   </div>)
     

@@ -42,6 +42,8 @@ import store from './redux/store';
 import {Provider} from 'react-redux'
 import Register from './page/Register';
 import Home from './page/home';
+import ReactMediaLibraryWrapper from './page/media/ReactMediaLibraryWrapper';
+import FullScreenDialog from './page/media/FullScreenDialog';
 
 const theme = createMuiTheme({
   palette: {
@@ -135,6 +137,10 @@ function Index(props) {
              <LoggedInRedirect exact path="/register">
                <Register />
              </LoggedInRedirect>
+           
+
+
+
              <Admin logoutHandler={logoutHandler}>
              <Provider store={store}>
              <PrivateRoute  path="/dashboard">
@@ -248,9 +254,15 @@ function Index(props) {
                <ShowEmployeePage/>
              </PrivateRoute>
 
-  
 
+             <PrivateRoute  exact path="/media">
+               <ReactMediaLibraryWrapper/>
+             </PrivateRoute>
+             <PrivateRoute  exact path="/mmedia">
+               <FullScreenDialog/>
+             </PrivateRoute>
              </Admin>
+             
            
          </Switch>
      </BrowserRouter>
