@@ -18,7 +18,6 @@ import Paper from '@material-ui/core/Paper';
 import CompanySearch from './AccountSearch';
 import Hidden from '@material-ui/core/Hidden';
 import {Link} from 'react-router-dom'; 
-import ReactMediaLibraryWrapper from '../../media/ReactMediaLibraryWrapper';
 
 const useStyles = makeStyles( theme => ({
   root: {
@@ -225,11 +224,8 @@ function CompanyList(){
                         Last Updated
                       </TableSortLabel>
                     </StyledTableCell>
-
                     </Hidden>
-
                     <StyledTableCell > Edit </StyledTableCell>
-
                   </TableRow>
                 </TableHead>
                 <TableBody>

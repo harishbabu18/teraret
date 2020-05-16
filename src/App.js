@@ -1,6 +1,5 @@
 import React from 'react';
 import {Pie} from 'react-chartjs-2';
-import ReactMediaLibraryWrapper from './page/media/ReactMediaLibraryWrapper';
 
 const data = {
 	labels: [
