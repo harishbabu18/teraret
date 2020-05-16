@@ -39,9 +39,8 @@ import RentList from './page/account/rent/RentList';
 import SalaryList from './page/account/salary/SalaryList';
 import Ticketslist from './page/account/ticket/TicketList';
 import store from './redux/store';
-import {Provider} from 'react-redux'
-import Register from './page/Register';
-import Home from './page/home';
+import {Provider} from 'react-redux';
+import FullScreenDialog from './page/media/FullScreenDialog';
 
 const theme = createMuiTheme({
   palette: {
@@ -129,15 +128,9 @@ function Index(props) {
              <LoggedInRedirect  exact path="/login" >
                 <Login LoginSubmit={LoginSubmit} _usernameValue={_usernameValue} _passwordValue={_passwordValue} />
              </LoggedInRedirect>
-             <Route exact path="/">
-               <Home/>
-             </Route>
-             <LoggedInRedirect exact path="/register">
-               <Register />
-             </LoggedInRedirect>
              <Admin logoutHandler={logoutHandler}>
              <Provider store={store}>
-             <PrivateRoute  path="/dashboard">
+             <PrivateRoute  path="/">
                 <App />                
              </PrivateRoute>
               <PrivateRoute  exact path="/addressbook/company/list">
@@ -243,14 +236,14 @@ function Index(props) {
              <PrivateRoute  exact path="/addressbook/contact/create">
                <ContactCreate/>
              </PrivateRoute>
-
              <PrivateRoute  exact path="/addressbook/employee/show">
                <ShowEmployeePage/>
              </PrivateRoute>
-
-  
-
+             <PrivateRoute  exact path="/media">
+               <FullScreenDialog/>
+             </PrivateRoute>
              </Admin>
+             
            
          </Switch>
      </BrowserRouter>
