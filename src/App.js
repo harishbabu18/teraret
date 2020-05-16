@@ -1,5 +1,5 @@
 import React from 'react';
-import {Pie} from 'react-chartjs-2';
+// import {Pie} from 'react-chartjs-2';
 
 const data = {
 	labels: [
@@ -44,7 +44,7 @@ function App(props) {
         </h2>
       </header>
       <div>
-      <Pie data={data} />
+      {/* <Pie data={data} /> */}
 			</div>
     </div>
   );

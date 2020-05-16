@@ -13,6 +13,7 @@ import dealReducer from './deal/dealReducer';
 import ticketsReducer from './accountTickets/ticketsReducer';
 import rentReducer from './rent/rentReducer';
 import salaryReducer from './salary/salaryReducer'; 
+import registerReducder from './register/registerReducer';
 
 const rootReducer = combineReducers({
    
@@ -30,6 +31,7 @@ const rootReducer = combineReducers({
     tickets: ticketsReducer,
     rent: rentReducer,
     salary: salaryReducer,
+    register: registerReducder,
 
 })
 
