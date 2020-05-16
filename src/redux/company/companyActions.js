@@ -65,7 +65,7 @@ export const searchCompany=(searchColoumn,search)=>{
 export const loadCompanys = (authorization,sort,order,max,offset) => {
     return (dispatch) => {
         dispatch(fetchCompanysRequest)
-        axios.get(SERVER_URL+'/account?max='+max+'&offset='+offset+'&order='+order+'&sort='+sort,{'headers':{
+        axios.get(SERVER_URL+'/company?max='+max+'&offset='+offset+'&order='+order+'&sort='+sort,{'headers':{
              'Authorization': 'Bearer '+authorization                   
             }})
         .then(response => {
@@ -82,7 +82,7 @@ export const loadCompanys = (authorization,sort,order,max,offset) => {
 export const fetchCompanys = (authorization,sort,order,max,offset) => {
     return (dispatch) => {
         dispatch(fetchCompanysRequest)
-        axios.get(SERVER_URL+'/account?max='+max+'&offset='+offset+'&order='+order+'&sort='+sort,{'headers':{
+        axios.get(SERVER_URL+'/company?max='+max+'&offset='+offset+'&order='+order+'&sort='+sort,{'headers':{
             'Authorization': 'Bearer '+authorization                   
             }})
         .then(response => {

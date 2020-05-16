@@ -224,15 +224,12 @@ function CompanyList(){
                         Last Updated
                       </TableSortLabel>
                     </StyledTableCell>
-
                     </Hidden>
-
                     <StyledTableCell > Edit </StyledTableCell>
-
                   </TableRow>
                 </TableHead>
                 <TableBody>
-           {companydata.companys.map(company =>  <StyledTableRow key={company.id}>
+           {companydata.company.map(company =>  <StyledTableRow key={company.id}>
             <Hidden only={['sm', 'xs']}>
             <StyledTableCell component="th" scope="row">{company.id}</StyledTableCell>
             </Hidden>
@@ -267,6 +264,7 @@ function CompanyList(){
           </Table>
           <Button onClick={() => dispatch(loadCompanys(companydata.sort,companydata.order,companydata.max,companydata.offset))}>Load More</Button>
         </TableContainer>
+       
     </Grid>
   </div>)
     
