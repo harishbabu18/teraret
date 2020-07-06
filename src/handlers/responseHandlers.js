@@ -1,6 +1,6 @@
 import Auth from '../security/auth';
 
-//<1>
+
 export const checkResponseStatus = (response) => {
     if(response.status >= 200 && response.status < 300) {
 

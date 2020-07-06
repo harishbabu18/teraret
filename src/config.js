@@ -1,5 +1,2 @@
-const SERVER_URL = 'http://in.api.teraret.com';
-
-//const SERVER_URL = 'http://localhost:8080'
-
+const SERVER_URL = "http://localhost:8080";
 export default SERVER_URL;

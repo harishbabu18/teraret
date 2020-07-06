@@ -1,5 +1,5 @@
-import SERVER_URL from './../config';
-import {checkResponseStatus} from './../handlers/responseHandlers';
+import SERVER_URL from '../config';
+import {checkResponseStatus} from '../handlers/responseHandlers';
 import 'whatwg-fetch';
 import qs from 'qs';
 
