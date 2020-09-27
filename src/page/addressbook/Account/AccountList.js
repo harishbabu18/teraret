@@ -113,7 +113,7 @@ function CompanyList() {
     </h1>
   ) : (
     <div>
-      <CompanySearch />
+      {/* <CompanySearch /> */}
       <Grid item sm={12} md={12} className={classes.root}>
         <ButtonGroup fullWidth aria-label="full width outlined button group">
           <Button className={classes.content} href="/addressbook/company/list">
