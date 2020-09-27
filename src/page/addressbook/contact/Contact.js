@@ -14,11 +14,9 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 
-
 const useStyles = theme => ({
   root: {
-   
-    
+       
     '& .MuiTextField-root ': {
       margin: theme.spacing(1),
       marginBottom: 12,
@@ -585,8 +583,6 @@ class CreateContact extends React.Component {
 </form>
 </Card>
 </div>
-
-
 </div>
 </div>
 );

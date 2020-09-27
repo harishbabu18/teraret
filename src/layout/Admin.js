@@ -1,43 +1,43 @@
-import React from 'react';
-import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import React from "react";
+import clsx from "clsx";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import Drawer from "@material-ui/core/Drawer";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import List from "@material-ui/core/List";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 
-import Address from './../components/AddressDropdown';
-import Warehouse from './../components/WarehouseDropdown';
-import Sales from './../components/SalesDropdown';
-import Account from'./../components/AccountDropdown';
+import Address from "./../components/AddressDropdown";
+import Warehouse from "./../components/WarehouseDropdown";
+import Sales from "./../components/SalesDropdown";
+import Account from "./../components/AccountDropdown";
 
-import { Route } from 'react-router-dom';  
+import { Route } from "react-router-dom";
 import logo from "../teraretwhite.svg";
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-import AccountCircle from '@material-ui/icons/AccountCircle';
+import MenuItem from "@material-ui/core/MenuItem";
+import Menu from "@material-ui/core/Menu";
+import AccountCircle from "@material-ui/icons/AccountCircle";
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    display: "flex",
   },
-  logo:{
-    width:162
+  logo: {
+    width: 162,
   },
   grow: {
     flexGrow: 1,
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
-    color:'white',
-    transition: theme.transitions.create(['width', 'margin'], {
+    color: "white",
+    transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
@@ -45,7 +45,7 @@ const useStyles = makeStyles(theme => ({
   appBarShift: {
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
+    transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
@@ -54,35 +54,35 @@ const useStyles = makeStyles(theme => ({
     marginRight: 36,
   },
   hide: {
-    display: 'none',
+    display: "none",
   },
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
-    whiteSpace: 'nowrap',
+    whiteSpace: "nowrap",
   },
   drawerOpen: {
     width: drawerWidth,
-    transition: theme.transitions.create('width', {
+    transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
   drawerClose: {
-    transition: theme.transitions.create('width', {
+    transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    overflowX: 'hidden',
+    overflowX: "hidden",
     width: theme.spacing(7) + 1,
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up("sm")]: {
       width: theme.spacing(9) + 1,
     },
   },
   toolbar: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-end",
     padding: theme.spacing(0, 1),
     ...theme.mixins.toolbar,
   },
@@ -92,14 +92,11 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-
-
-
-
-
-
-
-export default function MiniDrawer({logoutHandler,component: Component, ...rest}) {
+export default function MiniDrawer({
+  logoutHandler,
+  component: Component,
+  ...rest
+}) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -107,11 +104,9 @@ export default function MiniDrawer({logoutHandler,component: Component, ...rest}
 
   const isMenuOpen = Boolean(anchorEl);
 
-
-  const handleProfileMenuOpen = event => {
+  const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
 
   const handleMenuClose = () => {
     setAnchorEl(null);
@@ -125,14 +120,14 @@ export default function MiniDrawer({logoutHandler,component: Component, ...rest}
     setOpen(false);
   };
 
-  const menuId = 'primary-search-account-menu';
+  const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
       // anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
       id={menuId}
       keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      transformOrigin={{ vertical: "top", horizontal: "right" }}
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
@@ -140,8 +135,6 @@ export default function MiniDrawer({logoutHandler,component: Component, ...rest}
       <MenuItem onClick={logoutHandler}>Logout</MenuItem>
     </Menu>
   );
-
-
 
   return (
     <div className={classes.root}>
@@ -164,20 +157,19 @@ export default function MiniDrawer({logoutHandler,component: Component, ...rest}
           >
             <MenuIcon />
           </IconButton>
-          <img src={logo}   className={classes.logo} alt="Teraret" />
-        <div className={classes.grow} />
+          <img src={logo} className={classes.logo} alt="Teraret" />
+          <div className={classes.grow} />
           <IconButton
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
+            edge="end"
+            aria-label="account of current user"
+            aria-controls={menuId}
+            aria-haspopup="true"
+            onClick={handleProfileMenuOpen}
+            color="inherit"
+          >
             <AccountCircle />
           </IconButton>
-        {/* </div> */}
-          
+          {/* </div> */}
         </Toolbar>
       </AppBar>
       {renderMenu}
@@ -197,20 +189,24 @@ export default function MiniDrawer({logoutHandler,component: Component, ...rest}
       >
         <div className={classes.toolbar}>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+            {theme.direction === "rtl" ? (
+              <ChevronRightIcon />
+            ) : (
+              <ChevronLeftIcon />
+            )}
           </IconButton>
         </div>
         <List>
-            <Address />   
-            <Warehouse />  
-            <Sales />   
-            <Account />   
+          <Address />
+          <Warehouse />
+          <Sales />
+          <Account />
         </List>
       </Drawer>
       <main className={classes.content}>
-      <div className={classes.toolbar} />
-      <Route {...rest} render={Component } />
-      </main>      
-      </div>
+        <div className={classes.toolbar} />
+        <Route {...rest} render={Component} />
+      </main>
+    </div>
   );
 }
